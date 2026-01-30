@@ -308,6 +308,91 @@ elements.append(Paragraph(
 
 elements.append(PageBreak())
 
+# Problem 2, Question 3
+elements.append(Paragraph("Question 3: Effect of Normalization with Dropout", heading2_style))
+elements.append(Paragraph(
+    "Compare the SimpleFC model with dropout 0.2 on unnormalized vs normalized MNIST data. "
+    "Report training accuracy, testing accuracy, total training time, and the first epoch reaching 96% training accuracy.",
+    normal_style
+))
+elements.append(Spacer(1, 0.1*inch))
+
+elements.append(Paragraph("<b>Answer:</b>", heading3_style))
+elements.append(Paragraph(
+    "The comparison between dropout 0.2 with and without normalization is shown in Table 2 below:",
+    normal_style
+))
+elements.append(Spacer(1, 0.1*inch))
+
+# Table 2 - Dropout 0.2 vs 0.2 + norm
+table_p2q3_data = [
+    ['Dropout', 'Training accuracy [%]', 'Testing accuracy [%]', 'Total time for\ntraining [s]', 'First epoch reaching\n96% train acc'],
+    ['0.2', '99.43', '98.30', '196.49', '5'],
+    ['0.2 + norm', '99.63', '98.30', '283.47', '3']
+]
+
+table_p2q3 = Table(table_p2q3_data, colWidths=[1.2*inch, 1.4*inch, 1.4*inch, 1.3*inch, 1.4*inch])
+table_p2q3.setStyle(TableStyle([
+    ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+    ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, 0), 9),
+    ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+    ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+    ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ('FONTSIZE', (0, 1), (-1, -1), 9)
+]))
+
+elements.append(table_p2q3)
+elements.append(Spacer(1, 0.1*inch))
+
+elements.append(Paragraph(
+    "<b>Normalization:</b> For the row '0.2 + norm', both training and testing datasets use "
+    "Compose(ToTensor(), Normalize(mean=0.1307, std=0.3081)) (MNIST mean and std). This standardizes "
+    "inputs to roughly zero mean and unit variance.",
+    normal_style
+))
+elements.append(Spacer(1, 0.1*inch))
+
+elements.append(Paragraph(
+    "<b>Compare and contrast — normalized vs unnormalized:</b>",
+    heading3_style
+))
+
+elements.append(Paragraph(
+    "• <b>Convergence speed:</b> With normalization (0.2 + norm), the model reaches 96% training accuracy by "
+    "<b>epoch 3</b>, versus <b>epoch 5</b> without normalization (0.2). So normalization helps the model learn faster; "
+    "inputs in a consistent scale make optimization easier.",
+    normal_style
+))
+elements.append(Spacer(1, 0.05*inch))
+
+elements.append(Paragraph(
+    "• <b>Final accuracy:</b> Both setups reach about the same <b>test accuracy (98.30%)</b>. Final training accuracy "
+    "is slightly higher with norm (99.63% vs 99.43%), but the main gain is faster convergence.",
+    normal_style
+))
+elements.append(Spacer(1, 0.05*inch))
+
+elements.append(Paragraph(
+    "• <b>Training time:</b> Total training time is higher with normalization (283.47 s vs 196.49 s) because the "
+    "Normalize transform adds a bit of work per batch; the benefit of normalization is fewer epochs needed to reach "
+    "a given accuracy, not necessarily lower wall-clock time per run.",
+    normal_style
+))
+elements.append(Spacer(1, 0.05*inch))
+
+elements.append(Paragraph(
+    "• <b>Explanation:</b> Normalization (here, standardization with mean 0.1307 and std 0.3081) puts inputs in a range "
+    "that networks handle well, so gradients and updates are better behaved. That typically speeds up convergence "
+    "(e.g., 96% train acc in 3 epochs instead of 5) and can improve generalization; in this experiment test accuracy "
+    "is the same, but the normalized run gets there earlier in terms of epochs.",
+    normal_style
+))
+
+elements.append(PageBreak())
+
 # ==============================================================================
 # PROBLEM 3
 # ==============================================================================
