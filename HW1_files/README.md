@@ -20,3 +20,24 @@ After viewing the resulting plots of p2_q1 (training/test loss and accuracy per 
 - **Training accuracy** rises to almost 100% (e.g., ~99.99% by epoch 25), while **test accuracy** improves to about 97–98% and then **plateaus** there for the rest of training.
 
 The widening gap between training and test loss (and between very high train accuracy and lower, flat test accuracy) indicates that the model is memorizing the training set rather than learning features that generalize well. The SimpleFC network has many parameters (four fully connected layers), so without regularization (e.g., dropout) it tends to overfit. Adding dropout (as in Problem 2, Question 2) helps reduce this overfitting.
+
+---
+
+## Problem 2, Question 2: Dropout experiments — what do you observe? Best/worst dropout?
+
+**What do you observe from the loss plots?**
+
+Across the four experiments (dropout 0.0, 0.2, 0.5, 0.8), the loss plots show that as dropout increases, the **gap between training loss and test loss shrinks**: training loss no longer drops to nearly zero while test loss stays high. So dropout reduces overfitting. If dropout is too high, both losses stay higher and the model underfits.
+
+**Which dropout probability gives the best results?**
+
+The **best** results (no overfitting, i.e., almost equal train and test loss values) typically come from **dropout 0.2 or 0.5**. In those plots, the training and test loss curves are close together and both decrease to a similar level, so the model generalizes well without memorizing the training set.
+
+**Which dropout probability gives the worst results?**
+
+The **worst** results come from two extremes:
+
+- **Dropout 0.0**: Strong overfitting. Training loss drops to nearly zero while test loss plateaus or increases; the gap between the two curves is large. The model memorizes the training data and does not generalize well.
+- **Dropout 0.8**: Underfitting. Both training and test loss stay relatively high because too many neurons are dropped each epoch; the model cannot learn the task well.
+
+**Explanation:** Dropout randomly turns off neurons during training, so the model cannot rely on any single neuron and is encouraged to learn more robust features. With no dropout (0.0), the model overfits. With moderate dropout (0.2 or 0.5), train and test loss stay close and performance is best. With very high dropout (0.8), the model is over-regularized and underfits.

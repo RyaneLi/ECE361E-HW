@@ -22,7 +22,7 @@ module load python3
 source $WORK/HW1_virtualenv/bin/activate
 
 # Launch code...
-python -u $WORK/HW1_files/p2_q1.py --batch_size=128 --epochs=25 --lr=0.01 > $WORK/HW1_files/out.txt
+python -u $WORK/HW1_files/p2_q2.py --batch_size=128 --epochs=25 --lr=0.01 > $WORK/HW1_files/out.txt
 
 # ---------------------------------------------------
 

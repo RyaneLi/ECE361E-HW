@@ -6,6 +6,7 @@
 # Best: dropout that gives almost equal train and test loss (e.g. 0.2 or 0.5).
 # Worst: 0.0 often overfits (train loss << test loss); 0.8 may underfit (both high).
 
+import csv
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -22,7 +23,9 @@ parser = argparse.ArgumentParser(description='ECE361E HW1 P2 Q2 - SimpleFC dropo
 parser.add_argument('--batch_size', type=int, default=128, help='Number of samples per mini-batch')
 parser.add_argument('--epochs', type=int, default=25, help='Number of epoch to train')
 parser.add_argument('--lr', type=float, default=0.01, help='Learning rate')
+parser.add_argument('--plot-only', action='store_true', help='Load data from CSV and only generate PNG plots (no training)')
 args = parser.parse_args()
+PLOT_ONLY = args.plot_only
 
 input_size = 28 * 28
 num_classes = 10
@@ -69,6 +72,26 @@ class SimpleFC(nn.Module):
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 criterion = nn.CrossEntropyLoss()
+
+CSV_BASE = 'p2_q2_plot_data'
+
+
+def save_plot_data(csv_path, train_losses, test_losses):
+    with open(csv_path, 'w', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['epoch', 'train_loss', 'test_loss'])
+        for i in range(len(train_losses)):
+            w.writerow([i + 1, train_losses[i], test_losses[i]])
+
+
+def load_plot_data(csv_path):
+    train_losses, test_losses = [], []
+    with open(csv_path, newline='') as f:
+        r = csv.DictReader(f)
+        for row in r:
+            train_losses.append(float(row['train_loss']))
+            test_losses.append(float(row['test_loss']))
+    return train_losses, test_losses
 
 
 def train_one_experiment(dropout_prob):
@@ -126,9 +149,21 @@ def save_loss_plot(train_losses, test_losses, dropout_prob):
 
 
 if __name__ == '__main__':
+    if PLOT_ONLY:
+        for p in DROPOUT_PROBS:
+            csv_path = '%s_%.1f.csv' % (CSV_BASE, p)
+            train_losses, test_losses = load_plot_data(csv_path)
+            fname = save_loss_plot(train_losses, test_losses, p)
+            print('Loaded %s, saved %s' % (csv_path, fname))
+        print('Done. Regenerated all four loss plots from CSV.')
+        raise SystemExit(0)
+
     for p in DROPOUT_PROBS:
         print('--- Dropout probability: %.1f ---' % p)
         train_losses, test_losses = train_one_experiment(p)
+        csv_path = '%s_%.1f.csv' % (CSV_BASE, p)
+        save_plot_data(csv_path, train_losses, test_losses)
+        print('Saved %s' % csv_path)
         fname = save_loss_plot(train_losses, test_losses, p)
         print('Saved %s' % fname)
-    print('Done. Four loss plots: p2_q2_loss_plot_0.0.png, p2_q2_loss_plot_0.2.png, p2_q2_loss_plot_0.5.png, p2_q2_loss_plot_0.8.png')
+    print('Done. Four CSVs: p2_q2_plot_data_0.0.csv, ..., p2_q2_plot_data_0.8.csv and loss plots.')
