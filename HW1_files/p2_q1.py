@@ -1,14 +1,11 @@
-# Draw a loss plot consisting of two curves: the training loss and the test loss of your model
-# for each epoch. Also, draw a second plot consisting of two curves: the training accuracy and test accuracy
-# of your model for each epoch (this is the accuracy plot).
-#
-# TACC workflow: Run training on TACC; data is saved to CSV (no need to re-train on error).
-# Plotting uses savefig() only (no interactive show()). On your own computer, use --plot-only
-# with the CSV file to regenerate PNG figures without re-training.
+# Problem 2, Question 1: Run SimpleFC with target device (GPU/CPU), draw loss and accuracy plots.
+# Overfitting: If training loss keeps decreasing while test loss increases or plateaus, and/or
+# training accuracy becomes much higher than test accuracy, the model is overfitting.
 
 import csv
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torchvision.datasets as dsets
 import torchvision.transforms as transforms
 import argparse
@@ -18,11 +15,11 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-parser = argparse.ArgumentParser(description='ECE361E HW1 - Loss and accuracy plots')
+parser = argparse.ArgumentParser(description='ECE361E HW1 P2 Q1 - SimpleFC with device and plots')
 parser.add_argument('--batch_size', type=int, default=128, help='Number of samples per mini-batch')
 parser.add_argument('--epochs', type=int, default=25, help='Number of epoch to train')
 parser.add_argument('--lr', type=float, default=0.01, help='Learning rate')
-parser.add_argument('--csv', type=str, default='plot_data.csv', help='CSV file to save/load plot data')
+parser.add_argument('--csv', type=str, default='p2_q1_plot_data.csv', help='CSV file to save plot data')
 parser.add_argument('--plot-only', action='store_true', help='Load data from CSV and only generate PNG plots (no training)')
 args = parser.parse_args()
 
@@ -56,9 +53,9 @@ def make_plots(train_losses, test_losses, train_accs, test_accs):
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
     plt.legend()
-    plt.title('Training and test loss per epoch')
+    plt.title('SimpleFC: Training and test loss per epoch')
     plt.tight_layout()
-    plt.savefig('loss_plot.png', dpi=150)
+    plt.savefig('p2_q1_loss_plot.png', dpi=150)
     plt.close()
     plt.figure(figsize=(6, 4))
     plt.plot(epochs_range, train_accs, label='Training accuracy')
@@ -66,23 +63,22 @@ def make_plots(train_losses, test_losses, train_accs, test_accs):
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy (%)')
     plt.legend()
-    plt.title('Training and test accuracy per epoch')
+    plt.title('SimpleFC: Training and test accuracy per epoch')
     plt.tight_layout()
-    plt.savefig('accuracy_plot.png', dpi=150)
+    plt.savefig('p2_q1_accuracy_plot.png', dpi=150)
     plt.close()
 
 if PLOT_ONLY:
     train_losses, test_losses, train_accs, test_accs = load_plot_data(CSV_PATH)
     make_plots(train_losses, test_losses, train_accs, test_accs)
-    print('Loaded %s and saved loss_plot.png and accuracy_plot.png' % CSV_PATH)
+    print('Loaded %s and saved p2_q1_loss_plot.png and p2_q1_accuracy_plot.png' % CSV_PATH)
     raise SystemExit(0)
-
-num_epochs = args.epochs
-batch_size = args.batch_size
-learning_rate = args.lr
 
 input_size = 28 * 28
 num_classes = 10
+num_epochs = args.epochs
+batch_size = args.batch_size
+learning_rate = args.lr
 
 random_seed = 1
 torch.manual_seed(random_seed)
@@ -94,24 +90,35 @@ torch.backends.cudnn.benchmark = False
 g = torch.Generator()
 g.manual_seed(random_seed)
 
-train_dataset = dsets.MNIST(root='./data', train=True, transform=transforms.ToTensor(), download=True)
-test_dataset = dsets.MNIST(root='./data', train=False, transform=transforms.ToTensor(), download=True)
+# MNIST Dataset (Images and Labels)
+train_dataset = dsets.MNIST(root='data', train=True, transform=transforms.ToTensor(), download=True)
+test_dataset = dsets.MNIST(root='data', train=False, transform=transforms.ToTensor())
+
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, generator=g)
 test_loader = torch.utils.data.DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
 
 
-class LogisticRegression(nn.Module):
+class SimpleFC(nn.Module):
     def __init__(self, input_size, num_classes):
-        super(LogisticRegression, self).__init__()
-        self.linear = nn.Linear(input_size, num_classes)
+        super(SimpleFC, self).__init__()
+        self.linear1 = nn.Linear(input_size, 512)
+        self.linear2 = nn.Linear(512, 256)
+        self.linear3 = nn.Linear(256, 128)
+        self.linear4 = nn.Linear(128, num_classes)
 
     def forward(self, x):
-        return self.linear(x)
+        out = F.relu(self.linear1(x))
+        out = F.relu(self.linear2(out))
+        out = F.relu(self.linear3(out))
+        out = self.linear4(out)
+        return out
 
 
+# Target device for model, images, and labels
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-model = LogisticRegression(input_size, num_classes)
+model = SimpleFC(input_size, num_classes)
 model = model.to(device)
+
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, momentum=0.9)
 
@@ -162,4 +169,4 @@ for epoch in range(num_epochs):
 save_plot_data(CSV_PATH, train_losses, test_losses, train_accs, test_accs)
 print('Saved plot data to %s' % CSV_PATH)
 make_plots(train_losses, test_losses, train_accs, test_accs)
-print('Saved loss_plot.png and accuracy_plot.png')
+print('Saved p2_q1_loss_plot.png and p2_q1_accuracy_plot.png')

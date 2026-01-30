@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(description='ECE361E HW1 - Starter code')
 # Define the mini-batch size, here the size is 128 images per batch
 parser.add_argument('--batch_size', type=int, default=128, help='Number of samples per mini-batch')
 # Define the number of epochs for training
-parser.add_argument('--epochs', type=int, default=1, help='Number of epoch to train')
+parser.add_argument('--epochs', type=int, default=25, help='Number of epoch to train')
 # Define the learning rate of your optimizer
 parser.add_argument('--lr', type=float, default=0.01, help='Learning rate')
 args = parser.parse_args()

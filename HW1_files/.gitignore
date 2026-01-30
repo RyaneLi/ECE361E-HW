@@ -1,0 +1,9 @@
+# Ignore build/cache, system files, and large data; allow homework source and outputs
+__pycache__/
+*.pyc
+.DS_Store
+data/
+*.e*
+*.o*
+out.txt
+id

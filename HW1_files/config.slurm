@@ -11,7 +11,7 @@
 #SBATCH -N 1                              # Total # of nodes (must be 1 for serial)
 #SBATCH -n 1                              # Total # of mpi tasks (should be 1 for serial)
 #SBATCH -t 24:00:00                       # Run time (hh:mm:ss)
-#SBATCH --mail-user=<UT_MAIL_INSERT_HERE>@utexas.edu
+#SBATCH --mail-user=ryaneli@utexas.edu
 #SBATCH --mail-type=all                   # Send email at begin and end of job (can assign begin or end as well)
 #SBATCH -A CCR24007                       # Allocation name
 
@@ -22,7 +22,7 @@ module load python3
 source $WORK/HW1_virtualenv/bin/activate
 
 # Launch code...
-python -u $WORK/HW1_files/starter.py --batch_size=128 --epochs=25 --lr=0.01 > $WORK/HW1_files/out.txt
+python -u $WORK/HW1_files/p2_q1.py --batch_size=128 --epochs=25 --lr=0.01 > $WORK/HW1_files/out.txt
 
 # ---------------------------------------------------
 
