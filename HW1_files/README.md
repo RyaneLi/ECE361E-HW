@@ -46,8 +46,6 @@ The **worst** results come from two extremes:
 
 ## Problem 2, Question 3: Table 2 (dropout 0.2 vs 0.2 + norm)
 
-Table 2 uses the dropout rate that led to the best results in Problem 2, Question 2 (**0.2**). Run `python p2_q3.py --epochs 25 --dropout 0.2` to reproduce.
-
 | Dropout    | Training accuracy [%] | Testing accuracy [%] | Total time for training [s] | First epoch reaching 96% train acc |
 |------------|------------------------|----------------------|-----------------------------|-------------------------------------|
 | 0.2        | 99.43                  | 98.30                | 196.49                      | 5                                    |
