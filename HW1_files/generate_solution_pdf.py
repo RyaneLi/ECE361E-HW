@@ -90,23 +90,33 @@ elements.append(Spacer(1, 0.3*inch))
 elements.append(Paragraph("Problem 1: Logistic Regression for MNIST Classification", heading1_style))
 elements.append(Spacer(1, 0.2*inch))
 
-# Problem 1, Question 1
-elements.append(Paragraph("Question 1: Train Logistic Regression model and report metrics", heading2_style))
+# Problem 1, Question 2
+elements.append(Paragraph("Question 2: Plot loss and accuracy curves", heading2_style))
 elements.append(Paragraph(
-    "Train a logistic regression model for 25 epochs on the normalized MNIST dataset. "
-    "Report training accuracy, testing accuracy, total time for training, total time for inference, "
-    "average time for inference per image, and GPU memory during training.",
+    "Plot the loss and accuracy curves as a function of epochs for both training and testing sets.",
     normal_style
 ))
 elements.append(Spacer(1, 0.1*inch))
 
 elements.append(Paragraph("<b>Answer:</b>", heading3_style))
-elements.append(Paragraph(
-    "The logistic regression model was trained for 25 epochs on the normalized MNIST dataset. "
-    "The results are shown in Table 1 below:",
-    normal_style
-))
 elements.append(Spacer(1, 0.1*inch))
+
+# Add loss plot
+if os.path.exists("p1_q2_loss_plot.png"):
+    img_loss = Image("p1_q2_loss_plot.png", width=5*inch, height=3*inch)
+    elements.append(img_loss)
+    elements.append(Spacer(1, 0.1*inch))
+
+# Add accuracy plot
+if os.path.exists("p1_q2_accuracy_plot.png"):
+    img_acc = Image("p1_q2_accuracy_plot.png", width=5*inch, height=3*inch)
+    elements.append(img_acc)
+    elements.append(Spacer(1, 0.1*inch))
+
+elements.append(Spacer(1, 0.2*inch))
+
+# Problem 1, Question 3
+elements.append(Paragraph("Question 3: Performance Metrics", heading2_style))
 
 # Table 1 data - horizontal format
 table1_data = [
@@ -129,48 +139,6 @@ table1.setStyle(TableStyle([
 ]))
 
 elements.append(table1)
-elements.append(Spacer(1, 0.2*inch))
-
-elements.append(Paragraph(
-    "The model achieves approximately 92% accuracy on both training and test sets, indicating good generalization "
-    "without overfitting. The inference time per image is quite fast at approximately 0.13 milliseconds.",
-    normal_style
-))
-elements.append(Spacer(1, 0.2*inch))
-
-# Problem 1, Question 2
-elements.append(Paragraph("Question 2: Plot loss and accuracy curves", heading2_style))
-elements.append(Paragraph(
-    "Plot the loss and accuracy curves as a function of epochs for both training and testing sets.",
-    normal_style
-))
-elements.append(Spacer(1, 0.1*inch))
-
-elements.append(Paragraph("<b>Answer:</b>", heading3_style))
-elements.append(Paragraph(
-    "The loss and accuracy curves for the logistic regression model are shown below. "
-    "Both plots show steady improvement during training with the model converging around epoch 15-20.",
-    normal_style
-))
-elements.append(Spacer(1, 0.1*inch))
-
-# Add loss plot
-if os.path.exists("p1_q2_loss_plot.png"):
-    img_loss = Image("p1_q2_loss_plot.png", width=5*inch, height=3*inch)
-    elements.append(img_loss)
-    elements.append(Spacer(1, 0.1*inch))
-
-# Add accuracy plot
-if os.path.exists("p1_q2_accuracy_plot.png"):
-    img_acc = Image("p1_q2_accuracy_plot.png", width=5*inch, height=3*inch)
-    elements.append(img_acc)
-    elements.append(Spacer(1, 0.1*inch))
-
-elements.append(Paragraph(
-    "The plots show that both training and test losses decrease steadily, while accuracies increase and plateau "
-    "around 92%. The close alignment between training and test curves indicates no significant overfitting.",
-    normal_style
-))
 
 elements.append(PageBreak())
 
