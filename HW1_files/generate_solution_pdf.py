@@ -108,27 +108,24 @@ elements.append(Paragraph(
 ))
 elements.append(Spacer(1, 0.1*inch))
 
-# Table 1 data
+# Table 1 data - horizontal format
 table1_data = [
-    ['Metric', 'Value'],
-    ['Training accuracy [%]', '92.56'],
-    ['Testing accuracy [%]', '92.35'],
-    ['Total time for training [s]', '199.62'],
-    ['Total time for inference [s]', '1.26'],
-    ['Average time for inference per image [ms]', '0.1261'],
-    ['GPU memory during training [MB]', '17.74']
+    ['Training\naccuracy [%]', 'Testing\naccuracy [%]', 'Total time for\ntraining [s]', 'Total time for\ninference [s]', 'Avg time for\ninference per\nimage [ms]', 'GPU memory\nduring training\n[MB]'],
+    ['92.56', '92.35', '199.62', '1.26', '0.1261', '17.74']
 ]
 
-table1 = Table(table1_data, colWidths=[3.5*inch, 1.5*inch])
+table1 = Table(table1_data, colWidths=[1.1*inch, 1.1*inch, 1.1*inch, 1.1*inch, 1.1*inch, 1.1*inch])
 table1.setStyle(TableStyle([
     ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
     ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
     ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
     ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-    ('FONTSIZE', (0, 0), (-1, 0), 11),
+    ('FONTSIZE', (0, 0), (-1, 0), 9),
     ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
     ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-    ('GRID', (0, 0), (-1, -1), 1, colors.black)
+    ('GRID', (0, 0), (-1, -1), 1, colors.black),
+    ('FONTSIZE', (0, 1), (-1, -1), 10)
 ]))
 
 elements.append(table1)
