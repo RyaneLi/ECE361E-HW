@@ -8,12 +8,6 @@ Table 1 reports the Logistic Regression model (Problem 1) using accuracy from th
 |-----------------------|----------------------|-----------------------------|------------------------------|------------------------------------------|----------------------------------|
 | 92.56                 | 92.35                | 199.62                      | 1.26                         | 0.1261                                   | 17.74                             |
 
-- **Accuracy**: From the final epoch of a 25-epoch run (same setup as `plot_data.csv`).
-- **Training time**: Measured with `time.time()` over the training phase only (excluding the testing phase each epoch).
-- **Inference time**: One pass over the test set after training; only the line `outputs = model(images)` is timed, with `batch_size=1`, `model.eval()`, and `torch.no_grad()`.
-- **Average time per image**: Total inference time (seconds) × 1000 / number of test images.
-- **GPU memory**: Peak memory during training (`torch.cuda.max_memory_allocated()`); 0 on CPU.
-
 ---
 
 ## Problem 2, Question 1: Does the SimpleFC model overfit?
