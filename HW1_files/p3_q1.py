@@ -62,7 +62,10 @@ train_dataset = dsets.MNIST(root='data', train=True, transform=transforms.Compos
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))
 ]), download=True)
-test_dataset = dsets.MNIST(root='data', train=False, transform=transforms.ToTensor())
+test_dataset = dsets.MNIST(root='data', train=False, transform=transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.1307,), (0.3081,))
+]))
 
 # Dataset Loader (Input Pipeline)
 train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, generator=g)
