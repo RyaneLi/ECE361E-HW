@@ -1,4 +1,4 @@
-ECE361E HW1 - Team9 Submission
+g ECE361E HW1 - Team9 Submission
 ==============================
 
 This readme describes the contents of the zip file.
