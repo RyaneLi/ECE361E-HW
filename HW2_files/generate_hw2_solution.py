@@ -297,6 +297,94 @@ def generate_hw2_pdf():
     pdf.set_font('Arial', '', 10)
     pdf.multi_cell(0, 6, 'Add lagged temperatures (e.g., from t-2, t-3) or rolling statistics (moving average, standard deviation) as features. This helps capture dynamics and thermal inertia.')
     
+    # BONUS Question 3
+    pdf.add_page()
+    pdf.section_title('BONUS Question 3: On-Demand Governor Analysis [10Bp]')
+    pdf.body_text('Using an Odroid MC1, we already implemented an on-demand governor algorithm. Table 6 shows the results obtained for both bodytrack and blackscholes benchmarks when executed with the on-demand governor active and a temperature threshold of 60C.')
+    pdf.ln(2)
+    pdf.body_text('What are the possible "cyber-physical" trade-offs when having such a governor running? Discuss such trade-offs by comparing the runtime, average power consumption, thermal limits, and energy consumption of each benchmark with what you already obtained in Table 1.')
+    pdf.ln(5)
+    
+    # Table 6
+    pdf.section_title('Table 6: On-Demand Governor Results (60C threshold)')
+    
+    # Table 6 data
+    table6_data = {
+        'Benchmark': ['blackscholes', 'bodytrack'],
+        'Runtime [s]': [148.99, 138.20],
+        'Avg. power [W]': [6.23, 7.24],
+        'Avg max temp [C]': [51.71, 51.32],
+        'Max temp [C]': [62, 63],
+        'Energy [J]': [928.23, 1000.12]
+    }
+    
+    # Table styling
+    pdf.set_font('Arial', 'B', 9)
+    pdf.set_fill_color(230, 230, 230)
+    
+    # Calculate column widths
+    col_width = (pdf.w - 2 * pdf.l_margin) / 6
+    
+    # Header row
+    pdf.cell(col_width, 7, 'Benchmark', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Runtime [s]', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Avg. power [W]', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Avg max temp [C]', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Max temp [C]', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Energy [J]', 1, 0, 'C', 1)
+    pdf.ln()
+    
+    # Data rows
+    pdf.set_font('Arial', '', 9)
+    for i in range(len(table6_data['Benchmark'])):
+        pdf.cell(col_width, 6, table6_data['Benchmark'][i], 1, 0, 'L')
+        pdf.cell(col_width, 6, f"{table6_data['Runtime [s]'][i]:.2f}", 1, 0, 'C')
+        pdf.cell(col_width, 6, f"{table6_data['Avg. power [W]'][i]:.2f}", 1, 0, 'C')
+        pdf.cell(col_width, 6, f"{table6_data['Avg max temp [C]'][i]:.2f}", 1, 0, 'C')
+        pdf.cell(col_width, 6, f"{table6_data['Max temp [C]'][i]:.0f}", 1, 0, 'C')
+        pdf.cell(col_width, 6, f"{table6_data['Energy [J]'][i]:.2f}", 1, 0, 'C')
+        pdf.ln()
+    
+    pdf.ln(5)
+    
+    # Add comparison visualization
+    pdf.add_page()
+    pdf.add_image_full_width('bonus_q3_governor_comparison.png', 'Governor Impact Comparison')
+    
+    # Add analysis
+    pdf.add_page()
+    pdf.section_title('Answer: Cyber-Physical Trade-offs Analysis')
+    
+    pdf.set_font('Arial', 'B', 11)
+    pdf.multi_cell(0, 6, 'Quantitative Comparison (Table 6 vs Table 1):')
+    pdf.ln(2)
+    
+    pdf.set_font('Arial', 'B', 10)
+    pdf.multi_cell(0, 6, 'blackscholes:')
+    pdf.set_font('Arial', '', 10)
+    pdf.multi_cell(0, 6, '- Runtime: 134.68s -> 148.99s (+10.6% slower)')
+    pdf.multi_cell(0, 6, '- Avg. power: 8.78W -> 6.23W (-29.1% reduction)')
+    pdf.multi_cell(0, 6, '- Avg. max temp: 67.78C -> 51.71C (-23.7% reduction)')
+    pdf.multi_cell(0, 6, '- Max temp: 85C -> 62C (-27.1% reduction)')
+    pdf.multi_cell(0, 6, '- Energy: 1182.92J -> 928.23J (-21.5% reduction)')
+    pdf.ln(3)
+    
+    pdf.set_font('Arial', 'B', 10)
+    pdf.multi_cell(0, 6, 'bodytrack:')
+    pdf.set_font('Arial', '', 10)
+    pdf.multi_cell(0, 6, '- Runtime: 150.71s -> 138.20s (-8.3% faster)')
+    pdf.multi_cell(0, 6, '- Avg. power: 8.52W -> 7.24W (-15.0% reduction)')
+    pdf.multi_cell(0, 6, '- Avg. max temp: 66.22C -> 51.32C (-22.5% reduction)')
+    pdf.multi_cell(0, 6, '- Max temp: 77C -> 63C (-18.2% reduction)')
+    pdf.multi_cell(0, 6, '- Energy: 1284.08J -> 1000.12J (-22.1% reduction)')
+    pdf.ln(5)
+    
+    
+    pdf.set_font('Arial', 'B', 11)
+    pdf.multi_cell(0, 6, 'Conclusion:')
+    pdf.set_font('Arial', '', 11)
+    pdf.multi_cell(0, 6, 'The on-demand governor ends up being strictly better for the bodytrack system while for the blackscholes, it sacrifices on runtime to save on energy, power, and a decrease in max temperature.')
+    
     # Save PDF
     output_path = 'HW2_Complete_Solutions.pdf'
     pdf.output(output_path)
@@ -315,8 +403,9 @@ if __name__ == "__main__":
     output_file = generate_hw2_pdf()
     
     print("=" * 70)
-    print(f"✓ SUCCESS: PDF generated at {output_file}")
+    print(f"SUCCESS: PDF generated at {output_file}")
     print("\nThe PDF includes:")
     print("  - Problem 1: All 3 questions with plots and answers")
     print("  - Problem 2: All 3 questions with tables, plots, and analysis")
     print("  - Problem 3: Both questions with plots and improvement suggestions")
+    print("  - BONUS Question 3: Governor analysis with comparison plots and trade-offs")
