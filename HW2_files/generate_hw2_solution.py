@@ -245,6 +245,41 @@ def generate_hw2_pdf():
     pdf.add_page()
     pdf.add_image_full_width('bodytrack_core4_prediction.png', 'Bodytrack - Core 4 Temperature Prediction')
     
+    # Add Table 5: MSE Results
+    pdf.add_page()
+    pdf.section_title('Table 5: Test MSE Results for All Cores')
+    
+    # Table 5 data
+    table5_data = {
+        'blackscholes': [0.156752, 0.153057, 0.326226, 0.114536],
+        'bodytrack': [1.165708, 1.117478, 1.392798, 0.661181]
+    }
+    
+    # Table styling
+    pdf.set_font('Arial', 'B', 9)
+    pdf.set_fill_color(230, 230, 230)
+    
+    # Calculate column widths
+    col_width = (pdf.w - 2 * pdf.l_margin) / 5
+    
+    # Header row
+    pdf.cell(col_width, 7, 'Dataset', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Test MSE (Core 4)', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Test MSE (Core 5)', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Test MSE (Core 6)', 1, 0, 'C', 1)
+    pdf.cell(col_width, 7, 'Test MSE (Core 7)', 1, 0, 'C', 1)
+    pdf.ln()
+    
+    # Data rows
+    pdf.set_font('Arial', '', 9)
+    for dataset, mse_values in table5_data.items():
+        pdf.cell(col_width, 6, dataset, 1, 0, 'L')
+        for mse in mse_values:
+            pdf.cell(col_width, 6, f'{mse:.6f}', 1, 0, 'C')
+        pdf.ln()
+    
+    pdf.ln(5)
+    
     # Question 2
     pdf.add_page()
     pdf.section_title('Question 2: Techniques to Improve Regressor Performance')
