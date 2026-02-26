@@ -4,9 +4,13 @@ onnx
 onnxconverter-common
 onnxruntime==1.16.3
 pandas
+pillow
 protobuf
+psutil
+gpiozero
 thop
 torch
 torchsummary
 torchvision
+tqdm
 virtualenv
