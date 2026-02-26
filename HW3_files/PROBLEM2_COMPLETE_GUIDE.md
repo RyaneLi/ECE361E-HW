@@ -37,14 +37,12 @@ Output: `vgg11_mc1.onnx`, `vgg16_mc1.onnx`, `vgg11_raspi.onnx`, `vgg16_raspi.onn
 # VGG11
 taskset --all-tasks 0xF0 python deploy_onnx.py \
     --model vgg11 --onnx_path ./onnx_models/vgg11_mc1.onnx \
-    --device mc1 --test_data_path /home/student/HW3_files/test_deployment \
-    --output_dir ./results_mc1
+    --device mc1 --output_dir ./results_mc1
 
 # VGG16
 taskset --all-tasks 0xF0 python deploy_onnx.py \
     --model vgg16 --onnx_path ./onnx_models/vgg16_mc1.onnx \
-    --device mc1 --test_data_path /home/student/HW3_files/test_deployment \
-    --output_dir ./results_mc1
+    --device mc1 --output_dir ./results_mc1
 ```
 
 **On RaspberryPi 3B+**:
@@ -52,15 +50,15 @@ taskset --all-tasks 0xF0 python deploy_onnx.py \
 # VGG11
 python deploy_onnx.py \
     --model vgg11 --onnx_path ./onnx_models/vgg11_raspi.onnx \
-    --device raspi --test_data_path /home/student/HW3_files/test_deployment \
-    --output_dir ./results_raspi
+    --device raspi --output_dir ./results_raspi
 
 # VGG16
 python deploy_onnx.py \
     --model vgg16 --onnx_path ./onnx_models/vgg16_raspi.onnx \
-    --device raspi --test_data_path /home/student/HW3_files/test_deployment \
-    --output_dir ./results_raspi
+    --device raspi --output_dir ./results_raspi
 ```
+
+**Note**: The script looks for `./test_deployment` folder by default (in the same directory as the script)
 
 **If Smart Power 2 unavailable**: Add `--no-power` flag
 
@@ -132,13 +130,15 @@ Use `htop` or `watch -n0.1 free -m` to monitor during inference.
 
 ### Prerequisites
 
-**Install dependencies on edge devices**:
+1. **Install dependencies on edge devices**:
 ```bash
 pip install numpy onnxruntime pillow tqdm psutil
 
 # RaspberryPi only (usually pre-installed on Raspbian)
 pip install gpiozero
 ```
+
+2. **Ensure test_deployment folder** exists on the edge devices with all 10,000 CIFAR10 test images (should already be present)
 
 ### Step 1: Train Models (Problem 1)
 
@@ -172,6 +172,8 @@ scp sysfs_paths.py student@mc1:/home/student/HW3_files/
 scp -r onnx_models/ student@raspi:/home/student/HW3_files/
 scp deploy_onnx.py student@raspi:/home/student/HW3_files/
 ```
+
+**Note**: test_deployment folder is already present on the edge devices
 
 ### Step 4: Run Deployment on Devices (Question 2)
 
@@ -355,7 +357,7 @@ pip install gpiozero  # RaspberryPi only
 ### Test Images Not Found
 
 **Problem**: Cannot find test_deployment folder
-**Solution**: Verify path `/home/student/HW3_files/test_deployment` exists with all images
+**Solution**: Verify the test_deployment folder exists in the same directory as deploy_onnx.py with all 10,000 images
 
 ---
 

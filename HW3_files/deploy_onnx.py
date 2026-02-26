@@ -31,7 +31,7 @@ parser.add_argument('--model', type=str, required=True,
 parser.add_argument('--onnx_path', type=str, required=True,
                     help='Path to the ONNX model file')
 parser.add_argument('--test_data_path', type=str, 
-                    default='/home/student/HW3_files/test_deployment',
+                    default='./test_deployment',
                     help='Path to test deployment dataset')
 parser.add_argument('--output_dir', type=str, default='./results',
                     help='Directory to save results')
