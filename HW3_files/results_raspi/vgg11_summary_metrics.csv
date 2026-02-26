@@ -1,0 +1,10 @@
+Metric,Value
+Model,vgg11
+Total Inference Time (s),541.66
+Average Inference Time per Image (ms),46.68
+Test Accuracy (%),76.10
+Peak RAM Memory (MB),97.52
+Average Power (W),6.4899
+Total Energy (J),3515.3307
+Average Temperature (°C),60.05
+Total Images,10000
