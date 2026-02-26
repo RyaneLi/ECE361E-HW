@@ -78,8 +78,8 @@ def main():
     elif args.model.lower() == 'vgg16':
         model = VGG16()
     elif args.model.lower() == 'mobilenet':
-        from models.mobilenet import MobileNet
-        model = MobileNet()
+        from models.mobilenet import MobileNetv1
+        model = MobileNetv1(num_classes=10)
     else:
         raise ValueError(f"Unsupported model: {args.model}")
     
