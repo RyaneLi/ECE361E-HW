@@ -8,6 +8,7 @@ import time
 import psutil
 import sys
 import telnetlib as tel
+import subprocess
 
 # Add path for sysfs_paths if using it
 if os.path.exists('/home/student/HW3_files/sysfs_paths.py'):
@@ -77,10 +78,28 @@ power_measurements = []
 temperature_measurements = []
 timestamps = []
 
-# Get initial RAM usage
-process = psutil.Process(os.getpid())
-initial_ram = process.memory_info().rss / 1024 / 1024  # Convert to MB
+# Get initial RAM usage using 'free -m' command (as per assignment requirements)
+def get_memory_usage_mb():
+    """Get system memory usage in MB using 'free -m' command."""
+    try:
+        result = subprocess.run(['free', '-m'], capture_output=True, text=True, timeout=5)
+        if result.returncode == 0:
+            lines = result.stdout.strip().split('\n')
+            # Parse the 'Mem:' line which is typically the second line
+            for line in lines:
+                if line.startswith('Mem:'):
+                    parts = line.split()
+                    # parts[0] = 'Mem:', parts[1] = total, parts[2] = used
+                    used_memory = float(parts[2])
+                    return used_memory
+        return 0.0
+    except Exception as e:
+        print(f"Warning: Could not read memory usage: {e}")
+        return 0.0
+
+initial_ram = get_memory_usage_mb()
 peak_ram = initial_ram
+memory_measurements = []
 
 # Initialize telnet connection for power measurement
 telnet_connection = None
@@ -178,10 +197,11 @@ print(f"\nStarting inference on test dataset from: {args.test_data_path}")
 print(f"Model: {args.model}")
 
 for filename in tqdm(os.listdir(args.test_data_path)):
-    # Extract the true label from filename (assuming format: label_index.png)
-    # CIFAR10 test images are typically named with their class index
+    # Extract the true label from filename (assuming format: index_labelname.png)
+    # e.g., 1000_dog.png -> label is "dog"
     try:
-        true_label_idx = int(filename.split('_')[0])
+        label_name = filename.split('_')[1].replace('.png', '')
+        true_label_idx = label_names.index(label_name)
     except:
         # If filename doesn't contain label, skip accuracy computation for this image
         true_label_idx = None
@@ -197,23 +217,26 @@ for filename in tqdm(os.listdir(args.test_data_path)):
         # Change the order from (B, H, W, C) to (B, C, H, W)
         input_image = input_image.transpose([0, 3, 1, 2])
         
-        # Measure power and temperature before inference
+        # Measure power, temperature, and memory before inference
         power_before = read_power()
         temp_before = read_temperature()
+        memory_before = get_memory_usage_mb()
         
         # Run inference and get the prediction for the input image
         inference_start = time.time()
         pred_onnx = sess.run(None, {input_name: input_image})[0]
         inference_end = time.time()
         
-        # Measure power and temperature after inference
+        # Measure power, temperature, and memory after inference
         power_after = read_power()
         temp_after = read_temperature()
+        memory_after = get_memory_usage_mb()
         
         # Record measurements
         inference_times.append(inference_end - inference_start)
         power_measurements.append((power_before + power_after) / 2)
         temperature_measurements.append((temp_before + temp_after) / 2)
+        memory_measurements.append((memory_before + memory_after) / 2)
         timestamps.append(inference_end - start_timestamp)
 
         # Find the prediction with the highest probability
@@ -229,7 +252,7 @@ for filename in tqdm(os.listdir(args.test_data_path)):
                 total_correct += 1
         
         # Update peak RAM usage
-        current_ram = process.memory_info().rss / 1024 / 1024
+        current_ram = (memory_before + memory_after) / 2
         peak_ram = max(peak_ram, current_ram)
 
 # End time for total inference
@@ -241,6 +264,7 @@ test_accuracy = (total_correct / total_samples * 100) if total_samples > 0 else 
 avg_inference_time = np.mean(inference_times) if inference_times else 0.0
 avg_power = np.mean(power_measurements) if power_measurements else 0.0
 avg_temperature = np.mean(temperature_measurements) if temperature_measurements else 0.0
+avg_memory = np.mean(memory_measurements) if memory_measurements else 0.0
 
 # Calculate total energy consumption (Power * Time)
 # Energy in Joules = Average Power (Watts) * Total Time (seconds)
@@ -253,7 +277,9 @@ print("="*60)
 print(f"Total Inference Time: {total_inference_time:.2f} seconds")
 print(f"Average Inference Time per Image: {avg_inference_time*1000:.2f} ms")
 print(f"Test Accuracy: {test_accuracy:.2f}%")
+print(f"Initial RAM Memory Usage (idle): {initial_ram:.2f} MB")
 print(f"Peak RAM Memory Usage: {peak_ram:.2f} MB")
+print(f"Average RAM Memory Usage: {avg_memory:.2f} MB")
 print(f"Average Power Consumption: {avg_power:.4f} W")
 print(f"Total Energy Consumption: {total_energy:.4f} J")
 print(f"Average CPU Temperature: {avg_temperature:.2f} °C")
@@ -272,7 +298,9 @@ with open(summary_file, 'w', newline='') as f:
     writer.writerow(['Total Inference Time (s)', f'{total_inference_time:.2f}'])
     writer.writerow(['Average Inference Time per Image (ms)', f'{avg_inference_time*1000:.2f}'])
     writer.writerow(['Test Accuracy (%)', f'{test_accuracy:.2f}'])
+    writer.writerow(['Initial RAM Memory (MB)', f'{initial_ram:.2f}'])
     writer.writerow(['Peak RAM Memory (MB)', f'{peak_ram:.2f}'])
+    writer.writerow(['Average RAM Memory (MB)', f'{avg_memory:.2f}'])
     writer.writerow(['Average Power (W)', f'{avg_power:.4f}'])
     writer.writerow(['Total Energy (J)', f'{total_energy:.4f}'])
     writer.writerow(['Average Temperature (°C)', f'{avg_temperature:.2f}'])
@@ -284,12 +312,13 @@ print(f"\nSummary metrics saved to: {summary_file}")
 timeseries_file = os.path.join(args.output_dir, f'{args.model}_timeseries_data.csv')
 with open(timeseries_file, 'w', newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(['Timestamp (s)', 'Power (W)', 'Temperature (°C)', 'Inference Time (s)'])
+    writer.writerow(['Timestamp (s)', 'Power (W)', 'Temperature (°C)', 'Memory (MB)', 'Inference Time (s)'])
     for i in range(len(timestamps)):
         writer.writerow([
             f'{timestamps[i]:.4f}',
             f'{power_measurements[i]:.4f}',
             f'{temperature_measurements[i]:.2f}',
+            f'{memory_measurements[i]:.2f}',
             f'{inference_times[i]:.6f}'
         ])
 

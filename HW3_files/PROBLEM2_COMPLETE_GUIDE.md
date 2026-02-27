@@ -184,7 +184,7 @@ telnet 192.168.4.1
 
 # Run VGG11 on 4 big cores
 taskset --all-tasks 0xF0 python deploy_onnx.py \
-    --model vgg11 --onnx_path ./onnx_models/vgg11_mc1.onnx \
+    --model vgg11 --onnx_path ./mc1/vgg11_mc1.onnx \
     --device mc1 --output_dir ./results_mc1
 
 # Open another SSH session and verify with htop
@@ -192,7 +192,7 @@ htop  # Check cores 4-7 are at ~100%
 
 # Run VGG16
 taskset --all-tasks 0xF0 python deploy_onnx.py \
-    --model vgg16 --onnx_path ./onnx_models/vgg16_mc1.onnx \
+    --model vgg16 --onnx_path ./mc1/vgg16_mc1.onnx \
     --device mc1 --output_dir ./results_mc1
 ```
 
@@ -203,7 +203,7 @@ telnet 192.168.4.1
 
 # Run VGG11
 python deploy_onnx.py \
-    --model vgg11 --onnx_path ./onnx_models/vgg11_raspi.onnx \
+    --model vgg11 --onnx_path ./raspi/vgg11_raspi.onnx \
     --device raspi --output_dir ./results_raspi
 
 # Monitor with htop if desired
@@ -211,7 +211,7 @@ htop
 
 # Run VGG16
 python deploy_onnx.py \
-    --model vgg16 --onnx_path ./onnx_models/vgg16_raspi.onnx \
+    --model vgg16 --onnx_path ./raspi/vgg16_raspi.onnx \
     --device raspi --output_dir ./results_raspi
 ```
 

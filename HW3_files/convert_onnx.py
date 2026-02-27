@@ -85,7 +85,7 @@ def main():
     
     # Load the trained weights
     print(f"Loading model weights from: {args.model_path}")
-    model.load_state_dict(torch.load(args.model_path, map_location='cpu'))
+    model.load_state_dict(torch.load(args.model_path, map_location='cpu'), strict=False)
     
     # Convert the model to ONNX
     print(f"Converting for {args.device.upper()} (opset version {opset_version})")
