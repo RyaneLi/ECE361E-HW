@@ -1,8 +1,0 @@
---- Table 1 Results ---
-Model: VGG16
-Training accuracy [%]: 96.88
-Test accuracy [%]: 77.3400
-Total time for training [s]: 1906.55
-Number of trainable parameters: 15,245,130
-FLOPs: 627.5M
-GPU memory during training [MB]: 756.00
