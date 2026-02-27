@@ -1,0 +1,4 @@
+Model,MC1 Total Inference Time (s),RaspberryPi Total Inference Time (s),MC1 RAM Memory (MB),RaspberryPi RAM Memory (MB),MC1 Accuracy (%),RaspberryPi Accuracy (%)
+VGG11,771.48,1289.28,331.00,166.00,76.10,76.10
+VGG16,1115.73,1801.56,355.00,185.00,78.47,78.47
+MOBILENET,542.76,1018.98,301.00,131.00,78.49,78.49

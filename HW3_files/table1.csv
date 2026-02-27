@@ -1,0 +1,4 @@
+Model,Training accuracy [%],Test accuracy [%],Total time for training [s],Number of trainable parameters,FLOPs [M],GPU memory during training [MB]
+VGG11,99.07,76.08,1468.63,9750922,306.6,939.0
+VGG16,98.35,78.46,1622.58,15245130,627.5,2037.0
+MOBILENET-V1,99.37,78.47,1754.2,3217226,96.0,1263.0
