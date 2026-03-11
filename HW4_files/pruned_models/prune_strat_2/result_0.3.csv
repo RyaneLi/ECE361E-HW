@@ -1,0 +1,2 @@
+pruning_fraction,final_accuracy,final_params,baseline_accuracy,baseline_params
+0.3,85.02,1592437,77.68,3217226
