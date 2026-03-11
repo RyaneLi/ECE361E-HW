@@ -1,0 +1,1742 @@
+
+========== Pruning fraction: 0.05 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.05, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 3,145,315 (97.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.3535 Test accuracy: 77.57 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.4591 Acc: 70.80%
+    Step [100/391] Loss: 1.1450 Acc: 72.13%
+    Step [150/391] Loss: 1.0175 Acc: 72.84%
+    Step [200/391] Loss: 0.9434 Acc: 73.61%
+    Step [250/391] Loss: 0.8891 Acc: 74.35%
+    Step [300/391] Loss: 0.8498 Acc: 74.90%
+    Step [350/391] Loss: 0.8198 Acc: 75.34%
+=> Loss: 0.8016 Acc: 75.56%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6006 Acc: 79.36%
+    Step [100/391] Loss: 0.6038 Acc: 79.14%
+    Step [150/391] Loss: 0.6076 Acc: 79.06%
+    Step [200/391] Loss: 0.5982 Acc: 79.45%
+    Step [250/391] Loss: 0.5950 Acc: 79.57%
+    Step [300/391] Loss: 0.5856 Acc: 79.91%
+    Step [350/391] Loss: 0.5845 Acc: 79.94%
+=> Loss: 0.5828 Acc: 79.98%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5372 Acc: 81.44%
+    Step [100/391] Loss: 0.5300 Acc: 81.55%
+    Step [150/391] Loss: 0.5361 Acc: 81.47%
+    Step [200/391] Loss: 0.5347 Acc: 81.45%
+    Step [250/391] Loss: 0.5334 Acc: 81.58%
+    Step [300/391] Loss: 0.5296 Acc: 81.76%
+    Step [350/391] Loss: 0.5336 Acc: 81.65%
+=> Loss: 0.5326 Acc: 81.70%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4821 Acc: 83.33%
+    Step [100/391] Loss: 0.4968 Acc: 82.91%
+    Step [150/391] Loss: 0.5010 Acc: 82.74%
+    Step [200/391] Loss: 0.4954 Acc: 83.01%
+    Step [250/391] Loss: 0.4955 Acc: 82.87%
+    Step [300/391] Loss: 0.4966 Acc: 82.85%
+    Step [350/391] Loss: 0.4964 Acc: 82.81%
+=> Loss: 0.4972 Acc: 82.79%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4848 Acc: 82.92%
+    Step [100/391] Loss: 0.4732 Acc: 83.37%
+    Step [150/391] Loss: 0.4709 Acc: 83.62%
+    Step [200/391] Loss: 0.4679 Acc: 83.65%
+    Step [250/391] Loss: 0.4696 Acc: 83.60%
+    Step [300/391] Loss: 0.4674 Acc: 83.58%
+    Step [350/391] Loss: 0.4683 Acc: 83.61%
+=> Loss: 0.4686 Acc: 83.64%
+  Accuracy after fine-tuning:
+Test loss: 0.5162 Test accuracy: 82.53 %
+
+  Checkpoint saved: l1_0.05_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 3,083,773 (95.9% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5233 Test accuracy: 82.41 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4739 Acc: 83.38%
+    Step [100/391] Loss: 0.4650 Acc: 83.80%
+    Step [150/391] Loss: 0.4580 Acc: 83.96%
+    Step [200/391] Loss: 0.4567 Acc: 84.03%
+    Step [250/391] Loss: 0.4525 Acc: 84.10%
+    Step [300/391] Loss: 0.4531 Acc: 84.16%
+    Step [350/391] Loss: 0.4502 Acc: 84.33%
+=> Loss: 0.4516 Acc: 84.27%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4130 Acc: 85.53%
+    Step [100/391] Loss: 0.4139 Acc: 85.70%
+    Step [150/391] Loss: 0.4185 Acc: 85.36%
+    Step [200/391] Loss: 0.4235 Acc: 85.21%
+    Step [250/391] Loss: 0.4252 Acc: 85.19%
+    Step [300/391] Loss: 0.4246 Acc: 85.11%
+    Step [350/391] Loss: 0.4253 Acc: 85.11%
+=> Loss: 0.4270 Acc: 85.09%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3941 Acc: 86.17%
+    Step [100/391] Loss: 0.3970 Acc: 85.88%
+    Step [150/391] Loss: 0.3982 Acc: 85.85%
+    Step [200/391] Loss: 0.4009 Acc: 85.82%
+    Step [250/391] Loss: 0.4037 Acc: 85.76%
+    Step [300/391] Loss: 0.4026 Acc: 85.84%
+    Step [350/391] Loss: 0.4030 Acc: 85.84%
+=> Loss: 0.4047 Acc: 85.78%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3946 Acc: 86.16%
+    Step [100/391] Loss: 0.3947 Acc: 86.34%
+    Step [150/391] Loss: 0.3921 Acc: 86.31%
+    Step [200/391] Loss: 0.3931 Acc: 86.22%
+    Step [250/391] Loss: 0.3911 Acc: 86.32%
+    Step [300/391] Loss: 0.3883 Acc: 86.47%
+    Step [350/391] Loss: 0.3886 Acc: 86.47%
+=> Loss: 0.3901 Acc: 86.43%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3755 Acc: 86.53%
+    Step [100/391] Loss: 0.3770 Acc: 86.36%
+    Step [150/391] Loss: 0.3697 Acc: 86.77%
+    Step [200/391] Loss: 0.3719 Acc: 86.80%
+    Step [250/391] Loss: 0.3730 Acc: 86.80%
+    Step [300/391] Loss: 0.3717 Acc: 86.85%
+    Step [350/391] Loss: 0.3723 Acc: 86.81%
+=> Loss: 0.3725 Acc: 86.86%
+  Accuracy after fine-tuning:
+Test loss: 0.4863 Test accuracy: 83.93 %
+
+  Checkpoint saved: l1_0.05_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 3,024,148 (94.0% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.4825 Test accuracy: 83.95 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3565 Acc: 87.70%
+    Step [100/391] Loss: 0.3608 Acc: 87.50%
+    Step [150/391] Loss: 0.3548 Acc: 87.45%
+    Step [200/391] Loss: 0.3582 Acc: 87.27%
+    Step [250/391] Loss: 0.3584 Acc: 87.22%
+    Step [300/391] Loss: 0.3595 Acc: 87.19%
+    Step [350/391] Loss: 0.3596 Acc: 87.24%
+=> Loss: 0.3590 Acc: 87.22%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3497 Acc: 87.83%
+    Step [100/391] Loss: 0.3454 Acc: 88.19%
+    Step [150/391] Loss: 0.3458 Acc: 87.95%
+    Step [200/391] Loss: 0.3452 Acc: 87.99%
+    Step [250/391] Loss: 0.3433 Acc: 88.07%
+    Step [300/391] Loss: 0.3422 Acc: 88.06%
+    Step [350/391] Loss: 0.3437 Acc: 88.07%
+=> Loss: 0.3431 Acc: 88.06%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3243 Acc: 88.48%
+    Step [100/391] Loss: 0.3266 Acc: 88.38%
+    Step [150/391] Loss: 0.3323 Acc: 88.28%
+    Step [200/391] Loss: 0.3291 Acc: 88.45%
+    Step [250/391] Loss: 0.3295 Acc: 88.46%
+    Step [300/391] Loss: 0.3319 Acc: 88.37%
+    Step [350/391] Loss: 0.3320 Acc: 88.41%
+=> Loss: 0.3331 Acc: 88.39%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3125 Acc: 88.69%
+    Step [100/391] Loss: 0.3136 Acc: 88.95%
+    Step [150/391] Loss: 0.3152 Acc: 88.79%
+    Step [200/391] Loss: 0.3173 Acc: 88.73%
+    Step [250/391] Loss: 0.3195 Acc: 88.70%
+    Step [300/391] Loss: 0.3195 Acc: 88.69%
+    Step [350/391] Loss: 0.3215 Acc: 88.64%
+=> Loss: 0.3216 Acc: 88.66%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2928 Acc: 89.70%
+    Step [100/391] Loss: 0.2997 Acc: 89.67%
+    Step [150/391] Loss: 0.3035 Acc: 89.47%
+    Step [200/391] Loss: 0.3037 Acc: 89.52%
+    Step [250/391] Loss: 0.3088 Acc: 89.31%
+    Step [300/391] Loss: 0.3096 Acc: 89.30%
+    Step [350/391] Loss: 0.3115 Acc: 89.24%
+=> Loss: 0.3117 Acc: 89.26%
+  Accuracy after fine-tuning:
+Test loss: 0.4713 Test accuracy: 84.65 %
+
+  Checkpoint saved: l1_0.05_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 2,963,131 (92.1% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.4843 Test accuracy: 84.09 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3082 Acc: 89.17%
+    Step [100/391] Loss: 0.3094 Acc: 89.06%
+    Step [150/391] Loss: 0.3077 Acc: 89.21%
+    Step [200/391] Loss: 0.3054 Acc: 89.23%
+    Step [250/391] Loss: 0.3063 Acc: 89.19%
+    Step [300/391] Loss: 0.3048 Acc: 89.26%
+    Step [350/391] Loss: 0.3069 Acc: 89.21%
+=> Loss: 0.3083 Acc: 89.16%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.2748 Acc: 90.48%
+    Step [100/391] Loss: 0.2783 Acc: 90.30%
+    Step [150/391] Loss: 0.2816 Acc: 90.14%
+    Step [200/391] Loss: 0.2817 Acc: 90.12%
+    Step [250/391] Loss: 0.2865 Acc: 89.98%
+    Step [300/391] Loss: 0.2910 Acc: 89.85%
+    Step [350/391] Loss: 0.2926 Acc: 89.75%
+=> Loss: 0.2939 Acc: 89.71%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.2914 Acc: 89.61%
+    Step [100/391] Loss: 0.2803 Acc: 89.90%
+    Step [150/391] Loss: 0.2790 Acc: 90.09%
+    Step [200/391] Loss: 0.2766 Acc: 90.31%
+    Step [250/391] Loss: 0.2772 Acc: 90.26%
+    Step [300/391] Loss: 0.2795 Acc: 90.20%
+    Step [350/391] Loss: 0.2790 Acc: 90.24%
+=> Loss: 0.2802 Acc: 90.21%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.2642 Acc: 90.78%
+    Step [100/391] Loss: 0.2655 Acc: 90.79%
+    Step [150/391] Loss: 0.2688 Acc: 90.60%
+    Step [200/391] Loss: 0.2647 Acc: 90.76%
+    Step [250/391] Loss: 0.2637 Acc: 90.77%
+    Step [300/391] Loss: 0.2664 Acc: 90.68%
+    Step [350/391] Loss: 0.2688 Acc: 90.59%
+=> Loss: 0.2704 Acc: 90.51%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2817 Acc: 89.92%
+    Step [100/391] Loss: 0.2661 Acc: 90.52%
+    Step [150/391] Loss: 0.2651 Acc: 90.48%
+    Step [200/391] Loss: 0.2671 Acc: 90.39%
+    Step [250/391] Loss: 0.2675 Acc: 90.33%
+    Step [300/391] Loss: 0.2679 Acc: 90.40%
+    Step [350/391] Loss: 0.2689 Acc: 90.41%
+=> Loss: 0.2684 Acc: 90.44%
+  Accuracy after fine-tuning:
+Test loss: 0.4827 Test accuracy: 85.05 %
+
+  Checkpoint saved: l1_0.05_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 2,902,069 (90.2% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.4824 Test accuracy: 84.79 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.2628 Acc: 90.70%
+    Step [100/391] Loss: 0.2616 Acc: 90.96%
+    Step [150/391] Loss: 0.2618 Acc: 90.96%
+    Step [200/391] Loss: 0.2624 Acc: 90.84%
+    Step [250/391] Loss: 0.2618 Acc: 90.85%
+    Step [300/391] Loss: 0.2627 Acc: 90.79%
+    Step [350/391] Loss: 0.2633 Acc: 90.75%
+=> Loss: 0.2634 Acc: 90.76%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.2538 Acc: 91.42%
+    Step [100/391] Loss: 0.2461 Acc: 91.67%
+    Step [150/391] Loss: 0.2515 Acc: 91.32%
+    Step [200/391] Loss: 0.2552 Acc: 91.15%
+    Step [250/391] Loss: 0.2550 Acc: 91.15%
+    Step [300/391] Loss: 0.2549 Acc: 91.12%
+    Step [350/391] Loss: 0.2569 Acc: 91.05%
+=> Loss: 0.2560 Acc: 91.06%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.2487 Acc: 91.17%
+    Step [100/391] Loss: 0.2420 Acc: 91.36%
+    Step [150/391] Loss: 0.2399 Acc: 91.47%
+    Step [200/391] Loss: 0.2413 Acc: 91.39%
+    Step [250/391] Loss: 0.2432 Acc: 91.39%
+    Step [300/391] Loss: 0.2448 Acc: 91.36%
+    Step [350/391] Loss: 0.2450 Acc: 91.37%
+=> Loss: 0.2463 Acc: 91.34%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.2228 Acc: 92.30%
+    Step [100/391] Loss: 0.2178 Acc: 92.45%
+    Step [150/391] Loss: 0.2226 Acc: 92.34%
+    Step [200/391] Loss: 0.2278 Acc: 92.12%
+    Step [250/391] Loss: 0.2316 Acc: 91.99%
+    Step [300/391] Loss: 0.2333 Acc: 91.90%
+    Step [350/391] Loss: 0.2348 Acc: 91.79%
+=> Loss: 0.2393 Acc: 91.64%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2310 Acc: 91.70%
+    Step [100/391] Loss: 0.2247 Acc: 92.11%
+    Step [150/391] Loss: 0.2273 Acc: 92.01%
+    Step [200/391] Loss: 0.2275 Acc: 91.95%
+    Step [250/391] Loss: 0.2288 Acc: 91.93%
+    Step [300/391] Loss: 0.2286 Acc: 91.96%
+    Step [350/391] Loss: 0.2294 Acc: 91.97%
+=> Loss: 0.2303 Acc: 91.94%
+  Accuracy after fine-tuning:
+Test loss: 0.4786 Test accuracy: 85.31 %
+
+  Checkpoint saved: l1_0.05_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.05_5_5_MBNv1.onnx
+
+========== Pruning fraction: 0.1 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.1, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 3,083,773 (95.9% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.3304 Test accuracy: 77.66 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.4752 Acc: 71.09%
+    Step [100/391] Loss: 1.1531 Acc: 72.23%
+    Step [150/391] Loss: 1.0233 Acc: 72.99%
+    Step [200/391] Loss: 0.9483 Acc: 73.70%
+    Step [250/391] Loss: 0.8939 Acc: 74.38%
+    Step [300/391] Loss: 0.8540 Acc: 74.96%
+    Step [350/391] Loss: 0.8232 Acc: 75.39%
+=> Loss: 0.8050 Acc: 75.59%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6036 Acc: 79.45%
+    Step [100/391] Loss: 0.6072 Acc: 78.96%
+    Step [150/391] Loss: 0.6097 Acc: 78.92%
+    Step [200/391] Loss: 0.6002 Acc: 79.33%
+    Step [250/391] Loss: 0.5977 Acc: 79.40%
+    Step [300/391] Loss: 0.5881 Acc: 79.74%
+    Step [350/391] Loss: 0.5865 Acc: 79.76%
+=> Loss: 0.5843 Acc: 79.85%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5441 Acc: 81.08%
+    Step [100/391] Loss: 0.5335 Acc: 81.30%
+    Step [150/391] Loss: 0.5377 Acc: 81.33%
+    Step [200/391] Loss: 0.5371 Acc: 81.36%
+    Step [250/391] Loss: 0.5356 Acc: 81.52%
+    Step [300/391] Loss: 0.5318 Acc: 81.64%
+    Step [350/391] Loss: 0.5353 Acc: 81.54%
+=> Loss: 0.5341 Acc: 81.61%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4904 Acc: 82.98%
+    Step [100/391] Loss: 0.5040 Acc: 82.54%
+    Step [150/391] Loss: 0.5056 Acc: 82.58%
+    Step [200/391] Loss: 0.4995 Acc: 82.79%
+    Step [250/391] Loss: 0.4983 Acc: 82.76%
+    Step [300/391] Loss: 0.4994 Acc: 82.68%
+    Step [350/391] Loss: 0.4984 Acc: 82.64%
+=> Loss: 0.4982 Acc: 82.63%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4776 Acc: 82.59%
+    Step [100/391] Loss: 0.4706 Acc: 83.04%
+    Step [150/391] Loss: 0.4710 Acc: 83.30%
+    Step [200/391] Loss: 0.4679 Acc: 83.46%
+    Step [250/391] Loss: 0.4713 Acc: 83.36%
+    Step [300/391] Loss: 0.4683 Acc: 83.46%
+    Step [350/391] Loss: 0.4687 Acc: 83.48%
+=> Loss: 0.4695 Acc: 83.49%
+  Accuracy after fine-tuning:
+Test loss: 0.5127 Test accuracy: 82.51 %
+
+  Checkpoint saved: l1_0.1_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 2,963,131 (92.1% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5154 Test accuracy: 82.39 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4765 Acc: 83.73%
+    Step [100/391] Loss: 0.4687 Acc: 83.84%
+    Step [150/391] Loss: 0.4584 Acc: 84.04%
+    Step [200/391] Loss: 0.4556 Acc: 84.10%
+    Step [250/391] Loss: 0.4530 Acc: 84.14%
+    Step [300/391] Loss: 0.4554 Acc: 84.11%
+    Step [350/391] Loss: 0.4537 Acc: 84.17%
+=> Loss: 0.4553 Acc: 84.07%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4151 Acc: 85.69%
+    Step [100/391] Loss: 0.4143 Acc: 85.70%
+    Step [150/391] Loss: 0.4200 Acc: 85.36%
+    Step [200/391] Loss: 0.4251 Acc: 85.23%
+    Step [250/391] Loss: 0.4263 Acc: 85.20%
+    Step [300/391] Loss: 0.4269 Acc: 85.14%
+    Step [350/391] Loss: 0.4269 Acc: 85.18%
+=> Loss: 0.4282 Acc: 85.12%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4040 Acc: 85.88%
+    Step [100/391] Loss: 0.4014 Acc: 86.05%
+    Step [150/391] Loss: 0.4031 Acc: 85.92%
+    Step [200/391] Loss: 0.4058 Acc: 85.84%
+    Step [250/391] Loss: 0.4075 Acc: 85.71%
+    Step [300/391] Loss: 0.4052 Acc: 85.83%
+    Step [350/391] Loss: 0.4065 Acc: 85.78%
+=> Loss: 0.4086 Acc: 85.69%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3926 Acc: 86.41%
+    Step [100/391] Loss: 0.3959 Acc: 86.27%
+    Step [150/391] Loss: 0.3925 Acc: 86.43%
+    Step [200/391] Loss: 0.3954 Acc: 86.27%
+    Step [250/391] Loss: 0.3930 Acc: 86.36%
+    Step [300/391] Loss: 0.3887 Acc: 86.51%
+    Step [350/391] Loss: 0.3894 Acc: 86.49%
+=> Loss: 0.3908 Acc: 86.36%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3800 Acc: 86.67%
+    Step [100/391] Loss: 0.3777 Acc: 86.63%
+    Step [150/391] Loss: 0.3719 Acc: 86.80%
+    Step [200/391] Loss: 0.3730 Acc: 86.86%
+    Step [250/391] Loss: 0.3765 Acc: 86.72%
+    Step [300/391] Loss: 0.3750 Acc: 86.72%
+    Step [350/391] Loss: 0.3761 Acc: 86.67%
+=> Loss: 0.3751 Acc: 86.68%
+  Accuracy after fine-tuning:
+Test loss: 0.4971 Test accuracy: 83.95 %
+
+  Checkpoint saved: l1_0.1_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 2,843,129 (88.4% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5042 Test accuracy: 82.95 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3638 Acc: 87.38%
+    Step [100/391] Loss: 0.3672 Acc: 87.02%
+    Step [150/391] Loss: 0.3604 Acc: 87.23%
+    Step [200/391] Loss: 0.3643 Acc: 87.02%
+    Step [250/391] Loss: 0.3649 Acc: 87.00%
+    Step [300/391] Loss: 0.3644 Acc: 87.02%
+    Step [350/391] Loss: 0.3656 Acc: 87.06%
+=> Loss: 0.3649 Acc: 87.12%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3515 Acc: 87.77%
+    Step [100/391] Loss: 0.3548 Acc: 87.70%
+    Step [150/391] Loss: 0.3540 Acc: 87.61%
+    Step [200/391] Loss: 0.3517 Acc: 87.71%
+    Step [250/391] Loss: 0.3513 Acc: 87.61%
+    Step [300/391] Loss: 0.3485 Acc: 87.73%
+    Step [350/391] Loss: 0.3498 Acc: 87.72%
+=> Loss: 0.3482 Acc: 87.79%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3280 Acc: 88.61%
+    Step [100/391] Loss: 0.3319 Acc: 88.30%
+    Step [150/391] Loss: 0.3366 Acc: 88.12%
+    Step [200/391] Loss: 0.3335 Acc: 88.31%
+    Step [250/391] Loss: 0.3366 Acc: 88.25%
+    Step [300/391] Loss: 0.3371 Acc: 88.21%
+    Step [350/391] Loss: 0.3368 Acc: 88.21%
+=> Loss: 0.3372 Acc: 88.20%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3205 Acc: 88.73%
+    Step [100/391] Loss: 0.3209 Acc: 88.70%
+    Step [150/391] Loss: 0.3220 Acc: 88.62%
+    Step [200/391] Loss: 0.3242 Acc: 88.58%
+    Step [250/391] Loss: 0.3238 Acc: 88.61%
+    Step [300/391] Loss: 0.3253 Acc: 88.51%
+    Step [350/391] Loss: 0.3271 Acc: 88.53%
+=> Loss: 0.3285 Acc: 88.46%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3051 Acc: 89.19%
+    Step [100/391] Loss: 0.3010 Acc: 89.53%
+    Step [150/391] Loss: 0.3066 Acc: 89.31%
+    Step [200/391] Loss: 0.3089 Acc: 89.27%
+    Step [250/391] Loss: 0.3132 Acc: 89.05%
+    Step [300/391] Loss: 0.3140 Acc: 89.07%
+    Step [350/391] Loss: 0.3167 Acc: 88.96%
+=> Loss: 0.3170 Acc: 88.97%
+  Accuracy after fine-tuning:
+Test loss: 0.4753 Test accuracy: 84.82 %
+
+  Checkpoint saved: l1_0.1_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 2,727,177 (84.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.4979 Test accuracy: 83.78 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3171 Acc: 88.52%
+    Step [100/391] Loss: 0.3142 Acc: 88.62%
+    Step [150/391] Loss: 0.3125 Acc: 88.66%
+    Step [200/391] Loss: 0.3122 Acc: 88.84%
+    Step [250/391] Loss: 0.3126 Acc: 88.87%
+    Step [300/391] Loss: 0.3120 Acc: 88.92%
+    Step [350/391] Loss: 0.3144 Acc: 88.85%
+=> Loss: 0.3156 Acc: 88.81%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.2846 Acc: 89.86%
+    Step [100/391] Loss: 0.2890 Acc: 89.74%
+    Step [150/391] Loss: 0.2914 Acc: 89.68%
+    Step [200/391] Loss: 0.2913 Acc: 89.66%
+    Step [250/391] Loss: 0.2943 Acc: 89.58%
+    Step [300/391] Loss: 0.2994 Acc: 89.33%
+    Step [350/391] Loss: 0.3014 Acc: 89.24%
+=> Loss: 0.3029 Acc: 89.20%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.2964 Acc: 89.56%
+    Step [100/391] Loss: 0.2903 Acc: 89.66%
+    Step [150/391] Loss: 0.2901 Acc: 89.69%
+    Step [200/391] Loss: 0.2871 Acc: 89.86%
+    Step [250/391] Loss: 0.2880 Acc: 89.82%
+    Step [300/391] Loss: 0.2910 Acc: 89.77%
+    Step [350/391] Loss: 0.2908 Acc: 89.74%
+=> Loss: 0.2914 Acc: 89.71%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.2649 Acc: 90.89%
+    Step [100/391] Loss: 0.2706 Acc: 90.61%
+    Step [150/391] Loss: 0.2766 Acc: 90.36%
+    Step [200/391] Loss: 0.2758 Acc: 90.41%
+    Step [250/391] Loss: 0.2754 Acc: 90.43%
+    Step [300/391] Loss: 0.2778 Acc: 90.33%
+    Step [350/391] Loss: 0.2791 Acc: 90.25%
+=> Loss: 0.2816 Acc: 90.17%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2880 Acc: 90.19%
+    Step [100/391] Loss: 0.2768 Acc: 90.33%
+    Step [150/391] Loss: 0.2789 Acc: 90.23%
+    Step [200/391] Loss: 0.2788 Acc: 90.24%
+    Step [250/391] Loss: 0.2779 Acc: 90.29%
+    Step [300/391] Loss: 0.2772 Acc: 90.36%
+    Step [350/391] Loss: 0.2787 Acc: 90.25%
+=> Loss: 0.2781 Acc: 90.31%
+  Accuracy after fine-tuning:
+Test loss: 0.4939 Test accuracy: 84.96 %
+
+  Checkpoint saved: l1_0.1_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 2,606,173 (81.0% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5618 Test accuracy: 82.75 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.2968 Acc: 89.78%
+    Step [100/391] Loss: 0.2854 Acc: 90.12%
+    Step [150/391] Loss: 0.2811 Acc: 90.23%
+    Step [200/391] Loss: 0.2807 Acc: 90.12%
+    Step [250/391] Loss: 0.2793 Acc: 90.16%
+    Step [300/391] Loss: 0.2794 Acc: 90.08%
+    Step [350/391] Loss: 0.2803 Acc: 90.07%
+=> Loss: 0.2804 Acc: 90.08%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.2715 Acc: 90.52%
+    Step [100/391] Loss: 0.2662 Acc: 90.75%
+    Step [150/391] Loss: 0.2662 Acc: 90.75%
+    Step [200/391] Loss: 0.2703 Acc: 90.68%
+    Step [250/391] Loss: 0.2682 Acc: 90.76%
+    Step [300/391] Loss: 0.2691 Acc: 90.66%
+    Step [350/391] Loss: 0.2711 Acc: 90.56%
+=> Loss: 0.2703 Acc: 90.59%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.2610 Acc: 91.08%
+    Step [100/391] Loss: 0.2527 Acc: 91.26%
+    Step [150/391] Loss: 0.2538 Acc: 91.20%
+    Step [200/391] Loss: 0.2552 Acc: 91.00%
+    Step [250/391] Loss: 0.2568 Acc: 90.89%
+    Step [300/391] Loss: 0.2580 Acc: 90.84%
+    Step [350/391] Loss: 0.2581 Acc: 90.83%
+=> Loss: 0.2586 Acc: 90.83%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.2392 Acc: 91.67%
+    Step [100/391] Loss: 0.2374 Acc: 91.77%
+    Step [150/391] Loss: 0.2437 Acc: 91.62%
+    Step [200/391] Loss: 0.2484 Acc: 91.41%
+    Step [250/391] Loss: 0.2505 Acc: 91.31%
+    Step [300/391] Loss: 0.2499 Acc: 91.30%
+    Step [350/391] Loss: 0.2502 Acc: 91.24%
+=> Loss: 0.2543 Acc: 91.11%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2401 Acc: 91.83%
+    Step [100/391] Loss: 0.2350 Acc: 91.73%
+    Step [150/391] Loss: 0.2364 Acc: 91.74%
+    Step [200/391] Loss: 0.2368 Acc: 91.65%
+    Step [250/391] Loss: 0.2356 Acc: 91.72%
+    Step [300/391] Loss: 0.2363 Acc: 91.72%
+    Step [350/391] Loss: 0.2375 Acc: 91.65%
+=> Loss: 0.2395 Acc: 91.59%
+  Accuracy after fine-tuning:
+Test loss: 0.4772 Test accuracy: 85.31 %
+
+  Checkpoint saved: l1_0.1_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.1_5_5_MBNv1.onnx
+
+========== Pruning fraction: 0.2 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.2, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 2,963,131 (92.1% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.3367 Test accuracy: 77.44 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.5044 Acc: 70.52%
+    Step [100/391] Loss: 1.1784 Acc: 72.08%
+    Step [150/391] Loss: 1.0425 Acc: 72.91%
+    Step [200/391] Loss: 0.9635 Acc: 73.59%
+    Step [250/391] Loss: 0.9075 Acc: 74.20%
+    Step [300/391] Loss: 0.8671 Acc: 74.82%
+    Step [350/391] Loss: 0.8359 Acc: 75.27%
+=> Loss: 0.8171 Acc: 75.50%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6115 Acc: 79.48%
+    Step [100/391] Loss: 0.6146 Acc: 79.04%
+    Step [150/391] Loss: 0.6171 Acc: 78.77%
+    Step [200/391] Loss: 0.6092 Acc: 79.16%
+    Step [250/391] Loss: 0.6058 Acc: 79.27%
+    Step [300/391] Loss: 0.5962 Acc: 79.61%
+    Step [350/391] Loss: 0.5949 Acc: 79.60%
+=> Loss: 0.5932 Acc: 79.65%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5506 Acc: 81.23%
+    Step [100/391] Loss: 0.5386 Acc: 81.29%
+    Step [150/391] Loss: 0.5415 Acc: 81.16%
+    Step [200/391] Loss: 0.5412 Acc: 81.12%
+    Step [250/391] Loss: 0.5412 Acc: 81.33%
+    Step [300/391] Loss: 0.5376 Acc: 81.53%
+    Step [350/391] Loss: 0.5411 Acc: 81.45%
+=> Loss: 0.5399 Acc: 81.52%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4952 Acc: 83.03%
+    Step [100/391] Loss: 0.5094 Acc: 82.39%
+    Step [150/391] Loss: 0.5112 Acc: 82.28%
+    Step [200/391] Loss: 0.5043 Acc: 82.57%
+    Step [250/391] Loss: 0.5034 Acc: 82.54%
+    Step [300/391] Loss: 0.5044 Acc: 82.44%
+    Step [350/391] Loss: 0.5044 Acc: 82.37%
+=> Loss: 0.5053 Acc: 82.35%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4863 Acc: 82.50%
+    Step [100/391] Loss: 0.4776 Acc: 83.29%
+    Step [150/391] Loss: 0.4755 Acc: 83.47%
+    Step [200/391] Loss: 0.4729 Acc: 83.51%
+    Step [250/391] Loss: 0.4747 Acc: 83.48%
+    Step [300/391] Loss: 0.4739 Acc: 83.52%
+    Step [350/391] Loss: 0.4750 Acc: 83.54%
+=> Loss: 0.4757 Acc: 83.50%
+  Accuracy after fine-tuning:
+Test loss: 0.5211 Test accuracy: 82.32 %
+
+  Checkpoint saved: l1_0.2_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 2,727,177 (84.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5424 Test accuracy: 81.24 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4789 Acc: 83.45%
+    Step [100/391] Loss: 0.4749 Acc: 83.55%
+    Step [150/391] Loss: 0.4693 Acc: 83.59%
+    Step [200/391] Loss: 0.4683 Acc: 83.65%
+    Step [250/391] Loss: 0.4647 Acc: 83.66%
+    Step [300/391] Loss: 0.4653 Acc: 83.72%
+    Step [350/391] Loss: 0.4642 Acc: 83.78%
+=> Loss: 0.4658 Acc: 83.69%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4260 Acc: 85.08%
+    Step [100/391] Loss: 0.4283 Acc: 85.14%
+    Step [150/391] Loss: 0.4362 Acc: 84.86%
+    Step [200/391] Loss: 0.4404 Acc: 84.67%
+    Step [250/391] Loss: 0.4418 Acc: 84.72%
+    Step [300/391] Loss: 0.4402 Acc: 84.74%
+    Step [350/391] Loss: 0.4417 Acc: 84.73%
+=> Loss: 0.4432 Acc: 84.70%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4042 Acc: 85.78%
+    Step [100/391] Loss: 0.4075 Acc: 85.89%
+    Step [150/391] Loss: 0.4098 Acc: 85.71%
+    Step [200/391] Loss: 0.4106 Acc: 85.77%
+    Step [250/391] Loss: 0.4141 Acc: 85.57%
+    Step [300/391] Loss: 0.4138 Acc: 85.47%
+    Step [350/391] Loss: 0.4145 Acc: 85.46%
+=> Loss: 0.4169 Acc: 85.41%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3947 Acc: 86.17%
+    Step [100/391] Loss: 0.4035 Acc: 85.91%
+    Step [150/391] Loss: 0.4027 Acc: 85.98%
+    Step [200/391] Loss: 0.4054 Acc: 85.86%
+    Step [250/391] Loss: 0.4032 Acc: 85.94%
+    Step [300/391] Loss: 0.4003 Acc: 86.05%
+    Step [350/391] Loss: 0.4007 Acc: 86.06%
+=> Loss: 0.4016 Acc: 86.02%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3944 Acc: 86.16%
+    Step [100/391] Loss: 0.3894 Acc: 86.14%
+    Step [150/391] Loss: 0.3840 Acc: 86.29%
+    Step [200/391] Loss: 0.3857 Acc: 86.41%
+    Step [250/391] Loss: 0.3876 Acc: 86.46%
+    Step [300/391] Loss: 0.3850 Acc: 86.55%
+    Step [350/391] Loss: 0.3860 Acc: 86.51%
+=> Loss: 0.3843 Acc: 86.54%
+  Accuracy after fine-tuning:
+Test loss: 0.4919 Test accuracy: 83.88 %
+
+  Checkpoint saved: l1_0.2_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 2,495,455 (77.6% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.5794 Test accuracy: 79.85 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3875 Acc: 86.47%
+    Step [100/391] Loss: 0.3918 Acc: 86.34%
+    Step [150/391] Loss: 0.3869 Acc: 86.43%
+    Step [200/391] Loss: 0.3890 Acc: 86.29%
+    Step [250/391] Loss: 0.3873 Acc: 86.30%
+    Step [300/391] Loss: 0.3871 Acc: 86.33%
+    Step [350/391] Loss: 0.3860 Acc: 86.42%
+=> Loss: 0.3859 Acc: 86.42%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3802 Acc: 87.09%
+    Step [100/391] Loss: 0.3750 Acc: 87.03%
+    Step [150/391] Loss: 0.3726 Acc: 87.08%
+    Step [200/391] Loss: 0.3711 Acc: 87.21%
+    Step [250/391] Loss: 0.3696 Acc: 87.22%
+    Step [300/391] Loss: 0.3659 Acc: 87.32%
+    Step [350/391] Loss: 0.3675 Acc: 87.29%
+=> Loss: 0.3658 Acc: 87.32%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3460 Acc: 88.31%
+    Step [100/391] Loss: 0.3532 Acc: 87.89%
+    Step [150/391] Loss: 0.3571 Acc: 87.82%
+    Step [200/391] Loss: 0.3511 Acc: 87.97%
+    Step [250/391] Loss: 0.3529 Acc: 87.91%
+    Step [300/391] Loss: 0.3532 Acc: 87.86%
+    Step [350/391] Loss: 0.3525 Acc: 87.89%
+=> Loss: 0.3543 Acc: 87.79%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3335 Acc: 88.22%
+    Step [100/391] Loss: 0.3328 Acc: 88.34%
+    Step [150/391] Loss: 0.3371 Acc: 87.96%
+    Step [200/391] Loss: 0.3381 Acc: 87.89%
+    Step [250/391] Loss: 0.3384 Acc: 87.99%
+    Step [300/391] Loss: 0.3386 Acc: 88.02%
+    Step [350/391] Loss: 0.3409 Acc: 87.96%
+=> Loss: 0.3417 Acc: 87.95%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3222 Acc: 88.52%
+    Step [100/391] Loss: 0.3230 Acc: 88.59%
+    Step [150/391] Loss: 0.3282 Acc: 88.41%
+    Step [200/391] Loss: 0.3293 Acc: 88.39%
+    Step [250/391] Loss: 0.3314 Acc: 88.33%
+    Step [300/391] Loss: 0.3306 Acc: 88.40%
+    Step [350/391] Loss: 0.3323 Acc: 88.31%
+=> Loss: 0.3318 Acc: 88.37%
+  Accuracy after fine-tuning:
+Test loss: 0.4840 Test accuracy: 84.60 %
+
+  Checkpoint saved: l1_0.2_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 2,279,229 (70.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.3287 Test accuracy: 60.96 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4080 Acc: 85.75%
+    Step [100/391] Loss: 0.3955 Acc: 85.98%
+    Step [150/391] Loss: 0.3838 Acc: 86.34%
+    Step [200/391] Loss: 0.3783 Acc: 86.61%
+    Step [250/391] Loss: 0.3752 Acc: 86.77%
+    Step [300/391] Loss: 0.3719 Acc: 86.88%
+    Step [350/391] Loss: 0.3698 Acc: 87.00%
+=> Loss: 0.3697 Acc: 86.98%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3296 Acc: 88.41%
+    Step [100/391] Loss: 0.3313 Acc: 88.15%
+    Step [150/391] Loss: 0.3307 Acc: 88.13%
+    Step [200/391] Loss: 0.3299 Acc: 88.21%
+    Step [250/391] Loss: 0.3326 Acc: 88.18%
+    Step [300/391] Loss: 0.3358 Acc: 88.08%
+    Step [350/391] Loss: 0.3377 Acc: 88.04%
+=> Loss: 0.3389 Acc: 88.02%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3193 Acc: 89.25%
+    Step [100/391] Loss: 0.3161 Acc: 89.02%
+    Step [150/391] Loss: 0.3175 Acc: 88.82%
+    Step [200/391] Loss: 0.3155 Acc: 88.86%
+    Step [250/391] Loss: 0.3179 Acc: 88.79%
+    Step [300/391] Loss: 0.3208 Acc: 88.74%
+    Step [350/391] Loss: 0.3198 Acc: 88.75%
+=> Loss: 0.3207 Acc: 88.72%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3043 Acc: 89.50%
+    Step [100/391] Loss: 0.3060 Acc: 89.28%
+    Step [150/391] Loss: 0.3065 Acc: 89.35%
+    Step [200/391] Loss: 0.3056 Acc: 89.34%
+    Step [250/391] Loss: 0.3049 Acc: 89.24%
+    Step [300/391] Loss: 0.3098 Acc: 89.05%
+    Step [350/391] Loss: 0.3104 Acc: 89.04%
+=> Loss: 0.3120 Acc: 88.95%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3105 Acc: 89.23%
+    Step [100/391] Loss: 0.2970 Acc: 89.81%
+    Step [150/391] Loss: 0.2974 Acc: 89.66%
+    Step [200/391] Loss: 0.3002 Acc: 89.50%
+    Step [250/391] Loss: 0.3008 Acc: 89.48%
+    Step [300/391] Loss: 0.3016 Acc: 89.47%
+    Step [350/391] Loss: 0.3039 Acc: 89.38%
+=> Loss: 0.3038 Acc: 89.37%
+  Accuracy after fine-tuning:
+Test loss: 0.4905 Test accuracy: 84.17 %
+
+  Checkpoint saved: l1_0.2_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 2,066,884 (64.2% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.6292 Test accuracy: 78.94 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3391 Acc: 88.09%
+    Step [100/391] Loss: 0.3366 Acc: 88.07%
+    Step [150/391] Loss: 0.3319 Acc: 88.19%
+    Step [200/391] Loss: 0.3288 Acc: 88.26%
+    Step [250/391] Loss: 0.3269 Acc: 88.37%
+    Step [300/391] Loss: 0.3266 Acc: 88.45%
+    Step [350/391] Loss: 0.3268 Acc: 88.47%
+=> Loss: 0.3250 Acc: 88.59%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3130 Acc: 89.33%
+    Step [100/391] Loss: 0.2987 Acc: 89.72%
+    Step [150/391] Loss: 0.3021 Acc: 89.47%
+    Step [200/391] Loss: 0.3054 Acc: 89.34%
+    Step [250/391] Loss: 0.3028 Acc: 89.42%
+    Step [300/391] Loss: 0.3040 Acc: 89.38%
+    Step [350/391] Loss: 0.3054 Acc: 89.30%
+=> Loss: 0.3048 Acc: 89.32%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.2948 Acc: 89.58%
+    Step [100/391] Loss: 0.2914 Acc: 89.59%
+    Step [150/391] Loss: 0.2882 Acc: 89.68%
+    Step [200/391] Loss: 0.2905 Acc: 89.62%
+    Step [250/391] Loss: 0.2914 Acc: 89.62%
+    Step [300/391] Loss: 0.2902 Acc: 89.73%
+    Step [350/391] Loss: 0.2905 Acc: 89.75%
+=> Loss: 0.2919 Acc: 89.69%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.2658 Acc: 90.58%
+    Step [100/391] Loss: 0.2677 Acc: 90.47%
+    Step [150/391] Loss: 0.2715 Acc: 90.42%
+    Step [200/391] Loss: 0.2778 Acc: 90.23%
+    Step [250/391] Loss: 0.2814 Acc: 90.08%
+    Step [300/391] Loss: 0.2821 Acc: 90.04%
+    Step [350/391] Loss: 0.2846 Acc: 89.95%
+=> Loss: 0.2871 Acc: 89.88%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2749 Acc: 90.23%
+    Step [100/391] Loss: 0.2670 Acc: 90.71%
+    Step [150/391] Loss: 0.2693 Acc: 90.48%
+    Step [200/391] Loss: 0.2688 Acc: 90.45%
+    Step [250/391] Loss: 0.2676 Acc: 90.49%
+    Step [300/391] Loss: 0.2683 Acc: 90.47%
+    Step [350/391] Loss: 0.2695 Acc: 90.42%
+=> Loss: 0.2699 Acc: 90.43%
+  Accuracy after fine-tuning:
+Test loss: 0.4775 Test accuracy: 85.03 %
+
+  Checkpoint saved: l1_0.2_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.2_5_5_MBNv1.onnx
+
+========== Pruning fraction: 0.3 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.3, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 2,843,129 (88.4% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.3847 Test accuracy: 76.02 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.5154 Acc: 70.16%
+    Step [100/391] Loss: 1.1889 Acc: 71.64%
+    Step [150/391] Loss: 1.0536 Acc: 72.48%
+    Step [200/391] Loss: 0.9740 Acc: 73.25%
+    Step [250/391] Loss: 0.9182 Acc: 73.88%
+    Step [300/391] Loss: 0.8773 Acc: 74.46%
+    Step [350/391] Loss: 0.8459 Acc: 74.94%
+=> Loss: 0.8264 Acc: 75.17%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6142 Acc: 79.08%
+    Step [100/391] Loss: 0.6183 Acc: 78.74%
+    Step [150/391] Loss: 0.6209 Acc: 78.61%
+    Step [200/391] Loss: 0.6128 Acc: 79.00%
+    Step [250/391] Loss: 0.6090 Acc: 79.04%
+    Step [300/391] Loss: 0.5997 Acc: 79.36%
+    Step [350/391] Loss: 0.5986 Acc: 79.31%
+=> Loss: 0.5965 Acc: 79.42%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5516 Acc: 81.22%
+    Step [100/391] Loss: 0.5421 Acc: 81.32%
+    Step [150/391] Loss: 0.5454 Acc: 81.08%
+    Step [200/391] Loss: 0.5444 Acc: 81.13%
+    Step [250/391] Loss: 0.5443 Acc: 81.29%
+    Step [300/391] Loss: 0.5400 Acc: 81.38%
+    Step [350/391] Loss: 0.5445 Acc: 81.24%
+=> Loss: 0.5437 Acc: 81.29%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.5026 Acc: 82.78%
+    Step [100/391] Loss: 0.5131 Acc: 82.40%
+    Step [150/391] Loss: 0.5163 Acc: 82.17%
+    Step [200/391] Loss: 0.5099 Acc: 82.41%
+    Step [250/391] Loss: 0.5072 Acc: 82.40%
+    Step [300/391] Loss: 0.5083 Acc: 82.35%
+    Step [350/391] Loss: 0.5080 Acc: 82.41%
+=> Loss: 0.5083 Acc: 82.39%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4903 Acc: 82.70%
+    Step [100/391] Loss: 0.4845 Acc: 83.05%
+    Step [150/391] Loss: 0.4800 Acc: 83.20%
+    Step [200/391] Loss: 0.4793 Acc: 83.25%
+    Step [250/391] Loss: 0.4816 Acc: 83.18%
+    Step [300/391] Loss: 0.4799 Acc: 83.23%
+    Step [350/391] Loss: 0.4805 Acc: 83.25%
+=> Loss: 0.4810 Acc: 83.22%
+  Accuracy after fine-tuning:
+Test loss: 0.5161 Test accuracy: 82.62 %
+
+  Checkpoint saved: l1_0.3_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 2,495,455 (77.6% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.6124 Test accuracy: 78.55 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.5073 Acc: 82.31%
+    Step [100/391] Loss: 0.4981 Acc: 82.66%
+    Step [150/391] Loss: 0.4909 Acc: 82.84%
+    Step [200/391] Loss: 0.4859 Acc: 83.08%
+    Step [250/391] Loss: 0.4819 Acc: 83.21%
+    Step [300/391] Loss: 0.4820 Acc: 83.26%
+    Step [350/391] Loss: 0.4802 Acc: 83.37%
+=> Loss: 0.4814 Acc: 83.32%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4408 Acc: 84.62%
+    Step [100/391] Loss: 0.4313 Acc: 84.87%
+    Step [150/391] Loss: 0.4390 Acc: 84.64%
+    Step [200/391] Loss: 0.4460 Acc: 84.34%
+    Step [250/391] Loss: 0.4471 Acc: 84.27%
+    Step [300/391] Loss: 0.4472 Acc: 84.26%
+    Step [350/391] Loss: 0.4480 Acc: 84.25%
+=> Loss: 0.4488 Acc: 84.25%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4181 Acc: 85.41%
+    Step [100/391] Loss: 0.4187 Acc: 85.34%
+    Step [150/391] Loss: 0.4195 Acc: 85.39%
+    Step [200/391] Loss: 0.4202 Acc: 85.39%
+    Step [250/391] Loss: 0.4249 Acc: 85.15%
+    Step [300/391] Loss: 0.4228 Acc: 85.23%
+    Step [350/391] Loss: 0.4252 Acc: 85.18%
+=> Loss: 0.4273 Acc: 85.11%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4116 Acc: 85.61%
+    Step [100/391] Loss: 0.4196 Acc: 85.51%
+    Step [150/391] Loss: 0.4171 Acc: 85.47%
+    Step [200/391] Loss: 0.4164 Acc: 85.38%
+    Step [250/391] Loss: 0.4144 Acc: 85.42%
+    Step [300/391] Loss: 0.4093 Acc: 85.63%
+    Step [350/391] Loss: 0.4101 Acc: 85.64%
+=> Loss: 0.4113 Acc: 85.59%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3958 Acc: 86.02%
+    Step [100/391] Loss: 0.3962 Acc: 86.11%
+    Step [150/391] Loss: 0.3943 Acc: 86.15%
+    Step [200/391] Loss: 0.3942 Acc: 86.26%
+    Step [250/391] Loss: 0.3944 Acc: 86.19%
+    Step [300/391] Loss: 0.3927 Acc: 86.21%
+    Step [350/391] Loss: 0.3940 Acc: 86.16%
+=> Loss: 0.3923 Acc: 86.18%
+  Accuracy after fine-tuning:
+Test loss: 0.5021 Test accuracy: 83.34 %
+
+  Checkpoint saved: l1_0.3_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 2,167,352 (67.4% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.8707 Test accuracy: 71.38 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4498 Acc: 84.50%
+    Step [100/391] Loss: 0.4395 Acc: 84.88%
+    Step [150/391] Loss: 0.4267 Acc: 85.05%
+    Step [200/391] Loss: 0.4281 Acc: 85.02%
+    Step [250/391] Loss: 0.4260 Acc: 85.05%
+    Step [300/391] Loss: 0.4260 Acc: 85.09%
+    Step [350/391] Loss: 0.4245 Acc: 85.17%
+=> Loss: 0.4223 Acc: 85.25%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3995 Acc: 85.72%
+    Step [100/391] Loss: 0.3983 Acc: 85.95%
+    Step [150/391] Loss: 0.4014 Acc: 85.84%
+    Step [200/391] Loss: 0.4007 Acc: 85.91%
+    Step [250/391] Loss: 0.3981 Acc: 86.00%
+    Step [300/391] Loss: 0.3940 Acc: 86.09%
+    Step [350/391] Loss: 0.3959 Acc: 86.02%
+=> Loss: 0.3936 Acc: 86.15%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3739 Acc: 87.06%
+    Step [100/391] Loss: 0.3785 Acc: 86.78%
+    Step [150/391] Loss: 0.3808 Acc: 86.65%
+    Step [200/391] Loss: 0.3767 Acc: 86.76%
+    Step [250/391] Loss: 0.3770 Acc: 86.79%
+    Step [300/391] Loss: 0.3775 Acc: 86.77%
+    Step [350/391] Loss: 0.3777 Acc: 86.73%
+=> Loss: 0.3789 Acc: 86.69%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3538 Acc: 87.83%
+    Step [100/391] Loss: 0.3519 Acc: 87.82%
+    Step [150/391] Loss: 0.3588 Acc: 87.35%
+    Step [200/391] Loss: 0.3606 Acc: 87.35%
+    Step [250/391] Loss: 0.3612 Acc: 87.34%
+    Step [300/391] Loss: 0.3631 Acc: 87.29%
+    Step [350/391] Loss: 0.3638 Acc: 87.26%
+=> Loss: 0.3640 Acc: 87.25%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3423 Acc: 88.19%
+    Step [100/391] Loss: 0.3364 Acc: 88.54%
+    Step [150/391] Loss: 0.3428 Acc: 88.14%
+    Step [200/391] Loss: 0.3457 Acc: 87.91%
+    Step [250/391] Loss: 0.3484 Acc: 87.79%
+    Step [300/391] Loss: 0.3476 Acc: 87.76%
+    Step [350/391] Loss: 0.3498 Acc: 87.72%
+=> Loss: 0.3506 Acc: 87.70%
+  Accuracy after fine-tuning:
+Test loss: 0.4814 Test accuracy: 84.18 %
+
+  Checkpoint saved: l1_0.3_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 1,870,620 (58.1% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.7812 Test accuracy: 74.07 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3980 Acc: 85.92%
+    Step [100/391] Loss: 0.3929 Acc: 85.91%
+    Step [150/391] Loss: 0.3824 Acc: 86.30%
+    Step [200/391] Loss: 0.3797 Acc: 86.45%
+    Step [250/391] Loss: 0.3792 Acc: 86.52%
+    Step [300/391] Loss: 0.3774 Acc: 86.65%
+    Step [350/391] Loss: 0.3756 Acc: 86.73%
+=> Loss: 0.3762 Acc: 86.74%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3358 Acc: 87.91%
+    Step [100/391] Loss: 0.3456 Acc: 87.69%
+    Step [150/391] Loss: 0.3485 Acc: 87.62%
+    Step [200/391] Loss: 0.3500 Acc: 87.68%
+    Step [250/391] Loss: 0.3519 Acc: 87.61%
+    Step [300/391] Loss: 0.3549 Acc: 87.46%
+    Step [350/391] Loss: 0.3568 Acc: 87.38%
+=> Loss: 0.3575 Acc: 87.41%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3438 Acc: 87.98%
+    Step [100/391] Loss: 0.3407 Acc: 87.73%
+    Step [150/391] Loss: 0.3376 Acc: 87.91%
+    Step [200/391] Loss: 0.3392 Acc: 87.88%
+    Step [250/391] Loss: 0.3392 Acc: 87.88%
+    Step [300/391] Loss: 0.3403 Acc: 87.89%
+    Step [350/391] Loss: 0.3399 Acc: 87.90%
+=> Loss: 0.3409 Acc: 87.87%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3171 Acc: 88.84%
+    Step [100/391] Loss: 0.3214 Acc: 88.85%
+    Step [150/391] Loss: 0.3203 Acc: 88.83%
+    Step [200/391] Loss: 0.3175 Acc: 88.91%
+    Step [250/391] Loss: 0.3176 Acc: 88.92%
+    Step [300/391] Loss: 0.3223 Acc: 88.73%
+    Step [350/391] Loss: 0.3233 Acc: 88.72%
+=> Loss: 0.3260 Acc: 88.55%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3320 Acc: 88.39%
+    Step [100/391] Loss: 0.3197 Acc: 88.95%
+    Step [150/391] Loss: 0.3200 Acc: 88.77%
+    Step [200/391] Loss: 0.3212 Acc: 88.68%
+    Step [250/391] Loss: 0.3204 Acc: 88.77%
+    Step [300/391] Loss: 0.3201 Acc: 88.79%
+    Step [350/391] Loss: 0.3208 Acc: 88.72%
+=> Loss: 0.3213 Acc: 88.68%
+  Accuracy after fine-tuning:
+Test loss: 0.4943 Test accuracy: 84.03 %
+
+  Checkpoint saved: l1_0.3_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 1,588,917 (49.4% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.7614 Test accuracy: 74.21 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.3948 Acc: 86.12%
+    Step [100/391] Loss: 0.3849 Acc: 86.52%
+    Step [150/391] Loss: 0.3778 Acc: 86.84%
+    Step [200/391] Loss: 0.3733 Acc: 86.96%
+    Step [250/391] Loss: 0.3706 Acc: 86.97%
+    Step [300/391] Loss: 0.3700 Acc: 86.96%
+    Step [350/391] Loss: 0.3698 Acc: 87.00%
+=> Loss: 0.3670 Acc: 87.14%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3517 Acc: 87.61%
+    Step [100/391] Loss: 0.3413 Acc: 87.80%
+    Step [150/391] Loss: 0.3411 Acc: 87.93%
+    Step [200/391] Loss: 0.3438 Acc: 87.95%
+    Step [250/391] Loss: 0.3412 Acc: 88.03%
+    Step [300/391] Loss: 0.3420 Acc: 88.05%
+    Step [350/391] Loss: 0.3434 Acc: 88.00%
+=> Loss: 0.3433 Acc: 88.00%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3267 Acc: 88.47%
+    Step [100/391] Loss: 0.3213 Acc: 88.71%
+    Step [150/391] Loss: 0.3187 Acc: 88.77%
+    Step [200/391] Loss: 0.3202 Acc: 88.64%
+    Step [250/391] Loss: 0.3227 Acc: 88.53%
+    Step [300/391] Loss: 0.3229 Acc: 88.53%
+    Step [350/391] Loss: 0.3217 Acc: 88.58%
+=> Loss: 0.3238 Acc: 88.50%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3045 Acc: 89.03%
+    Step [100/391] Loss: 0.2967 Acc: 89.33%
+    Step [150/391] Loss: 0.2990 Acc: 89.21%
+    Step [200/391] Loss: 0.3034 Acc: 89.05%
+    Step [250/391] Loss: 0.3066 Acc: 88.92%
+    Step [300/391] Loss: 0.3084 Acc: 88.93%
+    Step [350/391] Loss: 0.3098 Acc: 88.89%
+=> Loss: 0.3133 Acc: 88.74%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.2987 Acc: 89.56%
+    Step [100/391] Loss: 0.2994 Acc: 89.48%
+    Step [150/391] Loss: 0.2996 Acc: 89.43%
+    Step [200/391] Loss: 0.2990 Acc: 89.33%
+    Step [250/391] Loss: 0.2990 Acc: 89.40%
+    Step [300/391] Loss: 0.2985 Acc: 89.45%
+    Step [350/391] Loss: 0.3004 Acc: 89.42%
+=> Loss: 0.3016 Acc: 89.35%
+  Accuracy after fine-tuning:
+Test loss: 0.4920 Test accuracy: 84.48 %
+
+  Checkpoint saved: l1_0.3_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.3_5_5_MBNv1.onnx
+
+========== Pruning fraction: 0.4 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.4, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 2,727,177 (84.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.5028 Test accuracy: 73.93 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.5559 Acc: 69.67%
+    Step [100/391] Loss: 1.2206 Acc: 71.17%
+    Step [150/391] Loss: 1.0755 Acc: 72.07%
+    Step [200/391] Loss: 0.9914 Acc: 72.92%
+    Step [250/391] Loss: 0.9328 Acc: 73.60%
+    Step [300/391] Loss: 0.8907 Acc: 74.18%
+    Step [350/391] Loss: 0.8582 Acc: 74.67%
+=> Loss: 0.8379 Acc: 74.91%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6222 Acc: 78.77%
+    Step [100/391] Loss: 0.6271 Acc: 78.46%
+    Step [150/391] Loss: 0.6301 Acc: 78.30%
+    Step [200/391] Loss: 0.6211 Acc: 78.69%
+    Step [250/391] Loss: 0.6172 Acc: 78.85%
+    Step [300/391] Loss: 0.6079 Acc: 79.12%
+    Step [350/391] Loss: 0.6062 Acc: 79.13%
+=> Loss: 0.6047 Acc: 79.22%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5615 Acc: 81.05%
+    Step [100/391] Loss: 0.5493 Acc: 80.91%
+    Step [150/391] Loss: 0.5514 Acc: 80.88%
+    Step [200/391] Loss: 0.5503 Acc: 80.79%
+    Step [250/391] Loss: 0.5492 Acc: 80.94%
+    Step [300/391] Loss: 0.5454 Acc: 81.10%
+    Step [350/391] Loss: 0.5500 Acc: 80.91%
+=> Loss: 0.5488 Acc: 81.00%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.5057 Acc: 82.53%
+    Step [100/391] Loss: 0.5160 Acc: 82.30%
+    Step [150/391] Loss: 0.5191 Acc: 82.20%
+    Step [200/391] Loss: 0.5123 Acc: 82.43%
+    Step [250/391] Loss: 0.5121 Acc: 82.39%
+    Step [300/391] Loss: 0.5125 Acc: 82.37%
+    Step [350/391] Loss: 0.5119 Acc: 82.40%
+=> Loss: 0.5128 Acc: 82.35%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4956 Acc: 82.33%
+    Step [100/391] Loss: 0.4848 Acc: 82.90%
+    Step [150/391] Loss: 0.4811 Acc: 83.00%
+    Step [200/391] Loss: 0.4799 Acc: 83.03%
+    Step [250/391] Loss: 0.4828 Acc: 82.91%
+    Step [300/391] Loss: 0.4818 Acc: 82.92%
+    Step [350/391] Loss: 0.4827 Acc: 82.92%
+=> Loss: 0.4834 Acc: 82.93%
+  Accuracy after fine-tuning:
+Test loss: 0.5168 Test accuracy: 82.39 %
+
+  Checkpoint saved: l1_0.4_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 2,279,229 (70.8% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.6009 Test accuracy: 79.30 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.5326 Acc: 81.16%
+    Step [100/391] Loss: 0.5186 Acc: 81.89%
+    Step [150/391] Loss: 0.5081 Acc: 82.24%
+    Step [200/391] Loss: 0.5037 Acc: 82.41%
+    Step [250/391] Loss: 0.4993 Acc: 82.50%
+    Step [300/391] Loss: 0.4984 Acc: 82.55%
+    Step [350/391] Loss: 0.4956 Acc: 82.71%
+=> Loss: 0.4966 Acc: 82.63%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4553 Acc: 83.83%
+    Step [100/391] Loss: 0.4499 Acc: 84.15%
+    Step [150/391] Loss: 0.4561 Acc: 83.97%
+    Step [200/391] Loss: 0.4625 Acc: 83.70%
+    Step [250/391] Loss: 0.4647 Acc: 83.68%
+    Step [300/391] Loss: 0.4625 Acc: 83.70%
+    Step [350/391] Loss: 0.4629 Acc: 83.77%
+=> Loss: 0.4629 Acc: 83.80%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4279 Acc: 84.97%
+    Step [100/391] Loss: 0.4285 Acc: 85.03%
+    Step [150/391] Loss: 0.4293 Acc: 85.04%
+    Step [200/391] Loss: 0.4291 Acc: 85.03%
+    Step [250/391] Loss: 0.4338 Acc: 84.87%
+    Step [300/391] Loss: 0.4324 Acc: 84.90%
+    Step [350/391] Loss: 0.4341 Acc: 84.90%
+=> Loss: 0.4364 Acc: 84.80%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4207 Acc: 85.62%
+    Step [100/391] Loss: 0.4268 Acc: 85.33%
+    Step [150/391] Loss: 0.4253 Acc: 85.31%
+    Step [200/391] Loss: 0.4241 Acc: 85.20%
+    Step [250/391] Loss: 0.4220 Acc: 85.26%
+    Step [300/391] Loss: 0.4179 Acc: 85.39%
+    Step [350/391] Loss: 0.4180 Acc: 85.41%
+=> Loss: 0.4192 Acc: 85.37%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4087 Acc: 85.28%
+    Step [100/391] Loss: 0.4051 Acc: 85.54%
+    Step [150/391] Loss: 0.4030 Acc: 85.74%
+    Step [200/391] Loss: 0.4015 Acc: 85.85%
+    Step [250/391] Loss: 0.4032 Acc: 85.81%
+    Step [300/391] Loss: 0.4013 Acc: 85.81%
+    Step [350/391] Loss: 0.4025 Acc: 85.79%
+=> Loss: 0.4000 Acc: 85.84%
+  Accuracy after fine-tuning:
+Test loss: 0.5028 Test accuracy: 83.34 %
+
+  Checkpoint saved: l1_0.4_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 1,870,620 (58.1% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.8189 Test accuracy: 71.85 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4487 Acc: 84.36%
+    Step [100/391] Loss: 0.4456 Acc: 84.31%
+    Step [150/391] Loss: 0.4369 Acc: 84.61%
+    Step [200/391] Loss: 0.4394 Acc: 84.50%
+    Step [250/391] Loss: 0.4386 Acc: 84.53%
+    Step [300/391] Loss: 0.4376 Acc: 84.64%
+    Step [350/391] Loss: 0.4367 Acc: 84.67%
+=> Loss: 0.4337 Acc: 84.77%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4141 Acc: 85.75%
+    Step [100/391] Loss: 0.4091 Acc: 85.78%
+    Step [150/391] Loss: 0.4083 Acc: 85.71%
+    Step [200/391] Loss: 0.4089 Acc: 85.73%
+    Step [250/391] Loss: 0.4079 Acc: 85.76%
+    Step [300/391] Loss: 0.4047 Acc: 85.87%
+    Step [350/391] Loss: 0.4051 Acc: 85.88%
+=> Loss: 0.4033 Acc: 85.90%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3737 Acc: 86.67%
+    Step [100/391] Loss: 0.3865 Acc: 86.41%
+    Step [150/391] Loss: 0.3894 Acc: 86.24%
+    Step [200/391] Loss: 0.3859 Acc: 86.32%
+    Step [250/391] Loss: 0.3875 Acc: 86.37%
+    Step [300/391] Loss: 0.3884 Acc: 86.34%
+    Step [350/391] Loss: 0.3882 Acc: 86.38%
+=> Loss: 0.3885 Acc: 86.38%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3684 Acc: 87.31%
+    Step [100/391] Loss: 0.3667 Acc: 87.30%
+    Step [150/391] Loss: 0.3700 Acc: 87.11%
+    Step [200/391] Loss: 0.3711 Acc: 87.01%
+    Step [250/391] Loss: 0.3724 Acc: 87.01%
+    Step [300/391] Loss: 0.3742 Acc: 86.97%
+    Step [350/391] Loss: 0.3761 Acc: 86.86%
+=> Loss: 0.3769 Acc: 86.86%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3581 Acc: 87.22%
+    Step [100/391] Loss: 0.3514 Acc: 87.30%
+    Step [150/391] Loss: 0.3571 Acc: 87.15%
+    Step [200/391] Loss: 0.3577 Acc: 87.19%
+    Step [250/391] Loss: 0.3638 Acc: 86.97%
+    Step [300/391] Loss: 0.3637 Acc: 87.07%
+    Step [350/391] Loss: 0.3620 Acc: 87.12%
+=> Loss: 0.3614 Acc: 87.17%
+  Accuracy after fine-tuning:
+Test loss: 0.4916 Test accuracy: 83.72 %
+
+  Checkpoint saved: l1_0.4_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 1,503,062 (46.7% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.8245 Test accuracy: 71.98 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4631 Acc: 84.11%
+    Step [100/391] Loss: 0.4505 Acc: 84.05%
+    Step [150/391] Loss: 0.4385 Acc: 84.59%
+    Step [200/391] Loss: 0.4292 Acc: 84.92%
+    Step [250/391] Loss: 0.4270 Acc: 85.08%
+    Step [300/391] Loss: 0.4242 Acc: 85.09%
+    Step [350/391] Loss: 0.4220 Acc: 85.22%
+=> Loss: 0.4227 Acc: 85.21%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.3828 Acc: 86.61%
+    Step [100/391] Loss: 0.3842 Acc: 86.45%
+    Step [150/391] Loss: 0.3832 Acc: 86.48%
+    Step [200/391] Loss: 0.3812 Acc: 86.56%
+    Step [250/391] Loss: 0.3806 Acc: 86.59%
+    Step [300/391] Loss: 0.3858 Acc: 86.42%
+    Step [350/391] Loss: 0.3873 Acc: 86.41%
+=> Loss: 0.3881 Acc: 86.39%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3799 Acc: 86.94%
+    Step [100/391] Loss: 0.3761 Acc: 86.88%
+    Step [150/391] Loss: 0.3716 Acc: 86.96%
+    Step [200/391] Loss: 0.3704 Acc: 87.03%
+    Step [250/391] Loss: 0.3711 Acc: 86.97%
+    Step [300/391] Loss: 0.3726 Acc: 86.88%
+    Step [350/391] Loss: 0.3720 Acc: 86.87%
+=> Loss: 0.3723 Acc: 86.83%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3436 Acc: 88.16%
+    Step [100/391] Loss: 0.3521 Acc: 87.71%
+    Step [150/391] Loss: 0.3523 Acc: 87.74%
+    Step [200/391] Loss: 0.3508 Acc: 87.83%
+    Step [250/391] Loss: 0.3507 Acc: 87.76%
+    Step [300/391] Loss: 0.3555 Acc: 87.61%
+    Step [350/391] Loss: 0.3562 Acc: 87.56%
+=> Loss: 0.3580 Acc: 87.49%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3616 Acc: 87.19%
+    Step [100/391] Loss: 0.3509 Acc: 87.75%
+    Step [150/391] Loss: 0.3539 Acc: 87.54%
+    Step [200/391] Loss: 0.3512 Acc: 87.57%
+    Step [250/391] Loss: 0.3513 Acc: 87.58%
+    Step [300/391] Loss: 0.3480 Acc: 87.61%
+    Step [350/391] Loss: 0.3508 Acc: 87.53%
+=> Loss: 0.3507 Acc: 87.56%
+  Accuracy after fine-tuning:
+Test loss: 0.4869 Test accuracy: 84.07 %
+
+  Checkpoint saved: l1_0.4_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 1,174,647 (36.5% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.0053 Test accuracy: 69.10 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.4994 Acc: 83.17%
+    Step [100/391] Loss: 0.4739 Acc: 83.83%
+    Step [150/391] Loss: 0.4676 Acc: 83.89%
+    Step [200/391] Loss: 0.4587 Acc: 84.14%
+    Step [250/391] Loss: 0.4530 Acc: 84.32%
+    Step [300/391] Loss: 0.4493 Acc: 84.38%
+    Step [350/391] Loss: 0.4440 Acc: 84.50%
+=> Loss: 0.4403 Acc: 84.66%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4110 Acc: 85.48%
+    Step [100/391] Loss: 0.3975 Acc: 86.00%
+    Step [150/391] Loss: 0.3963 Acc: 86.05%
+    Step [200/391] Loss: 0.3989 Acc: 85.98%
+    Step [250/391] Loss: 0.3961 Acc: 86.04%
+    Step [300/391] Loss: 0.3958 Acc: 86.11%
+    Step [350/391] Loss: 0.3959 Acc: 86.06%
+=> Loss: 0.3944 Acc: 86.08%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.3778 Acc: 86.70%
+    Step [100/391] Loss: 0.3758 Acc: 86.67%
+    Step [150/391] Loss: 0.3695 Acc: 86.71%
+    Step [200/391] Loss: 0.3745 Acc: 86.59%
+    Step [250/391] Loss: 0.3779 Acc: 86.62%
+    Step [300/391] Loss: 0.3763 Acc: 86.69%
+    Step [350/391] Loss: 0.3742 Acc: 86.72%
+=> Loss: 0.3756 Acc: 86.67%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3582 Acc: 87.02%
+    Step [100/391] Loss: 0.3459 Acc: 87.52%
+    Step [150/391] Loss: 0.3480 Acc: 87.52%
+    Step [200/391] Loss: 0.3526 Acc: 87.33%
+    Step [250/391] Loss: 0.3549 Acc: 87.31%
+    Step [300/391] Loss: 0.3556 Acc: 87.35%
+    Step [350/391] Loss: 0.3565 Acc: 87.31%
+=> Loss: 0.3596 Acc: 87.23%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3431 Acc: 87.58%
+    Step [100/391] Loss: 0.3392 Acc: 87.86%
+    Step [150/391] Loss: 0.3416 Acc: 87.76%
+    Step [200/391] Loss: 0.3409 Acc: 87.84%
+    Step [250/391] Loss: 0.3416 Acc: 87.84%
+    Step [300/391] Loss: 0.3428 Acc: 87.89%
+    Step [350/391] Loss: 0.3436 Acc: 87.83%
+=> Loss: 0.3443 Acc: 87.82%
+  Accuracy after fine-tuning:
+Test loss: 0.4844 Test accuracy: 83.84 %
+
+  Checkpoint saved: l1_0.4_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.4_5_5_MBNv1.onnx
+
+========== Pruning fraction: 0.5 ==========
+C:\Users\rovez\AppData\Roaming\Python\Python311\site-packages\torchvision\datasets\cifar.py:83: VisibleDeprecationWarning: dtype(): align should be passed as Python or NumPy boolean but got `align=0`. Did you mean to pass a tuple to create a subarray type? (Deprecated NumPy 2.4)
+  entry = pickle.load(f, encoding="latin1")
+
+============================================================
+  Pruning config: metric=l1, ratio=0.5, iters=5, ft_epochs=5
+  Baseline parameters: 3,217,226
+============================================================
+
+--- Pruning Iteration 1/5 ---
+  Parameters after pruning: 2,606,173 (81.0% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.5271 Test accuracy: 73.08 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 1.5881 Acc: 68.72%
+    Step [100/391] Loss: 1.2449 Acc: 70.16%
+    Step [150/391] Loss: 1.0962 Acc: 71.26%
+    Step [200/391] Loss: 1.0104 Acc: 72.09%
+    Step [250/391] Loss: 0.9487 Acc: 72.90%
+    Step [300/391] Loss: 0.9049 Acc: 73.53%
+    Step [350/391] Loss: 0.8718 Acc: 74.10%
+=> Loss: 0.8507 Acc: 74.44%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.6292 Acc: 78.61%
+    Step [100/391] Loss: 0.6345 Acc: 78.11%
+    Step [150/391] Loss: 0.6379 Acc: 78.01%
+    Step [200/391] Loss: 0.6284 Acc: 78.43%
+    Step [250/391] Loss: 0.6252 Acc: 78.48%
+    Step [300/391] Loss: 0.6155 Acc: 78.89%
+    Step [350/391] Loss: 0.6132 Acc: 78.88%
+=> Loss: 0.6118 Acc: 78.94%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.5692 Acc: 81.06%
+    Step [100/391] Loss: 0.5579 Acc: 80.77%
+    Step [150/391] Loss: 0.5586 Acc: 80.74%
+    Step [200/391] Loss: 0.5565 Acc: 80.67%
+    Step [250/391] Loss: 0.5564 Acc: 80.72%
+    Step [300/391] Loss: 0.5518 Acc: 80.83%
+    Step [350/391] Loss: 0.5566 Acc: 80.74%
+=> Loss: 0.5557 Acc: 80.76%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.5130 Acc: 82.34%
+    Step [100/391] Loss: 0.5256 Acc: 81.75%
+    Step [150/391] Loss: 0.5289 Acc: 81.64%
+    Step [200/391] Loss: 0.5233 Acc: 81.83%
+    Step [250/391] Loss: 0.5215 Acc: 81.87%
+    Step [300/391] Loss: 0.5209 Acc: 81.90%
+    Step [350/391] Loss: 0.5201 Acc: 81.87%
+=> Loss: 0.5205 Acc: 81.86%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.5033 Acc: 81.94%
+    Step [100/391] Loss: 0.4932 Acc: 82.51%
+    Step [150/391] Loss: 0.4894 Acc: 82.65%
+    Step [200/391] Loss: 0.4879 Acc: 82.75%
+    Step [250/391] Loss: 0.4901 Acc: 82.69%
+    Step [300/391] Loss: 0.4887 Acc: 82.74%
+    Step [350/391] Loss: 0.4892 Acc: 82.78%
+=> Loss: 0.4906 Acc: 82.72%
+  Accuracy after fine-tuning:
+Test loss: 0.5292 Test accuracy: 81.99 %
+
+  Checkpoint saved: l1_0.5_5_5_MBNv1_iter1.pth
+
+--- Pruning Iteration 2/5 ---
+  Parameters after pruning: 2,066,884 (64.2% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 0.7605 Test accuracy: 74.58 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.5628 Acc: 80.34%
+    Step [100/391] Loss: 0.5462 Acc: 81.03%
+    Step [150/391] Loss: 0.5368 Acc: 81.19%
+    Step [200/391] Loss: 0.5310 Acc: 81.59%
+    Step [250/391] Loss: 0.5231 Acc: 81.75%
+    Step [300/391] Loss: 0.5220 Acc: 81.85%
+    Step [350/391] Loss: 0.5182 Acc: 81.95%
+=> Loss: 0.5183 Acc: 81.94%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4669 Acc: 83.72%
+    Step [100/391] Loss: 0.4673 Acc: 83.75%
+    Step [150/391] Loss: 0.4734 Acc: 83.53%
+    Step [200/391] Loss: 0.4786 Acc: 83.38%
+    Step [250/391] Loss: 0.4785 Acc: 83.44%
+    Step [300/391] Loss: 0.4771 Acc: 83.40%
+    Step [350/391] Loss: 0.4774 Acc: 83.33%
+=> Loss: 0.4784 Acc: 83.29%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4383 Acc: 84.56%
+    Step [100/391] Loss: 0.4385 Acc: 84.59%
+    Step [150/391] Loss: 0.4421 Acc: 84.48%
+    Step [200/391] Loss: 0.4442 Acc: 84.55%
+    Step [250/391] Loss: 0.4482 Acc: 84.38%
+    Step [300/391] Loss: 0.4467 Acc: 84.43%
+    Step [350/391] Loss: 0.4479 Acc: 84.41%
+=> Loss: 0.4512 Acc: 84.28%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4276 Acc: 84.84%
+    Step [100/391] Loss: 0.4343 Acc: 84.77%
+    Step [150/391] Loss: 0.4346 Acc: 84.69%
+    Step [200/391] Loss: 0.4363 Acc: 84.57%
+    Step [250/391] Loss: 0.4346 Acc: 84.71%
+    Step [300/391] Loss: 0.4313 Acc: 84.83%
+    Step [350/391] Loss: 0.4323 Acc: 84.80%
+=> Loss: 0.4334 Acc: 84.76%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4155 Acc: 85.17%
+    Step [100/391] Loss: 0.4182 Acc: 85.05%
+    Step [150/391] Loss: 0.4123 Acc: 85.45%
+    Step [200/391] Loss: 0.4146 Acc: 85.41%
+    Step [250/391] Loss: 0.4155 Acc: 85.37%
+    Step [300/391] Loss: 0.4132 Acc: 85.48%
+    Step [350/391] Loss: 0.4140 Acc: 85.44%
+=> Loss: 0.4128 Acc: 85.49%
+  Accuracy after fine-tuning:
+Test loss: 0.4955 Test accuracy: 83.34 %
+
+  Checkpoint saved: l1_0.5_5_5_MBNv1_iter2.pth
+
+--- Pruning Iteration 3/5 ---
+  Parameters after pruning: 1,588,917 (49.4% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.1571 Test accuracy: 60.18 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.5119 Acc: 82.12%
+    Step [100/391] Loss: 0.5032 Acc: 82.43%
+    Step [150/391] Loss: 0.4897 Acc: 82.97%
+    Step [200/391] Loss: 0.4886 Acc: 82.83%
+    Step [250/391] Loss: 0.4856 Acc: 82.94%
+    Step [300/391] Loss: 0.4841 Acc: 83.04%
+    Step [350/391] Loss: 0.4814 Acc: 83.09%
+=> Loss: 0.4791 Acc: 83.15%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4583 Acc: 84.25%
+    Step [100/391] Loss: 0.4512 Acc: 84.39%
+    Step [150/391] Loss: 0.4498 Acc: 84.32%
+    Step [200/391] Loss: 0.4477 Acc: 84.46%
+    Step [250/391] Loss: 0.4454 Acc: 84.49%
+    Step [300/391] Loss: 0.4417 Acc: 84.66%
+    Step [350/391] Loss: 0.4420 Acc: 84.66%
+=> Loss: 0.4401 Acc: 84.69%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4100 Acc: 85.72%
+    Step [100/391] Loss: 0.4152 Acc: 85.45%
+    Step [150/391] Loss: 0.4201 Acc: 85.18%
+    Step [200/391] Loss: 0.4142 Acc: 85.37%
+    Step [250/391] Loss: 0.4166 Acc: 85.37%
+    Step [300/391] Loss: 0.4154 Acc: 85.41%
+    Step [350/391] Loss: 0.4155 Acc: 85.42%
+=> Loss: 0.4162 Acc: 85.36%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3980 Acc: 86.09%
+    Step [100/391] Loss: 0.3952 Acc: 86.07%
+    Step [150/391] Loss: 0.3960 Acc: 85.97%
+    Step [200/391] Loss: 0.3984 Acc: 85.81%
+    Step [250/391] Loss: 0.3988 Acc: 85.84%
+    Step [300/391] Loss: 0.3990 Acc: 85.85%
+    Step [350/391] Loss: 0.4010 Acc: 85.78%
+=> Loss: 0.4007 Acc: 85.79%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.3840 Acc: 86.62%
+    Step [100/391] Loss: 0.3739 Acc: 87.12%
+    Step [150/391] Loss: 0.3801 Acc: 86.86%
+    Step [200/391] Loss: 0.3800 Acc: 86.82%
+    Step [250/391] Loss: 0.3853 Acc: 86.62%
+    Step [300/391] Loss: 0.3851 Acc: 86.65%
+    Step [350/391] Loss: 0.3858 Acc: 86.63%
+=> Loss: 0.3846 Acc: 86.69%
+  Accuracy after fine-tuning:
+Test loss: 0.4890 Test accuracy: 83.31 %
+
+  Checkpoint saved: l1_0.5_5_5_MBNv1_iter3.pth
+
+--- Pruning Iteration 4/5 ---
+  Parameters after pruning: 1,174,647 (36.5% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.6083 Test accuracy: 44.95 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.5517 Acc: 81.25%
+    Step [100/391] Loss: 0.5386 Acc: 81.44%
+    Step [150/391] Loss: 0.5215 Acc: 81.86%
+    Step [200/391] Loss: 0.5095 Acc: 82.34%
+    Step [250/391] Loss: 0.5044 Acc: 82.51%
+    Step [300/391] Loss: 0.4969 Acc: 82.67%
+    Step [350/391] Loss: 0.4915 Acc: 82.86%
+=> Loss: 0.4891 Acc: 82.93%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.4325 Acc: 84.80%
+    Step [100/391] Loss: 0.4400 Acc: 84.42%
+    Step [150/391] Loss: 0.4367 Acc: 84.69%
+    Step [200/391] Loss: 0.4323 Acc: 84.87%
+    Step [250/391] Loss: 0.4333 Acc: 84.79%
+    Step [300/391] Loss: 0.4373 Acc: 84.68%
+    Step [350/391] Loss: 0.4372 Acc: 84.70%
+=> Loss: 0.4366 Acc: 84.72%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4218 Acc: 85.05%
+    Step [100/391] Loss: 0.4193 Acc: 85.23%
+    Step [150/391] Loss: 0.4169 Acc: 85.29%
+    Step [200/391] Loss: 0.4167 Acc: 85.29%
+    Step [250/391] Loss: 0.4157 Acc: 85.38%
+    Step [300/391] Loss: 0.4176 Acc: 85.36%
+    Step [350/391] Loss: 0.4149 Acc: 85.43%
+=> Loss: 0.4154 Acc: 85.46%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.3967 Acc: 86.08%
+    Step [100/391] Loss: 0.3993 Acc: 85.84%
+    Step [150/391] Loss: 0.3971 Acc: 85.98%
+    Step [200/391] Loss: 0.3968 Acc: 85.98%
+    Step [250/391] Loss: 0.3950 Acc: 86.08%
+    Step [300/391] Loss: 0.3982 Acc: 86.00%
+    Step [350/391] Loss: 0.3983 Acc: 85.97%
+=> Loss: 0.4015 Acc: 85.90%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4018 Acc: 86.06%
+    Step [100/391] Loss: 0.3887 Acc: 86.56%
+    Step [150/391] Loss: 0.3869 Acc: 86.46%
+    Step [200/391] Loss: 0.3862 Acc: 86.54%
+    Step [250/391] Loss: 0.3862 Acc: 86.69%
+    Step [300/391] Loss: 0.3850 Acc: 86.72%
+    Step [350/391] Loss: 0.3872 Acc: 86.56%
+=> Loss: 0.3881 Acc: 86.55%
+  Accuracy after fine-tuning:
+Test loss: 0.4927 Test accuracy: 83.66 %
+
+  Checkpoint saved: l1_0.5_5_5_MBNv1_iter4.pth
+
+--- Pruning Iteration 5/5 ---
+  Parameters after pruning: 823,722 (25.6% of baseline)
+  Accuracy before fine-tuning:
+Test loss: 1.7891 Test accuracy: 38.86 %
+
+  Fine-tuning for 5 epoch(s)...
+  [Fine-tune (Epoch 1/5)]
+    Step [50/391] Loss: 0.7036 Acc: 76.72%
+    Step [100/391] Loss: 0.6397 Acc: 78.42%
+    Step [150/391] Loss: 0.6128 Acc: 79.07%
+    Step [200/391] Loss: 0.5951 Acc: 79.65%
+    Step [250/391] Loss: 0.5795 Acc: 80.05%
+    Step [300/391] Loss: 0.5721 Acc: 80.19%
+    Step [350/391] Loss: 0.5641 Acc: 80.46%
+=> Loss: 0.5590 Acc: 80.63%
+  [Fine-tune (Epoch 2/5)]
+    Step [50/391] Loss: 0.5121 Acc: 82.39%
+    Step [100/391] Loss: 0.4929 Acc: 82.84%
+    Step [150/391] Loss: 0.4905 Acc: 82.88%
+    Step [200/391] Loss: 0.4932 Acc: 82.81%
+    Step [250/391] Loss: 0.4880 Acc: 82.97%
+    Step [300/391] Loss: 0.4859 Acc: 83.03%
+    Step [350/391] Loss: 0.4843 Acc: 83.10%
+=> Loss: 0.4819 Acc: 83.16%
+  [Fine-tune (Epoch 3/5)]
+    Step [50/391] Loss: 0.4630 Acc: 83.72%
+    Step [100/391] Loss: 0.4547 Acc: 84.08%
+    Step [150/391] Loss: 0.4519 Acc: 84.20%
+    Step [200/391] Loss: 0.4573 Acc: 84.03%
+    Step [250/391] Loss: 0.4588 Acc: 84.03%
+    Step [300/391] Loss: 0.4569 Acc: 84.16%
+    Step [350/391] Loss: 0.4543 Acc: 84.23%
+=> Loss: 0.4544 Acc: 84.16%
+  [Fine-tune (Epoch 4/5)]
+    Step [50/391] Loss: 0.4329 Acc: 84.83%
+    Step [100/391] Loss: 0.4193 Acc: 85.36%
+    Step [150/391] Loss: 0.4180 Acc: 85.36%
+    Step [200/391] Loss: 0.4193 Acc: 85.34%
+    Step [250/391] Loss: 0.4219 Acc: 85.25%
+    Step [300/391] Loss: 0.4225 Acc: 85.26%
+    Step [350/391] Loss: 0.4237 Acc: 85.20%
+=> Loss: 0.4278 Acc: 85.10%
+  [Fine-tune (Epoch 5/5)]
+    Step [50/391] Loss: 0.4187 Acc: 85.14%
+    Step [100/391] Loss: 0.4126 Acc: 85.43%
+    Step [150/391] Loss: 0.4094 Acc: 85.63%
+    Step [200/391] Loss: 0.4097 Acc: 85.73%
+    Step [250/391] Loss: 0.4090 Acc: 85.71%
+    Step [300/391] Loss: 0.4092 Acc: 85.77%
+    Step [350/391] Loss: 0.4102 Acc: 85.63%
+=> Loss: 0.4123 Acc: 85.55%
+  Accuracy after fine-tuning:
+Test loss: 0.5089 Test accuracy: 82.65 %
+
+  Checkpoint saved: l1_0.5_5_5_MBNv1_iter5.pth
+Exported ONNX model: l1_0.5_5_5_MBNv1.onnx
+
+All experiments complete.
