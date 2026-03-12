@@ -1,0 +1,12 @@
+Metric,Value
+Model,mobilenet
+Total Inference Time (s),794.80
+Average Inference Time per Image (ms),9.64
+Test Accuracy (%),85.08
+Initial RAM Memory (MB),117.00
+Peak RAM Memory (MB),125.00
+Average RAM Memory (MB),121.11
+Average Power (W),5.8958
+Total Energy (J),4685.9950
+Average Temperature (°C),61.66
+Total Images,10000

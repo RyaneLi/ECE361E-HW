@@ -1,0 +1,2 @@
+Pruning Fraction,#Fine-tuning Epochs,#Parameters,Model Size [MB],Max Memory Usage [MB],Avg Latency/Image [ms],Avg Energy/Image [mJ],Test Accuracy [%]
+0.0,100,3217226,3.3,134.0,11.78,517.09,77.61
