@@ -1,0 +1,33 @@
+============================================================
+INFERENCE RESULTS FOR MOBILENET (from deploy_onnx.py)
+============================================================
+Total Inference Time: 891.24 seconds
+Average Inference Time per Image: 11.78 ms
+Test Accuracy: 77.61%
+Initial RAM Memory Usage (idle): 127.00 MB
+Peak RAM Memory Usage: 134.00 MB
+Average RAM Memory Usage: 130.51 MB
+Average Power Consumption: 5.8019 W
+Total Energy Consumption: 5170.8955 J
+Average CPU Temperature: 61.09 °C
+Total Images Processed: 10000
+============================================================
+
+Quantized model size (from ls -lh): 3.3 MB
+  -rw-r--r-- 1 student student 3.3M Mar 11 18:13 MobilenetV1_int8.onnx
+
+============================================================
+TABLE 2 - Static Post-Training Quantization (Problem 2, Q2)
+============================================================
+Pruning fraction:              0
+# Fine-tuning epochs:          100
+# parameters:                  [same as unpruned in Table 1]
+Model Size [MB]:                3.3
+Maximum memory usage [MB]:      134.00
+Average latency per image [ms]: 11.78
+Average energy per image [mJ]:  517.09
+Test accuracy [%]:              77.61
+
+Note: Average energy per image = (Total Energy J / Total Images) * 1000
+      = (5170.8955 / 10000) * 1000 = 517.09 mJ
+============================================================
