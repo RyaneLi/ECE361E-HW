@@ -3,9 +3,23 @@
 # This script is used to generate commands to run cloud.py and device.py on edge devices
 # Change the parameters below and run "bash run.bash" on terminal
 # It will also run "generate_configs.py" based on the given parameters
+# "dense1_anchor",
+#     "conv2d1_anchor",
+#     "conv2d1_leakyrelu",
+#     "conv2d1_maxpool",
+#     "conv2d1_batchnorm",
+#     "conv2d1_groupnorm",
+#     "conv2d1_residual_lite",
+#     "depthwise1_anchor",
+#     "depthwise1_leakyrelu",
+#     "depthwise1_maxpool",
+#     "depthwise1_batchnorm",
+#     "depthwise1_groupnorm",
+#     "depthwise1_residual_lite",
+
 
 ############### TODO CHANGE
-cloud_ip="172.29.203.143" # Change every time when new VPN is connected
+cloud_ip="10.157.72.74" # Change every time when new VPN is connected
 
 # Defaults used by all experiments unless explicitly overridden in experiment_configs.
 default_model_name="conv5small"
@@ -17,10 +31,72 @@ default_beta=10.0             # fedmax coefficient
 
 declare -a experiment_configs=(
 # experiment | run | data_iid | model_name | learning_rate | loss_type | mu | beta | rpi_local_epochs | mc1_local_epochs
-  "100 1 false simplefc 0.01 fedavg 1.0 10.0 1 1"  # Dummy queue job 1
+  "100 1 false simplefc 0.01 fedavg 1.0 10.0 1 1"
   "101 1 false simplefc 0.01 fedavg 1.0 10.0 2 1"
-  "102 1 false simplefc 0.01 fedprox 1.5 10.0 1 1" # Dummy queue job 2
-  "103 1 false simplefc 0.01 fedmax 1.0 20.0 1 1"  # Dummy queue job 3
+  "102 1 false simplecnn_singleconv 0.01 fedavg 1.0 10.0 1 1"
+  "103 1 false simplecnn_singleconv 0.01 fedavg 1.0 10.0 2 1"
+  "104 1 false simplecnn_singleconv 0.01 fedavg 1.0 10.0 3 1"
+  "105 1 false simplecnn_singleconv_1_16 0.01 fedavg 1.0 10.0 1 1"
+  "106 1 false simplecnn_singleconv_1_8 0.01 fedavg 1.0 10.0 1 1"
+  "107 1 false simplecnn_singleconv_1_8 0.01 fedavg 1.0 10.0 1 2"
+  "108 1 false simplecnn_singleconv_1_4 0.01 fedavg 1.0 10.0 1 1"
+  "109 1 false simplecnn_singleconv_1_4 0.01 fedavg 1.0 10.0 1 2"
+  "110 1 false simplecnn_small 0.01 fedavg 1.0 10.0 1 1"
+  "111 1 false simplecnn_small 0.01 fedavg 1.0 10.0 2 1"
+  "112 1 false simplecnn_small 0.01 fedavg 1.0 10.0 3 1"
+  "113 1 false simplecnn_small_12_24 0.01 fedavg 1.0 10.0 1 1"
+  "114 1 false simplecnn_small_12_24 0.01 fedavg 1.0 10.0 2 1"
+  "115 1 false simplecnn_small_8_16 0.01 fedavg 1.0 10.0 1 1"
+  "116 1 false simplecnn_small_8_16 0.01 fedavg 1.0 10.0 2 1"
+  "117 1 false simplecnn_small_4_8 0.01 fedavg 1.0 10.0 1 1"
+  "118 1 false simplecnn_small_4_8 0.01 fedavg 1.0 10.0 1 2"
+  "119 1 false simplecnn 0.01 fedavg 1.0 10.0 1 1"
+  "120 1 false simplecnn 0.01 fedavg 1.0 10.0 2 1"
+  "121 1 false dense1_anchor 0.01 fedavg 1.0 10.0 1 1"
+  "122 1 false dense1_anchor 0.01 fedavg 1.0 10.0 1 2"
+  "123 1 false conv2d1_anchor 0.01 fedavg 1.0 10.0 1 1"
+  "124 1 false conv2d1_anchor 0.01 fedavg 1.0 10.0 1 2"
+  "125 1 false conv2d1_leakyrelu 0.01 fedavg 1.0 10.0 1 1"
+  "126 1 false conv2d1_leakyrelu 0.01 fedavg 1.0 10.0 1 2"
+  "127 1 false conv2d1_maxpool 0.01 fedavg 1.0 10.0 1 1"
+  "128 1 false conv2d1_batchnorm 0.01 fedavg 1.0 10.0 1 1"
+  "129 1 false conv2d1_groupnorm 0.01 fedavg 1.0 10.0 1 1"
+  "130 1 false conv2d1_groupnorm 0.01 fedavg 1.0 10.0 1 2"
+  "131 1 false conv2d1_residual_lite 0.01 fedavg 1.0 10.0 1 1"
+  "132 1 false conv2d1_residual_lite 0.01 fedavg 1.0 10.0 1 2"
+  "133 1 false depthwise1_anchor 0.01 fedavg 1.0 10.0 1 1"
+  "134 1 false depthwise1_leakyrelu 0.01 fedavg 1.0 10.0 1 1"
+  "135 1 false depthwise1_maxpool 0.01 fedavg 1.0 10.0 1 1"
+  "136 1 false depthwise1_batchnorm 0.01 fedavg 1.0 10.0 1 1"
+  "137 1 false depthwise1_groupnorm 0.01 fedavg 1.0 10.0 1 1"
+  "138 1 false depthwise1_residual_lite 0.01 fedavg 1.0 10.0 1 1"
+  "139 1 false simplecnn_singleconv 0.01 fedprox 1.0 10.0 1 1"
+  "140 1 false simplecnn_singleconv 0.01 fedmax 1.0 10.0 1 1"
+  "141 1 false simplecnn_small 0.01 fedprox 1.0 10.0 1 1"
+  "142 1 false simplecnn_small 0.01 fedmax 1.0 10.0 1 1"
+  "143 1 false simplecnn_small_12_24 0.01 fedprox 1.0 10.0 1 1"
+  "144 1 false simplecnn_small_12_24 0.01 fedmax 1.0 10.0 1 1"
+  "145 1 false simplecnn_small_8_16 0.01 fedprox 1.0 10.0 1 1"
+  "146 1 false simplecnn_small_8_16 0.01 fedmax 1.0 10.0 1 1"
+  "147 1 false simplecnn_small_4_8 0.01 fedprox 1.0 10.0 1 1"
+  "148 1 false simplecnn_small_4_8 0.01 fedmax 1.0 10.0 1 1"
+  "149 1 false dense1_anchor_hidden_256 0.01 fedavg 1.0 10.0 1 1"
+  "150 1 false dense1_anchor_deep 0.01 fedavg 1.0 10.0 1 1"
+  "151 1 false dense1_anchor_conv_lite 0.01 fedavg 1.0 10.0 1 1"
+  "152 1 false dense1_anchor_conv_lite_v2 0.01 fedavg 1.0 10.0 1 1"
+  "153 1 false simplecnn_20_40 0.01 fedavg 1.0 10.0 1 1"
+  "154 1 false simplecnn_20_40_batchnorm 0.01 fedavg 1.0 10.0 1 1"
+  "155 1 false simplecnn_24_48 0.01 fedavg 1.0 10.0 1 1"
+  "156 1 false simplecnn_bottleneck 0.01 fedavg 1.0 10.0 1 1"
+  "157 1 false simplecnn_small_4_16 0.01 fedavg 1.0 10.0 1 1"
+  "158 1 false simplecnn_small_4_8_deep 0.01 fedavg 1.0 10.0 1 1"
+  "159 1 false simplecnn_small_4_8_deep_groupnorm 0.01 fedavg 1.0 10.0 1 1"
+  "160 1 false simplecnn_small_8_16_deep 0.01 fedavg 1.0 10.0 1 1"
+  "161 1 false simplecnn_small_12_24_deep 0.01 fedavg 1.0 10.0 1 1"
+  "162 1 false simplecnn_singleconv_1_4_twoconv 0.01 fedavg 1.0 10.0 1 1"
+    
+
+
 )
 
 declare -a devices_configs=(
@@ -34,7 +110,7 @@ verbose='false'
 laptop_number='laptop_1'
 cloud_port="9090"
 cloud_cuda="cpu"
-comm_rounds=2
+comm_rounds=30
 num_devices=2
 for experiment_config in "${experiment_configs[@]}"
 do

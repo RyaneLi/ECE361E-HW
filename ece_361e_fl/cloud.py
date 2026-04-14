@@ -61,6 +61,7 @@ class Cloud:
             logger.write(f"CommRound,Acc,Loss,Time\n0,{acc_test},{loss_test},{time.time()-total_time_start}\n")
 
         round_times = []  # Track time for each round
+        device_train_times = {}
         for comm_round in range(1,comm_rounds+1):
             comm_round_time_start = time.time()
             global_weights = torch.load(path.join(cloud_path, f"global_weights.pth"))
@@ -118,6 +119,15 @@ class Cloud:
             for idx, i in enumerate(range(num_devices)):
                 value.append(device_handler_list[idx].join())
 
+            for idx, train_time in enumerate(value):
+                dev = dt[f"dev{idx + 1}"]
+                device_name = f"{dev['hw_type']} ({dev['host']})"
+                try:
+                    parsed_train_time = float(train_time)
+                except (TypeError, ValueError):
+                    continue
+                device_train_times.setdefault(device_name, []).append(parsed_train_time)
+
             if verbose:
                 print("[+] Joined all clients")
 
@@ -169,6 +179,12 @@ class Cloud:
             print(f"Recent round times: {round_times_str}")
 
         print(f"Total time for experiment: {time.time() - total_time_start} seconds")
+
+        if device_train_times:
+            print("Device average training time per communication round [s]:")
+            for device_name, times in device_train_times.items():
+                avg_time = sum(times) / len(times)
+                print(f"    {device_name}: {avg_time:.2f} seconds")
 
         with open(path.join("logs", "time.csv"), 'a+') as logger:
             logger.write(f"{exp},{r},{time.time() - total_time_start}\n")

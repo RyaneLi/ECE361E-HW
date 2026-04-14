@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import re
+import shutil
 import socket
 import subprocess
 import sys
@@ -228,6 +229,34 @@ def parse_figs_metrics(figs_output: str) -> Dict[str, Optional[float]]:
     return metrics
 
 
+def parse_device_avg_times(cloud_output: str) -> Dict[str, float]:
+    device_times: Dict[str, float] = {}
+    in_section = False
+
+    for line in cloud_output.splitlines():
+        stripped = line.strip()
+        if stripped == "Device average training time per communication round [s]:":
+            in_section = True
+            continue
+
+        if not in_section:
+            continue
+
+        if not stripped:
+            break
+
+        match = re.match(r"^(.+?):\s*([0-9.,]+)\s*seconds$", stripped)
+        if not match:
+            continue
+
+        device_name = match.group(1).strip()
+        value = _parse_float(match.group(2))
+        if value is not None:
+            device_times[device_name] = value
+
+    return device_times
+
+
 def _fmt(value: Optional[float], suffix: str = "") -> str:
     if value is None:
         return "n/a"
@@ -247,7 +276,10 @@ def build_benchmark_excerpt(metrics: Dict[str, Optional[float]]) -> List[str]:
     time_to_90 = metrics.get("time_to_90")
     if time_to_90 is not None:
         time_margin = TIME_TO_BEAT_S - time_to_90
-        lines.append(f"**Time to beat: {TIME_TO_BEAT_S:,.2f} seconds** | Current: {_fmt(time_to_90, ' seconds')}")
+        lines.append(
+            f"**Time to beat: {TIME_TO_BEAT_S:,.2f} seconds** | "
+            f"Current (time to reach 90%): {_fmt(time_to_90, ' seconds')}"
+        )
         if time_margin >= 0:
             lines.append(f"Beating time target by {time_margin:,.2f} seconds")
         else:
@@ -304,7 +336,58 @@ def update_benchmark_tracker(tracker_path: Path, job: Job, metrics: Dict[str, Op
     write_json(tracker_path, tracker)
 
 
-def format_job_discord_message(job: Job, cloud_cfg: Dict, dev_cfg: Dict, metrics: Dict[str, Optional[float]]) -> str:
+def build_goal_beaters_summary(tracker_path: Path) -> List[str]:
+    def _format_item(entry: Dict, metric_key: str, unit: str) -> Optional[str]:
+        value = entry.get(metric_key)
+        if value is None:
+            return None
+        exp = entry.get("exp")
+        run = entry.get("run")
+        return f"exp{exp} run{run} ({float(value):,.2f}{unit})"
+
+    lines: List[str] = ["", "Goal-beating experiments so far:"]
+    time_items: List[str] = []
+    energy_items: List[str] = []
+
+    if tracker_path.exists():
+        try:
+            tracker = load_json(tracker_path)
+            entries = tracker.get("entries", []) if isinstance(tracker, dict) else []
+            if isinstance(entries, list):
+                for entry in entries:
+                    if not isinstance(entry, dict):
+                        continue
+                    if entry.get("beats_time"):
+                        item = _format_item(entry, "time_to_90_s", "s")
+                        if item:
+                            time_items.append(item)
+                    if entry.get("beats_energy"):
+                        item = _format_item(entry, "total_energy_per_round_j", "J")
+                        if item:
+                            energy_items.append(item)
+        except Exception:
+            pass
+
+    if time_items:
+        lines.append("Beat target Wallclock: " + ", ".join(time_items))
+    else:
+        lines.append("Beat target Wallclock: none yet")
+
+    if energy_items:
+        lines.append("Beat target Energy: " + ", ".join(energy_items))
+    else:
+        lines.append("Beat target Energy: none yet")
+
+    return lines
+
+
+def format_job_discord_message(
+    job: Job,
+    cloud_cfg: Dict,
+    dev_cfg: Dict,
+    metrics: Dict[str, Optional[float]],
+    benchmark_tracker_path: Path,
+) -> str:
     rpi_epochs = dev_cfg.get("dev1", {}).get("local_epochs", "?")
     mc1_epochs = dev_cfg.get("dev2", {}).get("local_epochs", "?")
     lines = [
@@ -323,7 +406,18 @@ def format_job_discord_message(job: Job, cloud_cfg: Dict, dev_cfg: Dict, metrics
         lines.append("    No round found where all subsequent rounds have accuracy >= 90.00%.")
 
     lines.append(f"    **Time to beat: {TIME_TO_BEAT_S:,.2f} seconds**")
+    lines.append(f"    Total wall clock time to reach 90.00% [s]: {_fmt(metrics.get('time_to_90'), ' seconds')}")
     lines.append(f"    Average time per communication round [s]: {_fmt(metrics.get('avg_time_per_round'), ' seconds')}")
+    device_avg_times = metrics.get("device_avg_train_times") or {}
+
+    def lookup_device_time(prefix: str) -> Optional[float]:
+        for device_name, avg_time in device_avg_times.items():
+            if device_name.lower().startswith(prefix.lower()):
+                return avg_time
+        return None
+
+    lines.append(f"    RPI training time per round [s]: {_fmt(lookup_device_time('rpi'), ' seconds')}")
+    lines.append(f"    MC1 training time per round [s]: {_fmt(lookup_device_time('mc1'), ' seconds')}")
     lines.append(f"    Total wall clock time [s]: {_fmt(metrics.get('total_wall_time'), ' seconds')}")
     lines.append("")
 
@@ -337,6 +431,8 @@ def format_job_discord_message(job: Job, cloud_cfg: Dict, dev_cfg: Dict, metrics
     ])
 
     lines.extend(build_benchmark_excerpt(metrics))
+    lines.extend(build_goal_beaters_summary(benchmark_tracker_path))
+
     lines.extend(["", DISCORD_SEPARATOR])
     return "\n".join(lines)
 
@@ -486,6 +582,21 @@ def stop_remote_managers(endpoints: List[Tuple[str, int]], timeout_s: int = 10) 
             print(f"[!] STOP_SERVER exception for {host}:{port}: {exc}")
 
 
+def clear_figs_directory(figs_dir: Path) -> None:
+    """Delete all files/subfolders inside figs_dir while keeping figs_dir itself."""
+    if not figs_dir.exists():
+        return
+
+    for item in figs_dir.iterdir():
+        try:
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
+        except Exception as exc:
+            print(f"[!] Failed to delete {item}: {exc}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Cloud queue manager for FL jobs")
     parser.add_argument("--configs_dir", type=str, default="configs", help="Directory containing cloud/dev cfg files")
@@ -583,12 +694,15 @@ def main() -> None:
         ]
         cloud_log = project_dir / "logs" / f"cloud_manager_cloud_exp{job.exp}_run{job.run}.log"
         cloud_log.parent.mkdir(parents=True, exist_ok=True)
-        rc, _ = run_process(cloud_cmd, cwd=project_dir, log_file=cloud_log)
+        rc, cloud_output = run_process(cloud_cmd, cwd=project_dir, log_file=cloud_log)
         if rc != 0:
             print(f"[!] cloud.py failed for exp{job.exp} run{job.run} with exit code {rc}")
+            clear_figs_directory(project_dir / "figs")
             shutdown_started_managers(started_managers)
             queue_completed = False
             break
+
+        device_avg_times = parse_device_avg_times(cloud_output)
 
         figs_cmd = [
             sys.executable,
@@ -612,12 +726,14 @@ def main() -> None:
         figs_rc, figs_output = run_process(figs_cmd, cwd=project_dir, log_file=figs_log)
         if figs_rc != 0:
             print(f"[!] generate_figs.py failed for exp{job.exp} run{job.run} with exit code {figs_rc}")
+            clear_figs_directory(project_dir / "figs")
             shutdown_started_managers(started_managers)
             queue_completed = False
             break
 
         cleaned_figs_output = trim_figs_output(figs_output)
         metrics = parse_figs_metrics(cleaned_figs_output)
+        metrics["device_avg_train_times"] = device_avg_times
         update_benchmark_tracker(benchmark_tracker_file, job, metrics)
 
         discord_message = format_job_discord_message(
@@ -625,6 +741,7 @@ def main() -> None:
             cloud_cfg=cloud_cfg,
             dev_cfg=dev_cfg,
             metrics=metrics,
+            benchmark_tracker_path=benchmark_tracker_file,
         )
         try:
             send_discord_report(discord_message)
@@ -640,6 +757,8 @@ def main() -> None:
         })
         save_state(state_file, state)
         print(f"[+] Job exp{job.exp} run{job.run} completed and state updated.")
+        clear_figs_directory(project_dir / "figs")
+        print("[+] Cleared figs directory contents.")
 
     print("[+] Cloud queue manager finished.")
 
