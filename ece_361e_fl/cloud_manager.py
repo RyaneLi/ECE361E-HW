@@ -8,7 +8,7 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 from urllib import error, request
 
 
@@ -430,6 +430,62 @@ def shutdown_started_managers(started_managers: List[Tuple[str, int]]) -> None:
             print(f"[!] Failed shutdown request to {host}:{port}: {exc}")
 
 
+def collect_manager_endpoints(
+    jobs: List[Job],
+    manager_port_offset: int,
+) -> List[Tuple[str, int]]:
+    endpoints: List[Tuple[str, int]] = []
+    seen: Set[Tuple[str, int]] = set()
+
+    for job in jobs:
+        try:
+            dev_cfg = load_json(job.dev_cfg)
+            num_devices = int(dev_cfg.get("num_devices", 0))
+        except Exception as exc:
+            print(f"[!] Could not load device config for exp{job.exp} run{job.run}: {exc}")
+            continue
+
+        for device_num in range(1, num_devices + 1):
+            dev = dev_cfg.get(f"dev{device_num}", {})
+            host = dev.get("manager_host", dev.get("host"))
+            port_value = dev.get("manager_port")
+
+            if host is None:
+                continue
+
+            try:
+                if port_value is None:
+                    port = int(dev["port"]) + manager_port_offset
+                else:
+                    port = int(port_value)
+            except (KeyError, TypeError, ValueError):
+                continue
+
+            endpoint = (str(host), int(port))
+            if endpoint not in seen:
+                seen.add(endpoint)
+                endpoints.append(endpoint)
+
+    return endpoints
+
+
+def stop_remote_managers(endpoints: List[Tuple[str, int]], timeout_s: int = 10) -> None:
+    if not endpoints:
+        print("[!] No device manager endpoints discovered for STOP_SERVER notification.")
+        return
+
+    print("[+] Queue complete; notifying device managers to stop scripts...")
+    for host, port in endpoints:
+        try:
+            res = manager_request(host, port, {"cmd": "STOP_SERVER"}, timeout_s=timeout_s)
+            if res.get("ok", False):
+                print(f"[+] STOP_SERVER sent to {host}:{port}")
+            else:
+                print(f"[!] STOP_SERVER failed for {host}:{port}: {res}")
+        except Exception as exc:
+            print(f"[!] STOP_SERVER exception for {host}:{port}: {exc}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Cloud queue manager for FL jobs")
     parser.add_argument("--configs_dir", type=str, default="configs", help="Directory containing cloud/dev cfg files")
@@ -465,12 +521,18 @@ def main() -> None:
         print(f"[!] No jobs found in {configs_dir} for exp >= {args.start_exp}")
         return
 
+    all_manager_endpoints = collect_manager_endpoints(
+        jobs=jobs,
+        manager_port_offset=args.manager_port_offset,
+    )
+
     state = load_state(state_file)
     last_success = state.get("last_successful")
 
     runnable_jobs = [j for j in jobs if job_is_after(last_success, j.exp, j.run)]
     if not runnable_jobs:
         print("[+] No pending jobs (all discovered jobs are <= last successful job).")
+        stop_remote_managers(all_manager_endpoints)
         try:
             send_discord_report("Done, queue is empty.")
         except Exception as exc:
@@ -582,6 +644,7 @@ def main() -> None:
     print("[+] Cloud queue manager finished.")
 
     if queue_completed:
+        stop_remote_managers(all_manager_endpoints)
         try:
             send_discord_report("Done, queue is empty.")
         except Exception as exc:
