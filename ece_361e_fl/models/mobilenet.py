@@ -1,0 +1,53 @@
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class Block(nn.Module):
+    '''Depthwise conv + Pointwise conv'''
+    def __init__(self, in_planes, out_planes, stride=1):
+        super(Block, self).__init__()
+        self.conv1 = nn.Conv2d(in_planes, in_planes, kernel_size=3, stride=stride, padding=1, groups=in_planes, bias=False)
+        self.bn1 = nn.BatchNorm2d(in_planes)
+        self.conv2 = nn.Conv2d(in_planes, out_planes, kernel_size=1, stride=1, padding=0, bias=False)
+        self.bn2 = nn.BatchNorm2d(out_planes)
+
+    def forward(self, x):
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = F.relu(self.bn2(self.conv2(out)))
+        return out
+
+
+class MobileNetv1(nn.Module):
+    # Lightweight config for MNIST (balanced for speed and accuracy)
+    cfg = [32, (64,2), 64, (128,2), 128, (256,2)]
+
+    def __init__(self, loss_type='fedavg'):
+        super(MobileNetv1, self).__init__()
+        self.loss_type = loss_type
+        self.conv1 = nn.Conv2d(1, 16, kernel_size=3, stride=1, padding=1, bias=False)  # 1 channel for MNIST
+        self.bn1 = nn.BatchNorm2d(16)
+        self.layers = self._make_layers(in_planes=16)
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+        self.linear = nn.Sequential(
+            nn.Linear(256, 256),
+            nn.ReLU(),
+            nn.Linear(256, 10)
+        )
+
+    def _make_layers(self, in_planes):
+        layers = []
+        for x in self.cfg:
+            out_planes = x if isinstance(x, int) else x[0]
+            stride = 1 if isinstance(x, int) else x[1]
+            layers.append(Block(in_planes, out_planes, stride))
+            in_planes = out_planes
+        return nn.Sequential(*layers)
+
+    def forward(self, x):
+        out = F.relu(self.bn1(self.conv1(x)))
+        out = self.layers(out)
+        out = self.avgpool(out)
+        out = out.view(out.size(0), -1)
+        out = self.linear(out)
+        return out
+
