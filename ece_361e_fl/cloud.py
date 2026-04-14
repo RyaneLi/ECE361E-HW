@@ -48,6 +48,10 @@ class Cloud:
             data_iid = dat["data_iid"]
             verbose = dat["verbose"]
             seed = dat["seed"]
+            early_stop_enabled = bool(dat.get("enable_early_stop", True))
+            early_stop_threshold = float(dat.get("early_stop_threshold", 90.0))
+            early_stop_patience = int(dat.get("early_stop_patience_rounds", 5))
+            early_stop_min_delta = float(dat.get("early_stop_min_delta", 0.04))
 
         net_glob = get_model(model_name=f"{model_name}", loss_type=loss_type)
         torch.save(net_glob.state_dict(), path.join(cloud_path, f"global_weights.pth"))
@@ -62,6 +66,9 @@ class Cloud:
 
         round_times = []  # Track time for each round
         device_train_times = {}
+        best_acc = float(acc_test)
+        peak_acc = float(acc_test)
+        rounds_without_improvement = 0
         for comm_round in range(1,comm_rounds+1):
             comm_round_time_start = time.time()
             global_weights = torch.load(path.join(cloud_path, f"global_weights.pth"))
@@ -177,6 +184,33 @@ class Cloud:
             # Print round times list
             round_times_str = " -> ".join([f"R{i+1}: {t:.1f}s" for i, t in enumerate(round_times[-5:])])  # Show last 5 rounds
             print(f"Recent round times: {round_times_str}")
+
+            # Early stop only when training has plateaued below the target accuracy.
+            # If the run reaches >= threshold at any point, continue all configured rounds.
+            if acc_test > peak_acc:
+                peak_acc = float(acc_test)
+
+            if acc_test > (best_acc + early_stop_min_delta):
+                best_acc = float(acc_test)
+                rounds_without_improvement = 0
+            else:
+                rounds_without_improvement += 1
+
+            if (
+                early_stop_enabled
+                and peak_acc < early_stop_threshold
+                and rounds_without_improvement >= early_stop_patience
+            ):
+                print(
+                    "EARLY_STOP: "
+                    f"round={comm_round}; "
+                    f"best_acc={peak_acc:.2f}; "
+                    f"current_acc={acc_test:.2f}; "
+                    f"threshold={early_stop_threshold:.2f}; "
+                    f"patience={early_stop_patience}; "
+                    "reason=converged_below_target"
+                )
+                break
 
         print(f"Total time for experiment: {time.time() - total_time_start} seconds")
 

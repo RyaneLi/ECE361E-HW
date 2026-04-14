@@ -257,6 +257,26 @@ def parse_device_avg_times(cloud_output: str) -> Dict[str, float]:
     return device_times
 
 
+def parse_early_stop_info(cloud_output: str) -> Dict[str, Optional[float]]:
+    match = re.search(
+        r"EARLY_STOP:\s*round=(\d+);\s*best_acc=([0-9.,]+);\s*current_acc=([0-9.,]+);"
+        r"\s*threshold=([0-9.,]+);\s*patience=(\d+);\s*reason=([A-Za-z0-9_\-]+)",
+        cloud_output,
+    )
+    if not match:
+        return {"early_stop_triggered": 0.0, "early_stop_round": None}
+
+    return {
+        "early_stop_triggered": 1.0,
+        "early_stop_round": float(match.group(1)),
+        "early_stop_best_acc": _parse_float(match.group(2)),
+        "early_stop_current_acc": _parse_float(match.group(3)),
+        "early_stop_threshold": _parse_float(match.group(4)),
+        "early_stop_patience": float(match.group(5)),
+        "early_stop_reason": match.group(6),
+    }
+
+
 def _fmt(value: Optional[float], suffix: str = "") -> str:
     if value is None:
         return "n/a"
@@ -404,6 +424,16 @@ def format_job_discord_message(
         lines.append(f"    Convergence time [#round]: {int(metrics['convergence_round'])} communication rounds")
     else:
         lines.append("    No round found where all subsequent rounds have accuracy >= 90.00%.")
+
+    if metrics.get("early_stop_triggered"):
+        threshold = metrics.get("early_stop_threshold")
+        threshold_text = f"{threshold:.2f}%" if isinstance(threshold, (float, int)) else "90.00%"
+        lines.append(
+            "    Early stopping: stopped at communication round "
+            f"{int(metrics['early_stop_round'])} because accuracy converged below {threshold_text}."
+        )
+    else:
+        lines.append("    Early stopping: not triggered.")
 
     lines.append(f"    **Time to beat: {TIME_TO_BEAT_S:,.2f} seconds**")
     lines.append(f"    Total wall clock time to reach 90.00% [s]: {_fmt(metrics.get('time_to_90'), ' seconds')}")
@@ -604,7 +634,7 @@ def main() -> None:
     parser.add_argument("--manager_port_offset", type=int, default=1000, help="Manager port = device port + offset unless manager_port exists in dev cfg")
     parser.add_argument("--manager_timeout_s", type=int, default=120, help="Timeout waiting for each device manager readiness")
     parser.add_argument("--state_file", type=str, default="logs/job_queue_state.json", help="JSON file tracking last successful job")
-    parser.add_argument("--force_comm_rounds", type=int, default=1, help="If >0, overwrite cloud cfg comm_rounds before execution")
+    parser.add_argument("--force_comm_rounds", type=int, default=30, help="If >0, overwrite cloud cfg comm_rounds before execution")
     parser.add_argument("--dry_run", action="store_true", help="List jobs and exit")
     parser.add_argument("--discord_test_only", action="store_true", help="Send a Discord test message and exit")
     parser.add_argument(
@@ -703,6 +733,7 @@ def main() -> None:
             break
 
         device_avg_times = parse_device_avg_times(cloud_output)
+        early_stop_info = parse_early_stop_info(cloud_output)
 
         figs_cmd = [
             sys.executable,
@@ -734,6 +765,7 @@ def main() -> None:
         cleaned_figs_output = trim_figs_output(figs_output)
         metrics = parse_figs_metrics(cleaned_figs_output)
         metrics["device_avg_train_times"] = device_avg_times
+        metrics.update(early_stop_info)
         update_benchmark_tracker(benchmark_tracker_file, job, metrics)
 
         discord_message = format_job_discord_message(
