@@ -497,7 +497,7 @@ class Champion_Blade(_ChampionModel):
 		self.conv2 = nn.Conv2d(4, 12, kernel_size=3, stride=1, padding=1)
 		self.bn2 = nn.BatchNorm2d(12)
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
-		self.classifier = nn.Linear(12 * 4 * 4, self.num_classes)
+		self.classifier = nn.Linear(12 * 8 * 8, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
@@ -524,7 +524,7 @@ class Champion_Blade_v2(_ChampionModel):
 		self.conv3 = nn.Conv2d(8, 12, kernel_size=3, stride=1, padding=1)
 		self.bn3 = nn.BatchNorm2d(12)
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
-		self.classifier = nn.Linear(12 * 4 * 4, self.num_classes)
+		self.classifier = nn.Linear(12 * 8 * 8, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
