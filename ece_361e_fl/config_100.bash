@@ -277,7 +277,7 @@ declare -a experiment_configs=(
   "304 1 false vanguard_blade_headtrim 0.01 fedavg 1.0 10.0 1 1"
   "305 1 false vanguard_blade_headtrim 0.01 fedprox 1.0 10.0 1 1"
   "306 1 false vanguard_blade_headtrim 0.01 fedmax 1.0 10.0 1 1"
-
+  
   
 )
 
