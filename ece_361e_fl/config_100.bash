@@ -188,12 +188,97 @@ declare -a experiment_configs=(
   "238 1 false champion_blade_v2 0.01 fedavg 1.0 10.0 1 1"
   "239 1 false champion_blade_v2 0.01 fedprox 1.0 10.0 1 1"
   "240 1 false champion_blade_v2 0.01 fedmax 1.0 10.0 1 1"
-# left overs from pre champions to run after chammpion cuz i am impatient:
-  "241 1 false refined_simplecnn_20_40 0.01 fedprox 1.0 10.0 1 1"
-  "242 1 false simplecnn_small_12_24 0.01 fedprox 1.5 10.0 1 1"
-  "243 1 false refined_simplecnn_small_12_24 0.01 fedprox 1.0 10.0 1 1"
-  "244 1 false simplecnn_small 0.01 fedmax 1.0 15.0 1 1"
-  "245 1 false refined_simplecnn_small 0.01 fedmax 1.0 10.0 1 1"
+# Fixed some bad champion variants and now vanguard variants
+  "241 1 false champion_fighter 0.01 fedavg 1.0 10.0 1 1"
+  "242 1 false champion_fighter 0.01 fedprox 1.0 10.0 1 1"
+  "243 1 false champion_fighter 0.01 fedmax 1.0 10.0 1 1"
+
+  "244 1 false champion_fighter_v2 0.01 fedavg 1.0 10.0 1 1"
+  "245 1 false champion_fighter_v2 0.01 fedprox 1.0 10.0 1 1"
+  "246 1 false champion_fighter_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "247 1 false champion_rogue 0.01 fedavg 1.0 10.0 1 1"
+  "248 1 false champion_rogue 0.01 fedprox 1.0 10.0 1 1"
+  "249 1 false champion_rogue 0.01 fedmax 1.0 10.0 1 1"
+
+  "250 1 false champion_rogue_v2 0.01 fedavg 1.0 10.0 1 1"
+  "251 1 false champion_rogue_v2 0.01 fedprox 1.0 10.0 1 1"
+  "252 1 false champion_rogue_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "253 1 false champion_knife 0.01 fedavg 1.0 10.0 1 1"
+  "254 1 false champion_knife 0.01 fedprox 1.0 10.0 1 1"
+  "255 1 false champion_knife 0.01 fedmax 1.0 10.0 1 1"
+
+  "256 1 false champion_knife_v2 0.01 fedavg 1.0 10.0 1 1"
+  "257 1 false champion_knife_v2 0.01 fedprox 1.0 10.0 1 1"
+  "258 1 false champion_knife_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "259 1 false champion_dagger 0.01 fedavg 1.0 10.0 1 1"
+  "260 1 false champion_dagger 0.01 fedprox 1.0 10.0 1 1"
+  "261 1 false champion_dagger 0.01 fedmax 1.0 10.0 1 1"
+
+  "262 1 false champion_dagger_v2 0.01 fedavg 1.0 10.0 1 1"
+  "263 1 false champion_dagger_v2 0.01 fedprox 1.0 10.0 1 1"
+  "264 1 false champion_dagger_v2 0.01 fedmax 1.0 10.0 1 1"
+
+# VANGUARD VARIANTS
+  "265 1 false vanguard_sword_turbo 0.01 fedavg 1.0 10.0 1 1"
+  "266 1 false vanguard_sword_turbo 0.01 fedprox 1.0 10.0 1 1"
+  "267 1 false vanguard_sword_turbo 0.01 fedmax 1.0 10.0 1 1"
+
+  "268 1 false vanguard_sword_midboost 0.01 fedavg 1.0 10.0 1 1"
+  "269 1 false vanguard_sword_midboost 0.01 fedprox 1.0 10.0 1 1"
+  "270 1 false vanguard_sword_midboost 0.01 fedmax 1.0 10.0 1 1"
+
+  "271 1 false vanguard_sword_eco 0.01 fedavg 1.0 10.0 1 1"
+  "272 1 false vanguard_sword_eco 0.01 fedprox 1.0 10.0 1 1"
+  "273 1 false vanguard_sword_eco 0.01 fedmax 1.0 10.0 1 1"
+
+  "274 1 false vanguard_explorerv2_turbo 0.01 fedavg 1.0 10.0 1 1"
+  "275 1 false vanguard_explorerv2_turbo 0.01 fedprox 1.0 10.0 1 1"
+  "276 1 false vanguard_explorerv2_turbo 0.01 fedmax 1.0 10.0 1 1"
+
+  "277 1 false vanguard_explorerv2_depthwise_eco 0.01 fedavg 1.0 10.0 1 1"
+  "278 1 false vanguard_explorerv2_depthwise_eco 0.01 fedprox 1.0 10.0 1 1"
+  "279 1 false vanguard_explorerv2_depthwise_eco 0.01 fedmax 1.0 10.0 1 1"
+
+  "280 1 false vanguard_explorerv2_eco 0.01 fedavg 1.0 10.0 1 1"
+  "281 1 false vanguard_explorerv2_eco 0.01 fedprox 1.0 10.0 1 1"
+  "282 1 false vanguard_explorerv2_eco 0.01 fedmax 1.0 10.0 1 1"
+
+  "283 1 false vanguard_bladev2_balanced 0.01 fedavg 1.0 10.0 1 1"
+  "284 1 false vanguard_bladev2_balanced 0.01 fedprox 1.0 10.0 1 1"
+  "285 1 false vanguard_bladev2_balanced 0.01 fedmax 1.0 10.0 1 1"
+
+  "286 1 false vanguard_bladev2_slim_a 0.01 fedavg 1.0 10.0 1 1"
+  "287 1 false vanguard_bladev2_slim_a 0.01 fedprox 1.0 10.0 1 1"
+  "288 1 false vanguard_bladev2_slim_a 0.01 fedmax 1.0 10.0 1 1"
+
+  "289 1 false vanguard_bladev2_slim_b 0.01 fedavg 1.0 10.0 1 1"
+  "290 1 false vanguard_bladev2_slim_b 0.01 fedprox 1.0 10.0 1 1"
+  "291 1 false vanguard_bladev2_slim_b 0.01 fedmax 1.0 10.0 1 1"
+
+  "292 1 false vanguard_blade_w13 0.01 fedavg 1.0 10.0 1 1"
+  "293 1 false vanguard_blade_w13 0.01 fedprox 1.0 10.0 1 1"
+  "294 1 false vanguard_blade_w13 0.01 fedmax 1.0 10.0 1 1"
+
+  "295 1 false vanguard_blade_w14 0.01 fedavg 1.0 10.0 1 1"
+  "296 1 false vanguard_blade_w14 0.01 fedprox 1.0 10.0 1 1"
+  "297 1 false vanguard_blade_w14 0.01 fedmax 1.0 10.0 1 1"
+
+  "298 1 false vanguard_blade_refine_dw 0.01 fedavg 1.0 10.0 1 1"
+  "299 1 false vanguard_blade_refine_dw 0.01 fedprox 1.0 10.0 1 1"
+  "300 1 false vanguard_blade_refine_dw 0.01 fedmax 1.0 10.0 1 1"
+
+  "301 1 false vanguard_blade_deeplite 0.01 fedavg 1.0 10.0 1 1"
+  "302 1 false vanguard_blade_deeplite 0.01 fedprox 1.0 10.0 1 1"
+  "303 1 false vanguard_blade_deeplite 0.01 fedmax 1.0 10.0 1 1"
+
+  "304 1 false vanguard_blade_headtrim 0.01 fedavg 1.0 10.0 1 1"
+  "305 1 false vanguard_blade_headtrim 0.01 fedprox 1.0 10.0 1 1"
+  "306 1 false vanguard_blade_headtrim 0.01 fedmax 1.0 10.0 1 1"
+
+  
 )
 
 declare -a devices_configs=(

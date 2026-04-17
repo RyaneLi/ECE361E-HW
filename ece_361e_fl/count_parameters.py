@@ -81,6 +81,23 @@ champion_models = [
     "champion_blade_v2",
 ]
 
+vanguard_models = [
+    "vanguard_sword_turbo",
+    "vanguard_sword_midboost",
+    "vanguard_sword_eco",
+    "vanguard_explorerv2_turbo",
+    "vanguard_explorerv2_depthwise_eco",
+    "vanguard_explorerv2_eco",
+    "vanguard_bladev2_balanced",
+    "vanguard_bladev2_slim_a",
+    "vanguard_bladev2_slim_b",
+    "vanguard_blade_w13",
+    "vanguard_blade_w14",
+    "vanguard_blade_refine_dw",
+    "vanguard_blade_deeplite",
+    "vanguard_blade_headtrim",
+]
+
 
 def print_model_counts(model_names, model_factory, title):
     print(title)
@@ -121,6 +138,12 @@ print_model_counts(
     champion_models,
     get_model,
     "Model Parameter Counts (Champion Registry):",
+)
+
+print_model_counts(
+    vanguard_models,
+    get_model,
+    "Model Parameter Counts (Vanguard Registry):",
 )
 
 print("-" * 50)

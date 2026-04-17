@@ -7,6 +7,7 @@ from models.mobilenet import MobileNetv1
 from models.refined_models import get_refined_model
 from models.research_models import get_research_model
 from models.champion_models import get_champion_model
+from models.Vanguard_models import get_vanguard_model
 from models.screening_models import (
     Conv2d1Anchor,
     Conv2d1BatchNorm,
@@ -81,8 +82,30 @@ CHAMPION_VARIANTS = {
     "champion_blade_v2",
 }
 
+VANGUARD_VARIANTS = {
+    "vanguard_sword_turbo",
+    "vanguard_sword_midboost",
+    "vanguard_sword_eco",
+    "vanguard_explorerv2_turbo",
+    "vanguard_explorerv2_depthwise_eco",
+    "vanguard_explorerv2_eco",
+    "vanguard_bladev2_balanced",
+    "vanguard_bladev2_slim_a",
+    "vanguard_bladev2_slim_b",
+    "vanguard_blade_w13",
+    "vanguard_blade_w14",
+    "vanguard_blade_refine_dw",
+    "vanguard_blade_deeplite",
+    "vanguard_blade_headtrim",
+    "vanguard_sword_balanced_head",
+    "vanguard_blade_w15",
+}
+
 
 def get_model(model_name, loss_type='fedavg'):
+    if model_name in VANGUARD_VARIANTS:
+        return get_vanguard_model(model_name, loss_type=loss_type)
+
     if model_name in CHAMPION_VARIANTS:
         return get_champion_model(model_name, loss_type=loss_type)
     
