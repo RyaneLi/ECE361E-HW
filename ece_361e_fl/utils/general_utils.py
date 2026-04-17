@@ -1,18 +1,33 @@
 import os
 import random
+import getpass
+from pathlib import Path
 import numpy as np
 import torch
 
 
+def _env_first(*names, default=""):
+    for name in names:
+        value = os.environ.get(name)
+        if value:
+            return value
+    return default
+
+
 def get_hw_info(hw_type, device_number=None):
     if hw_type == 'rpi':
-        password = ""  # TODO change here password
+        password = _env_first("FL_RPI_PASSWORD", "FL_DEVICE_PASSWORD")
     elif hw_type == 'mc1':
-        password = ""  # TODO change here password
+        password = _env_first("FL_MC1_PASSWORD", "FL_DEVICE_PASSWORD")
     elif hw_type.split('_')[0] == 'laptop':
-        password = "" # TODO change here password
-        username = "" # TODO change here username
-        local_path = "" # TODO change here your path; make sure it ends with ece_361e_fl
+        hw_type_env = hw_type.upper().replace("-", "_")
+        password = _env_first(f"FL_{hw_type_env}_PASSWORD", "FL_LAPTOP_PASSWORD")
+        username = _env_first(f"FL_{hw_type_env}_USERNAME", "FL_LAPTOP_USERNAME", default=getpass.getuser())
+        local_path = _env_first(
+            f"FL_{hw_type_env}_PATH",
+            "FL_LAPTOP_PATH",
+            default=str(Path(__file__).resolve().parent.parent),
+        )
     else:
         print("[!] ERROR wrong device type.")
         return None

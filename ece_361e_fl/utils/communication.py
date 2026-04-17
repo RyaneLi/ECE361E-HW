@@ -197,8 +197,16 @@ def scp_file(target_host, target_usr, target_pwd, target_path, zip_filename, sou
             # Use paramiko to handle the SCP file transfer.
             with paramiko.SSHClient() as client:
                 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-                client.connect(hostname=target_host, username=target_usr, password=target_pwd, port=22,
-                               auth_timeout=2000, banner_timeout=2000)
+                connect_kwargs = dict(
+                    hostname=target_host,
+                    username=target_usr,
+                    port=22,
+                    auth_timeout=2000,
+                    banner_timeout=2000,
+                )
+                if target_pwd:
+                    connect_kwargs["password"] = target_pwd
+                client.connect(**connect_kwargs)
 
                 with SCPClient(client.get_transport()) as scp:
                     scp.put(path.join(source_path, zip_filename), remote_path=target_path)

@@ -62,15 +62,17 @@ def sync_models_to_host(host: str, hw_type: str, dry_run: bool = False, verbose:
 
     with paramiko.SSHClient() as ssh_client:
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        ssh_client.connect(
+        connect_kwargs = dict(
             hostname=host,
             username=username,
-            password=password,
             port=22,
             timeout=30,
             banner_timeout=30,
             auth_timeout=30,
         )
+        if password:
+            connect_kwargs["password"] = password
+        ssh_client.connect(**connect_kwargs)
 
         ensure_remote_dir(ssh_client, REMOTE_MODELS_DIR)
 

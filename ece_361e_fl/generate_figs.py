@@ -20,7 +20,13 @@ def fetch_file(hw_type, device_number, filename, local_path):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         print(f"Connecting to {host}...")
-        ssh.connect(hostname=host, username=username, password=password)
+        connect_kwargs = {
+            "hostname": host,
+            "username": username,
+        }
+        if password:
+            connect_kwargs["password"] = password
+        ssh.connect(**connect_kwargs)
     except socket.gaierror:
         print(f"Unable to connect to {host}. Skipping file fetch.")
         return -1
@@ -360,5 +366,4 @@ if __name__ == '__main__':
         if args.power:
             print(f"\tRPi avg. power consumption per round [W]: {avg_powers[0]:,.2f} Watts")
             print(f"\tMC1 avg. power consumption per round [W]: {avg_powers[1]:,.2f} Watts")
-
 
