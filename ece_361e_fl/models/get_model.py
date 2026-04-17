@@ -4,7 +4,9 @@ from models.simplecnn import SimpleCNN
 from models.vgg11 import VGG11
 from models.vgg16 import VGG16
 from models.mobilenet import MobileNetv1
+from models.refined_models import get_refined_model
 from models.research_models import get_research_model
+from models.champion_models import get_champion_model
 from models.screening_models import (
     Conv2d1Anchor,
     Conv2d1BatchNorm,
@@ -49,8 +51,44 @@ RESEARCH_VARIANTS = {
     "simplecnn_singleconv_1_4_twoconv",
 }
 
+REFINED_VARIANTS = {
+    "refined_simplecnn_small",
+    "refined_simplecnn_small_12_24",
+    "refined_simplecnn_20_40",
+    "refined_simplecnn_24_48",
+    "refined_simplecnn_small_8_16",
+    "refined_simplecnn_small_4_8",
+    "refined_simplecnn_small_4_8_deep",
+    "refined_simplecnn_small_4_8_deeper",
+    "refined_simplecnn_small_4_16",
+    "refined_simplecnn_20_40_batchnorm",
+}
+
+CHAMPION_VARIANTS = {
+    "champion_sword",
+    "champion_mace",
+    "champion_explorer",
+    "champion_explorer_v2",
+    "champion_fighter",
+    "champion_fighter_v2",
+    "champion_rogue",
+    "champion_rogue_v2",
+    "champion_knife",
+    "champion_knife_v2",
+    "champion_dagger",
+    "champion_dagger_v2",
+    "champion_blade",
+    "champion_blade_v2",
+}
+
 
 def get_model(model_name, loss_type='fedavg'):
+    if model_name in CHAMPION_VARIANTS:
+        return get_champion_model(model_name, loss_type=loss_type)
+    
+    if model_name in REFINED_VARIANTS:
+        return get_refined_model(model_name, loss_type=loss_type)
+
     if model_name in RESEARCH_VARIANTS:
         return get_research_model(model_name, loss_type=loss_type)
 

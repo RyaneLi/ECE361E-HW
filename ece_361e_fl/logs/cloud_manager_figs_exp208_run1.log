@@ -1,0 +1,25 @@
+Connecting to sld-rpi-09.ece.utexas.edu...
+Successfully fetched dev0_pow_temp_log_exp208_run1.csv.
+Connecting to sld-rpi-09.ece.utexas.edu...
+Successfully fetched dev0_communication_log_exp208_run1.csv.
+Connecting to sld-mc1-09.ece.utexas.edu...
+Successfully fetched dev1_pow_temp_log_exp208_run1.csv.
+Connecting to sld-mc1-09.ece.utexas.edu...
+Successfully fetched dev1_communication_log_exp208_run1.csv.
+
+Exp208
+Experiment 208: 
+	Global test accuracy [%]: 91.26 %
+	Convergence time [#round]: 12 communication rounds
+	Total wall clock time to reach 90.00% [s]: 119.33 seconds
+	Average time per communication round [s]: 9.78 seconds
+	Total wall clock time [s]: 296.99 seconds
+
+
+Experiment 208:
+	RPi avg. energy consumption per round [J]: 37.40 Joules
+	MC1 avg. energy consumption per round [J]: 22.96 Joules
+	Total avg. energy consumption per communication round [J]: 60.36 Joules
+	Avg. amount of communicated data per communication round [MB]: 0.03 MB
+	RPi avg. power consumption per round [W]: 5.34 Watts
+	MC1 avg. power consumption per round [W]: 6.01 Watts

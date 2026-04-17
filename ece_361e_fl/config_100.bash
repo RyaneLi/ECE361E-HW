@@ -94,9 +94,106 @@ declare -a experiment_configs=(
   "160 1 false simplecnn_small_8_16_deep 0.01 fedavg 1.0 10.0 1 1"
   "161 1 false simplecnn_small_12_24_deep 0.01 fedavg 1.0 10.0 1 1"
   "162 1 false simplecnn_singleconv_1_4_twoconv 0.01 fedavg 1.0 10.0 1 1"
-    
+  "163 1 false simplecnn_small_4_8_deep 0.01 fedmax 1.0 15.0 1 1"
+  "164 1 false refined_simplecnn_small_4_8_deep 0.01 fedavg 1.0 10.0 1 1"
+  "165 1 false refined_simplecnn_small_4_8_deep 0.01 fedmax 1.0 10.0 1 1"
+  "166 1 false refined_simplecnn_small_4_8_deep 0.01 fedprox 1.0 10.0 1 1"
+  "167 1 false simplecnn_small_4_8_deep_groupnorm 0.01 fedmax 1.0 15.0 1 1"
+  "168 1 false refined_simplecnn_small_4_8_deeper 0.01 fedavg 1.0 10.0 1 1"
+  "169 1 false refined_simplecnn_small_4_8_deeper 0.01 fedmax 1.0 10.0 1 1"
+  "170 1 false refined_simplecnn_small_4_8_deeper 0.01 fedprox 1.0 10.0 1 1"
+  "171 1 false simplecnn_small_4_16 0.01 fedmax 1.0 15.0 1 1"
+  "172 1 false refined_simplecnn_small_4_16 0.01 fedavg 1.0 10.0 1 1"
+  "173 1 false refined_simplecnn_small_4_16 0.01 fedmax 1.0 10.0 1 1"
+  "174 1 false refined_simplecnn_small_4_16 0.01 fedprox 1.0 10.0 1 1"
+  "175 1 false simplecnn_20_40_batchnorm 0.02 fedavg 1.0 10.0 1 1"
+  "176 1 false simplecnn_20_40_batchnorm 0.01 fedmax 1.0 15.0 1 1"
+  "177 1 false simplecnn_20_40_batchnorm 0.02 fedmax 1.0 15.0 1 1"
+  "178 1 false refined_simplecnn_20_40_batchnorm 0.01 fedavg 1.0 10.0 1 1"
+  "179 1 false refined_simplecnn_20_40_batchnorm 0.01 fedmax 1.0 15.0 1 1"
+  "180 1 false refined_simplecnn_20_40_batchnorm 0.01 fedprox 1.0 10.0 1 1"
+  "181 1 false simplecnn_small_4_8 0.01 fedprox 1.5 10.0 1 1"
+  "182 1 false simplecnn_small_4_8 0.01 fedmax 1.0 15.0 1 1"
+  "183 1 false refined_simplecnn_small_4_8 0.01 fedavg 1.0 10.0 1 1"
+  "184 1 false refined_simplecnn_small_4_8 0.01 fedmax 1.0 10.0 1 1"
+  "185 1 false refined_simplecnn_small_4_8 0.01 fedprox 1.0 10.0 1 1"
+  "186 1 false simplecnn_small_8_16 0.01 fedprox 1.5 10.0 1 1"
+  "187 1 false refined_simplecnn_small_8_16 0.01 fedavg 1.0 10.0 1 1"
+  "188 1 false refined_simplecnn_small_8_16 0.01 fedprox 1.0 10.0 1 1"
+  "189 1 false refined_simplecnn_small_8_16 0.01 fedmax 1.0 10.0 1 1"
+  "190 1 false simplecnn_24_48 0.01 fedmax 1.0 15.0 1 1"
+  "191 1 false refined_simplecnn_24_48 0.01 fedavg 1.0 10.0 1 1"
+  "192 1 false refined_simplecnn_24_48 0.01 fedmax 1.0 10.0 1 1"
+  "193 1 false refined_simplecnn_24_48 0.01 fedprox 1.0 10.0 1 1"
+  "194 1 false simplecnn_20_40 0.01 fedmax 1.0 15.0 1 1"
+  "195 1 false refined_simplecnn_20_40 0.01 fedavg 1.0 10.0 1 1"
+  "196 1 false refined_simplecnn_20_40 0.01 fedmax 1.0 10.0 1 1"
+ 
+# CHAMPION VARIANTS
+# Fine tuning first
+  "197 1 false champion_sword 0.009 fedprox 1.0 10.0 1 1"
+  "198 1 false champion_sword 0.010 fedprox 0.9 10.0 1 1"
+  "199 1 false champion_sword 0.010 fedprox 1.0 10.0 1 1"
+  "200 1 false champion_sword 0.010 fedprox 1.1 10.0 1 1"
+  "201 1 false champion_sword 0.011 fedprox 0.9 10.0 1 1"
+  "202 1 false champion_sword 0.011 fedprox 1.0 10.0 1 1"
+  "203 1 false champion_sword 0.011 fedprox 1.1 10.0 1 1"
+  "204 1 false champion_sword 0.012 fedprox 1.1 10.0 1 1"
 
+# Now exploration
+  "205 1 false champion_explorer 0.01 fedavg 1.0 10.0 1 1"
+  "206 1 false champion_explorer 0.01 fedprox 1.0 10.0 1 1"
+  "207 1 false champion_explorer 0.01 fedmax 1.0 10.0 1 1"
 
+  "208 1 false champion_explorer_v2 0.01 fedavg 1.0 10.0 1 1"
+  "209 1 false champion_explorer_v2 0.01 fedprox 1.0 10.0 1 1"
+  "210 1 false champion_explorer_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "211 1 false champion_fighter 0.01 fedavg 1.0 10.0 1 1"
+  "212 1 false champion_fighter 0.01 fedprox 1.0 10.0 1 1"
+  "213 1 false champion_fighter 0.01 fedmax 1.0 10.0 1 1"
+
+  "214 1 false champion_fighter_v2 0.01 fedavg 1.0 10.0 1 1"
+  "215 1 false champion_fighter_v2 0.01 fedprox 1.0 10.0 1 1"
+  "216 1 false champion_fighter_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "217 1 false champion_rogue 0.01 fedavg 1.0 10.0 1 1"
+  "218 1 false champion_rogue 0.01 fedprox 1.0 10.0 1 1"
+  "219 1 false champion_rogue 0.01 fedmax 1.0 10.0 1 1"
+
+  "220 1 false champion_rogue_v2 0.01 fedavg 1.0 10.0 1 1"
+  "221 1 false champion_rogue_v2 0.01 fedprox 1.0 10.0 1 1"
+  "222 1 false champion_rogue_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "223 1 false champion_knife 0.01 fedavg 1.0 10.0 1 1"
+  "224 1 false champion_knife 0.01 fedprox 1.0 10.0 1 1"
+  "225 1 false champion_knife 0.01 fedmax 1.0 10.0 1 1"
+
+  "226 1 false champion_knife_v2 0.01 fedavg 1.0 10.0 1 1"
+  "227 1 false champion_knife_v2 0.01 fedprox 1.0 10.0 1 1"
+  "228 1 false champion_knife_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "229 1 false champion_dagger 0.01 fedavg 1.0 10.0 1 1"
+  "230 1 false champion_dagger 0.01 fedprox 1.0 10.0 1 1"
+  "231 1 false champion_dagger 0.01 fedmax 1.0 10.0 1 1"
+
+  "232 1 false champion_dagger_v2 0.01 fedavg 1.0 10.0 1 1"
+  "233 1 false champion_dagger_v2 0.01 fedprox 1.0 10.0 1 1"
+  "234 1 false champion_dagger_v2 0.01 fedmax 1.0 10.0 1 1"
+
+  "235 1 false champion_blade 0.01 fedavg 1.0 10.0 1 1"
+  "236 1 false champion_blade 0.01 fedprox 1.0 10.0 1 1"
+  "237 1 false champion_blade 0.01 fedmax 1.0 10.0 1 1"
+
+  "238 1 false champion_blade_v2 0.01 fedavg 1.0 10.0 1 1"
+  "239 1 false champion_blade_v2 0.01 fedprox 1.0 10.0 1 1"
+  "240 1 false champion_blade_v2 0.01 fedmax 1.0 10.0 1 1"
+# left overs from pre champions to run after chammpion cuz i am impatient:
+  "241 1 false refined_simplecnn_20_40 0.01 fedprox 1.0 10.0 1 1"
+  "242 1 false simplecnn_small_12_24 0.01 fedprox 1.5 10.0 1 1"
+  "243 1 false refined_simplecnn_small_12_24 0.01 fedprox 1.0 10.0 1 1"
+  "244 1 false simplecnn_small 0.01 fedmax 1.0 15.0 1 1"
+  "245 1 false refined_simplecnn_small 0.01 fedmax 1.0 10.0 1 1"
 )
 
 declare -a devices_configs=(

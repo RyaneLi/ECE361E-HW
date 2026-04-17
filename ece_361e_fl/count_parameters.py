@@ -1,4 +1,5 @@
 from models.get_model import get_model
+from models.refined_models import get_refined_model
 from models.research_models import get_research_model
 
 models = [
@@ -50,6 +51,36 @@ research_models = [
     "simplecnn_singleconv_1_4_twoconv",
 ]
 
+refined_models = [
+    "refined_simplecnn_small",
+    "refined_simplecnn_small_12_24",
+    "refined_simplecnn_20_40",
+    "refined_simplecnn_24_48",
+    "refined_simplecnn_small_8_16",
+    "refined_simplecnn_small_4_8",
+    "refined_simplecnn_small_4_8_deep",
+    "refined_simplecnn_small_4_8_deeper",
+    "refined_simplecnn_small_4_16",
+    "refined_simplecnn_20_40_batchnorm",
+]
+
+champion_models = [
+    "champion_sword",
+    "champion_mace",
+    "champion_explorer",
+    "champion_explorer_v2",
+    "champion_fighter",
+    "champion_fighter_v2",
+    "champion_rogue",
+    "champion_rogue_v2",
+    "champion_knife",
+    "champion_knife_v2",
+    "champion_dagger",
+    "champion_dagger_v2",
+    "champion_blade",
+    "champion_blade_v2",
+]
+
 
 def print_model_counts(model_names, model_factory, title):
     print(title)
@@ -78,6 +109,18 @@ print_model_counts(
     research_models,
     get_research_model,
     "Model Parameter Counts (Research Registry):",
+)
+
+print_model_counts(
+    refined_models,
+    get_refined_model,
+    "Model Parameter Counts (Refined Registry):",
+)
+
+print_model_counts(
+    champion_models,
+    get_model,
+    "Model Parameter Counts (Champion Registry):",
 )
 
 print("-" * 50)

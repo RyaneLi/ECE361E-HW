@@ -357,13 +357,14 @@ def update_benchmark_tracker(tracker_path: Path, job: Job, metrics: Dict[str, Op
 
 
 def build_goal_beaters_summary(tracker_path: Path) -> List[str]:
-    def _format_item(entry: Dict, metric_key: str, unit: str) -> Optional[str]:
+    def _format_item(entry: Dict, metric_key: str, unit: str, bold: bool = False) -> Optional[str]:
         value = entry.get(metric_key)
         if value is None:
             return None
         exp = entry.get("exp")
         run = entry.get("run")
-        return f"exp{exp} run{run} ({float(value):,.2f}{unit})"
+        item = f"exp{exp} run{run} ({float(value):,.2f}{unit})"
+        return f"**{item}**" if bold else item
 
     lines: List[str] = ["", "Goal-beating experiments so far:"]
     time_items: List[str] = []
@@ -374,17 +375,30 @@ def build_goal_beaters_summary(tracker_path: Path) -> List[str]:
             tracker = load_json(tracker_path)
             entries = tracker.get("entries", []) if isinstance(tracker, dict) else []
             if isinstance(entries, list):
+                time_entries: List[Dict] = []
+                energy_entries: List[Dict] = []
                 for entry in entries:
                     if not isinstance(entry, dict):
                         continue
                     if entry.get("beats_time"):
-                        item = _format_item(entry, "time_to_90_s", "s")
-                        if item:
-                            time_items.append(item)
+                        if entry.get("time_to_90_s") is not None:
+                            time_entries.append(entry)
                     if entry.get("beats_energy"):
-                        item = _format_item(entry, "total_energy_per_round_j", "J")
-                        if item:
-                            energy_items.append(item)
+                        if entry.get("total_energy_per_round_j") is not None:
+                            energy_entries.append(entry)
+
+                time_entries.sort(key=lambda item: float(item["time_to_90_s"]))
+                energy_entries.sort(key=lambda item: float(item["total_energy_per_round_j"]))
+
+                for idx, entry in enumerate(time_entries[:10]):
+                    item = _format_item(entry, "time_to_90_s", "s", bold=(idx == 0))
+                    if item:
+                        time_items.append(item)
+
+                for idx, entry in enumerate(energy_entries[:10]):
+                    item = _format_item(entry, "total_energy_per_round_j", "J", bold=(idx == 0))
+                    if item:
+                        energy_items.append(item)
         except Exception:
             pass
 
