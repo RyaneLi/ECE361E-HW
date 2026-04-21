@@ -116,7 +116,8 @@ def main() -> None:
 
     qualifying = [
         entry for entry in entries
-        if entry.get("qualifies")
+        if not entry.get("leaderboard_excluded")
+        and entry.get("qualifies")
         and entry.get("global_acc") is not None
         and float(entry["global_acc"]) >= args.threshold
         and entry.get("time_to_90_s") is not None

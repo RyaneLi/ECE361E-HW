@@ -17,6 +17,7 @@ parser.add_argument('--beta', type=float, default=10.0, help='fedavg, fedmax, fe
 parser.add_argument('--comm_rounds', type=int, default=30, help='Communication rounds')
 parser.add_argument('--learning_rate', type=float, default=0.01, help='Learning rate')
 parser.add_argument('--verbose', type=str, default='false', help='Verbosity [true, false]')
+parser.add_argument('--init_checkpoint', type=str, default='', help='Optional initial checkpoint path for warm-started training')
 
 parser.add_argument('--experiment', type=int, default=1, help='Experiment number')
 parser.add_argument('--run', type=int, default=1, help='Run number')
@@ -48,6 +49,7 @@ mu = args.mu
 beta = args.beta
 comm_rounds = args.comm_rounds
 learning_rate = args.learning_rate
+init_checkpoint = args.init_checkpoint
 verbose = args.verbose
 if verbose == "true":
     verbose = True
@@ -87,6 +89,8 @@ with open(path.join("configs", cloud_config_filename), 'w') as file:
     config_dict["comm_rounds"] = comm_rounds
     config_dict["learning_rate"] = learning_rate
     config_dict["verbose"] = verbose
+    if init_checkpoint:
+        config_dict["init_checkpoint"] = init_checkpoint
 
     config_dict["experiment"] = cloud_config_filename.split("_")[2]
     config_dict["run"] = cloud_config_filename.split("_")[3].split('.')[0]

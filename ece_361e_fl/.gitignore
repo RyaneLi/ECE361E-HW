@@ -1,0 +1,16 @@
+.autolaunch_env
+logs/
+__pycache__/
+*.pyc
+**/__pycache__/
+**/*.pyc
+configs/
+artifacts/
+dataset/
+files1/
+figs/
+*.zip
+~$*.pptx
+artifacts/checkpoints/**/*.pth
+artifacts/pruned_checkpoints/**/*.pth
+artifacts/pruning_reports/**/*.json

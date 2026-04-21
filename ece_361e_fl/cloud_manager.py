@@ -73,6 +73,41 @@ def write_json(file_path: Path, payload: Dict) -> None:
         json.dump(payload, f, indent=2)
 
 
+def archive_job_checkpoints(project_dir: Path, job: Job, cloud_cfg: Dict) -> Optional[Path]:
+    try:
+        from utils.general_utils import get_hw_info
+    except ModuleNotFoundError as exc:
+        print(f"[!] Could not import get_hw_info for checkpoint archiving: {exc}")
+        return None
+
+    laptop_number = str(cloud_cfg.get("laptop_number", "laptop_1"))
+    _, _, cloud_path = get_hw_info(hw_type=laptop_number)
+    source_dir = Path(cloud_path)
+    if not source_dir.exists():
+        print(f"[!] Checkpoint source directory does not exist: {source_dir}")
+        return None
+
+    archive_dir = project_dir / "artifacts" / "checkpoints" / f"exp{job.exp}_run{job.run}"
+    archive_dir.mkdir(parents=True, exist_ok=True)
+
+    copied_any = False
+    for filename in ("global_weights.pth", "dev_0.pth", "dev_1.pth"):
+        src = source_dir / filename
+        if src.exists():
+            shutil.copy2(src, archive_dir / filename)
+            copied_any = True
+
+    shutil.copy2(job.cloud_cfg, archive_dir / job.cloud_cfg.name)
+    shutil.copy2(job.dev_cfg, archive_dir / job.dev_cfg.name)
+
+    if not copied_any:
+        print(f"[!] No checkpoint files were found to archive in {source_dir}")
+        return None
+
+    print(f"[+] Archived checkpoints to {archive_dir}")
+    return archive_dir
+
+
 def parse_numeric_value(v) -> int:
     if isinstance(v, int):
         return v
@@ -356,6 +391,10 @@ def update_benchmark_tracker(tracker_path: Path, job: Job, metrics: Dict[str, Op
     write_json(tracker_path, tracker)
 
 
+def is_leaderboard_entry_included(entry: Dict) -> bool:
+    return not bool(entry.get("leaderboard_excluded"))
+
+
 def build_goal_beaters_summary(tracker_path: Path) -> List[str]:
     def _format_item(entry: Dict, metric_key: str, unit: str, bold: bool = False) -> Optional[str]:
         value = entry.get(metric_key)
@@ -379,6 +418,8 @@ def build_goal_beaters_summary(tracker_path: Path) -> List[str]:
                 energy_entries: List[Dict] = []
                 for entry in entries:
                     if not isinstance(entry, dict):
+                        continue
+                    if not is_leaderboard_entry_included(entry):
                         continue
                     if entry.get("beats_time"):
                         if entry.get("time_to_90_s") is not None:
@@ -746,6 +787,8 @@ def main() -> None:
             queue_completed = False
             break
 
+        archive_job_checkpoints(project_dir=project_dir, job=job, cloud_cfg=cloud_cfg)
+
         device_avg_times = parse_device_avg_times(cloud_output)
         early_stop_info = parse_early_stop_info(cloud_output)
 
@@ -756,6 +799,8 @@ def main() -> None:
             str(job.exp),
             "--runs",
             "1",
+            "--run_ids",
+            str(job.run),
             "--exp_labels",
             f"exp{job.exp}",
             "--plot_title",

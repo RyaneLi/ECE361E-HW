@@ -280,6 +280,10 @@ parser.add_argument('--communication', action='store_true', help='')
 parser.add_argument('--exps', nargs='+', default=[1, 2], help='Experiment numbers')
 parser.add_argument('--exp_labels', nargs='+', default=["iid", "niid"], help='Experiment labels to be used as plot titles')
 parser.add_argument('--runs', nargs='+', default=[2, 1], help='Total number of runs for each experiments')
+parser.add_argument('--run_ids', nargs='*', default=None,
+                    help='Specific run ids for each experiment. Each item can be a single run (e.g. 2) '
+                         'or a comma-separated list (e.g. 1,2,3). If omitted, generate_figs assumes '
+                         'runs 1..N for each experiment.')
 parser.add_argument('--plot_title', type=str, default="Testing", help='The main title of the plots')
 args = parser.parse_args()
 
@@ -295,14 +299,121 @@ exp_labels = []
 for k in args.exp_labels:
     exp_labels.append(k)
 
-args = parser.parse_args()
+def normalize_run_groups(runs, run_ids_args):
+    if not run_ids_args:
+        return [list(range(1, run_count + 1)) for run_count in runs]
+
+    run_groups = []
+    for idx, raw in enumerate(run_ids_args):
+        group = [int(item) for item in str(raw).split(",") if str(item).strip()]
+        if not group:
+            fallback = runs[idx] if idx < len(runs) else 1
+            group = list(range(1, fallback + 1))
+        run_groups.append(group)
+
+    while len(run_groups) < len(runs):
+        run_count = runs[len(run_groups)]
+        run_groups.append(list(range(1, run_count + 1)))
+    return run_groups
+
+run_groups = normalize_run_groups(runs, args.run_ids)
+
+def plot_acc_loss(experiments, run_groups, exp_labels, title, time=True):
+    # Accuracy
+    fig = plt.figure(figsize=(6, 4))
+    ax = fig.add_subplot(111)
+    ax.yaxis.set_ticks([10, 30, 50, 70, 90, 100])
+    plt.ylim(0, 100)
+    plt.title(title)
+    plt.xlabel("Communication round")
+    plt.ylabel("Accuracy [%]")
+    plt.grid()
+
+    print(f"\n{title}")
+    for exp, run_group, label in zip(experiments, run_groups, exp_labels):
+        mydf = []
+        for run_id in run_group:
+            file_path = f"logs/log_exp{exp}_run{run_id}.csv"
+            df = pd.read_csv(file_path)
+            mydf.append(df)
+
+        mylst = []
+        mydict = {}
+        run_count = len(run_group)
+        for i in range(run_count):
+            for j in range(len(mydf[i]['Acc'])):
+                mylst.append(mydf[i]['Acc'].iloc[j])
+            mydict[i] = np.expand_dims(np.array(mylst), axis=0)
+            mylst = []
+
+        mylst = np.concatenate(tuple(mydict.values()), axis=0)
+        mystd = np.std(mylst, axis=0)
+        mylst = np.mean(mylst, axis=0)
+        max_index = np.argmax(mylst)
+        if run_count > 1:
+            print(f"Experiment {exp}: \n\tGlobal test accuracy [%]: {np.round(mylst[max_index], 2)} \u00B1 "
+                  f"{np.round(mystd[max_index], 2)} %")
+        else:
+            print(f"Experiment {exp}: \n\tGlobal test accuracy [%]: {np.round(mylst[max_index], 2)} %")
+
+        found = False
+        for idx in range(len(mylst)):
+            if mylst[idx] >= 90.0:
+                if all(i >= 90.0 for i in mylst[idx:]):
+                    print(f"\tConvergence time [#round]: {idx} communication rounds")
+                    found = True
+                    break
+
+        if time and found:
+            total_time = 0.0
+            time_file = f"logs/log_exp{exp}_run{run_group[-1]}.csv"
+            with open(time_file, mode='r') as csvfile:
+                csvreader = csv.DictReader(csvfile)
+                for row in csvreader:
+                    comm_round = int(row['CommRound'])
+                    if comm_round <= idx:
+                        total_time += float(row['Time'])
+                    else:
+                        break
+            print(f"\tTotal wall clock time to reach 90.00% [s]: {total_time:,.2f} seconds")
+
+        if not found:
+            print("\tNo round found where all subsequent rounds have accuracy >= 90.00%.")
+        plt.plot(range(len(mylst)), mylst, label=label, linewidth=4)
+        mydf = []
+        for run_id in run_group:
+            try:
+                file_path = f"logs/log_exp{exp}_run{run_id}.csv"
+                if not os.path.exists(file_path):
+                    print(f"File {file_path} does not exist. Skipping...")
+                    continue
+                df = pd.read_csv(file_path)
+                mydf.append(df)
+            except BaseException:
+                print(f"Missing log_exp{exp}_run{run_id}.csv and avoiding it with label {label}")
+                continue
+        mylst = []
+        mydict = {}
+        for i in range(len(mydf)):
+            for j in range(len(mydf[i]['Time'])):
+                mylst.append(mydf[i]['Time'].iloc[j])
+            mydict[i] = np.expand_dims(np.array(mylst), axis=0)
+            mylst = []
+
+        mylst = np.concatenate(tuple(mydict.values()), axis=0)
+        mylst = np.mean(mylst, axis=0)
+        avg_time = np.mean(mylst[1:])
+        print(f"\tAvg. time per communication round [s]: {np.round(avg_time, 2)}")
+    plt.legend()
+    plt.savefig('figs/accuracy.png', bbox_inches='tight')
 
 if __name__ == '__main__':
     os.makedirs("figs", exist_ok=True)
     device_dict = {0: 'rpi', 1: 'mc1'}
-    for exp, r, title in zip(exps, runs, exp_labels):
-        cloud_cfg_file = f"configs/cloud_cfg_exp{exp}_run{r}.json"
-        dev_cfg_file = f"configs/dev_cfg_exp{exp}_run{r}.json"
+    for exp, run_group, title in zip(exps, run_groups, exp_labels):
+        anchor_run = run_group[-1]
+        cloud_cfg_file = f"configs/cloud_cfg_exp{exp}_run{anchor_run}.json"
+        dev_cfg_file = f"configs/dev_cfg_exp{exp}_run{anchor_run}.json"
         with open(dev_cfg_file, "r") as f:
             dev_cfg = json.load(f)
             device_numbers = []
@@ -311,24 +422,24 @@ if __name__ == '__main__':
                     device_number = int(dev_cfg[device]['host'].split('-')[-1].split('.')[0])
                     device_numbers.append(device_number)
         for device, dev_idx in zip([0, 1], device_numbers):
-            for rs in range(1, r+1):
-                file_name_pow = f"dev{device}_pow_temp_log_exp{exp}_run{rs}.csv"
+            for run_id in run_group:
+                file_name_pow = f"dev{device}_pow_temp_log_exp{exp}_run{run_id}.csv"
                 result = fetch_file(device_dict[device], dev_idx, file_name_pow, 'logs/device_logs/')
                 if result == -1:
                     print(f"[!] File name: {file_name_pow} does not exist for device {device}")
                     exit(-1)
-                file_name_comm = f"dev{device}_communication_log_exp{exp}_run{rs}.csv"
+                file_name_comm = f"dev{device}_communication_log_exp{exp}_run{run_id}.csv"
                 result = fetch_file(device_dict[device], dev_idx, file_name_comm, 'logs/device_logs/')
                 if result == -1:
                     print(f"[!] File name: {file_name_comm} does not exist for device {device}")
                     exit(-1)
     if args.accuracy:
-        plot_acc_loss(exps, runs, exp_labels, args.plot_title, args.time)
+        plot_acc_loss(exps, run_groups, exp_labels, args.plot_title, args.time)
 
-    for exp, myrun in zip(exps,runs):
+    for exp, run_group in zip(exps, run_groups):
         all_runs = []
-        for r in range(1,myrun+1):
-            all_runs.append(plot_power_energy_communication(exp=exp, run=r, power=args.power,
+        for run_id in run_group:
+            all_runs.append(plot_power_energy_communication(exp=exp, run=run_id, power=args.power,
                                                             energy=args.energy, communication=args.communication))
         # Initialize lists to accumulate metrics across all runs
         accumulated_metrics = [[0, 0], [0, 0], [0, 0]]  # For power, energy, and comm data
@@ -345,8 +456,8 @@ if __name__ == '__main__':
 
         devices = 2  # Number of devices
         # Printing the results
-        if myrun > 1:
-            print(f"\nExperiment {exp} average over {myrun} runs:")
+        if len(run_group) > 1:
+            print(f"\nExperiment {exp} average over {len(run_group)} runs:")
         else:
             print(f"\nExperiment {exp}:")
 
@@ -366,4 +477,3 @@ if __name__ == '__main__':
         if args.power:
             print(f"\tRPi avg. power consumption per round [W]: {avg_powers[0]:,.2f} Watts")
             print(f"\tMC1 avg. power consumption per round [W]: {avg_powers[1]:,.2f} Watts")
-

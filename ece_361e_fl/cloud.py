@@ -4,6 +4,7 @@ import copy
 import torch
 import argparse
 import json
+from pathlib import Path
 from models.get_model import get_model
 from utils.train_test import test
 from utils.general_utils import get_loss_func, get_hw_info, seed_everything
@@ -52,8 +53,15 @@ class Cloud:
             early_stop_threshold = float(dat.get("early_stop_threshold", 90.0))
             early_stop_patience = int(dat.get("early_stop_patience_rounds", 5))
             early_stop_min_delta = float(dat.get("early_stop_min_delta", 0.04))
+            init_checkpoint = str(dat.get("init_checkpoint", "")).strip()
 
         net_glob = get_model(model_name=f"{model_name}", loss_type=loss_type)
+        if init_checkpoint:
+            checkpoint_path = Path(init_checkpoint)
+            if not checkpoint_path.is_absolute():
+                checkpoint_path = (Path.cwd() / checkpoint_path).resolve()
+            print(f"[+] Loading warm-start checkpoint from {checkpoint_path}")
+            net_glob.load_state_dict(torch.load(str(checkpoint_path), map_location="cpu"))
         torch.save(net_glob.state_dict(), path.join(cloud_path, f"global_weights.pth"))
         loss_func = get_loss_func(loss_name=loss_name)
 

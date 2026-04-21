@@ -217,8 +217,8 @@ class Champion_Fighter(_ChampionModel):
 		self.bn3 = nn.BatchNorm2d(12)
 		self.conv4 = nn.Conv2d(12, 16, kernel_size=3, stride=1, padding=1)
 		self.bn4 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.bn1(self.conv1(x)))
@@ -248,8 +248,8 @@ class Champion_Fighter_v2(_ChampionModel):
 		self.bn3 = nn.BatchNorm2d(16)
 		self.conv4 = nn.Conv2d(16, 24, kernel_size=3, stride=1, padding=1)
 		self.bn4 = nn.BatchNorm2d(24)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(24, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(24 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.bn1(self.conv1(x)))
@@ -279,8 +279,8 @@ class Champion_Rogue(_ChampionModel):
 		self.bn3 = nn.BatchNorm2d(8)
 		self.pointwise3 = nn.Conv2d(8, 16, kernel_size=1, stride=1, padding=0)
 		self.bn4 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.bn1(self.conv1(x)))
@@ -308,8 +308,8 @@ class Champion_Rogue_v2(_ChampionModel):
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
 		self.conv3 = nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1)
 		self.bn3 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.bn1(self.conv1(x)))
@@ -344,8 +344,8 @@ class Champion_Knife(_ChampionModel):
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
 		self.conv3 = nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1)
 		self.bn3 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
@@ -377,8 +377,8 @@ class Champion_Knife_v2(_ChampionModel):
 		self.bn3 = nn.BatchNorm2d(12)
 		self.conv4 = nn.Conv2d(12, 16, kernel_size=3, stride=1, padding=1)
 		self.bn4 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
@@ -413,8 +413,8 @@ class Champion_Dagger(_ChampionModel):
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
 		self.conv3 = nn.Conv2d(8, 12, kernel_size=3, stride=1, padding=1)
 		self.bn3 = nn.BatchNorm2d(12)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(12, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(12 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
@@ -444,8 +444,8 @@ class Champion_Dagger_v2(_ChampionModel):
 		self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
 		self.conv3 = nn.Conv2d(8, 16, kernel_size=3, stride=1, padding=1)
 		self.bn3 = nn.BatchNorm2d(16)
-		self.pool3 = nn.AdaptiveAvgPool2d((1, 1))
-		self.classifier = nn.Linear(16, self.num_classes)
+		self.pool3 = nn.AdaptiveAvgPool2d((6, 6))
+		self.classifier = nn.Linear(16 * 6 * 6, self.num_classes)
 
 	def forward(self, x):
 		out = self.activation(self.conv1(x))
